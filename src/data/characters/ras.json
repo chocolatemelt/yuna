@@ -1,0 +1,28 @@
+{
+	"name": "Ras",
+	"s1": {
+		"att_rate": 0.9,
+		"pow!": 1,
+		"eff_scaling": [
+			{
+				"scalar": 0.04,
+				"stat": "hp"
+			}
+		]
+	},
+	"s2": {
+		"att_rate": 1.5,
+		"pow!": 1,
+		"eff_scaling": []
+	},
+	"s3": {
+		"att_rate": 0.9,
+		"pow!": 1,
+		"eff_scaling": [
+			{
+				"scalar": 0.04,
+				"stat": "hp"
+			}
+		]
+	}
+}

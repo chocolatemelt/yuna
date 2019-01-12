@@ -1,0 +1,15 @@
+{
+	"main": [
+		"attack_flat"
+	],
+	"sub": [
+		"attack_mult",
+		"hp_flat",
+		"hp_mult",
+		"crit_chance",
+		"crit_mult",
+		"effectiveness",
+		"resistance",
+		"speed"
+	]
+}
