@@ -28,7 +28,7 @@
         "no-tabs": 0,
         "quotes": [
             "error",
-            "double",
+            "single",
         ],
         "semi": [
             "error",
