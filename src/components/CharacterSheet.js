@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class CharacterSheet extends Component {
 	render() {
@@ -9,4 +10,8 @@ class CharacterSheet extends Component {
 	}
 }
 
-export default CharacterSheet;
+const mapStateToProps = state => ({
+	character: state.character.current,
+});
+
+export default connect(mapStateToProps)(CharacterSheet);

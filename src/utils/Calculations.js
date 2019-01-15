@@ -1,7 +1,12 @@
 export function calculate(character, items) {
 	// collect modifiers
-	// return final character stats
-	return 'help';
+	const modifiers = {};
+
+	// for item in items
+	// put modifiers in
+
+	// calculate flats and normal (eff, crit)
+	// calculate multipliers
 }
 
 export function calculate_damage(stats, skill) {

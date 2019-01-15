@@ -1,27 +1,36 @@
 {
 	"name": "Ras",
+	"element": "Fire",
+	"attack": 758,
+	"health": 5826,
+	"speed": 95,
+	"defense": 672,
+	"crit_chance": 0.15,
+	"crit_damage": 150,
+	"effectiveness": 0,
+	"effect_res": 6,
 	"s1": {
 		"att_rate": 0.9,
 		"pow!": 1,
-		"eff_scaling": [
+		"flat_scaling": [
 			{
 				"scalar": 0.04,
-				"stat": "hp"
+				"stat": "health"
 			}
 		]
 	},
 	"s2": {
 		"att_rate": 1.5,
 		"pow!": 1,
-		"eff_scaling": []
+		"flat_scaling": []
 	},
 	"s3": {
 		"att_rate": 0.9,
 		"pow!": 1,
-		"eff_scaling": [
+		"flat_scaling": [
 			{
 				"scalar": 0.04,
-				"stat": "hp"
+				"stat": "health"
 			}
 		]
 	}
