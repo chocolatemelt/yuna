@@ -8,8 +8,11 @@ import {
 	NumericInput,
 } from '@blueprintjs/core';
 
+import { setStats } from '../actions/character';
+
 class StatForm extends Component {
 	static propTypes = {
+		set: PropTypes.func.isRequired,
 	};
 
 	constructor(props) {
@@ -28,9 +31,15 @@ class StatForm extends Component {
 	}
 
 	handleStatChange = stat => (value) => {
-		this.setState({
+		const {
+			set,
+		} = this.props;
+		const change = {
 			[stat]: value,
-		});
+		};
+
+		this.setState(change);
+		set(change);
 	}
 
 	render() {
@@ -85,7 +94,8 @@ class StatForm extends Component {
 	}
 }
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = dispatch => ({
+	set: stats => dispatch(setStats(stats)),
+});
 
 export default connect(null, mapDispatchToProps)(StatForm);
