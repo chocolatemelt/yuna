@@ -1,7 +1,9 @@
 import {
 	SET_CHARACTER,
-} from './Character';
+	LOAD_CHARACTER,
+} from './character';
 
 export {
 	SET_CHARACTER,
+	LOAD_CHARACTER,
 };
