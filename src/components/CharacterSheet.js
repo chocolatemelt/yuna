@@ -31,6 +31,10 @@ class CharacterSheet extends Component {
 
 	render() {
 		const {
+			character,
+		} = this.props;
+
+		const {
 			name,
 			element,
 			attack,
@@ -41,7 +45,7 @@ class CharacterSheet extends Component {
 			crit_damage,
 			effectiveness,
 			effect_res,
-		} = this.props.character;
+		} = character;
 
 		return (
 			<div>
