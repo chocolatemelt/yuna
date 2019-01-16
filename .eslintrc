@@ -17,6 +17,19 @@
         "react",
     ],
     "rules": {
+        "camelcase": [
+            "error",
+            {
+                allow: [
+                    "att_rate",
+                    "crit_chance",
+                    "crit_damage",
+                    "effect_res",
+                    "flat_scaling",
+                    "mult_scaling",
+                ],
+            },
+        ],
         "indent": [
             "error",
             "tab",
