@@ -46,8 +46,7 @@ class StatForm extends Component {
 		} = this.state;
 
 		return (
-			<div style={{ width: '20%' }}>
-				<p>pardon the bare minimal look.</p>
+			<div style={{ width: '30%' }}>
 				<p>put in the values in orange on your character below</p>
 				<FormGroup
 					label="Stat Sheet"
@@ -57,6 +56,27 @@ class StatForm extends Component {
 						<NumericInput
 							onValueChange={this.handleStatChange('attack')}
 							value={attack}
+						/>
+					</ControlGroup>
+					<ControlGroup>
+						<Label>Health</Label>
+						<NumericInput
+							onValueChange={this.handleStatChange('health')}
+							value={health}
+						/>
+					</ControlGroup>
+					<ControlGroup>
+						<Label>Crit Chance %</Label>
+						<NumericInput
+							onValueChange={this.handleStatChange('crit_chance')}
+							value={crit_chance}
+						/>
+					</ControlGroup>
+					<ControlGroup>
+						<Label>Crit Damage %</Label>
+						<NumericInput
+							onValueChange={this.handleStatChange('crit_damage')}
+							value={crit_damage}
 						/>
 					</ControlGroup>
 				</FormGroup>

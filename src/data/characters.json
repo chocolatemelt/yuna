@@ -6,7 +6,7 @@
 		"health": 5826,
 		"speed": 95,
 		"defense": 672,
-		"crit_chance": 0.15,
+		"crit_chance": 15,
 		"crit_damage": 150,
 		"effectiveness": 0,
 		"effect_res": 6,
