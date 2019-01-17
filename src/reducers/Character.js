@@ -4,8 +4,11 @@ import {
 	SET_STATS,
 } from '../actions';
 
+import { add } from '../utils/stats';
+
 const character = (state = {
 	current: 'ras',
+	base: {},
 	data: {},
 	stats: {},
 	modifiers: {},
@@ -15,14 +18,21 @@ const character = (state = {
 		return Object.assign({}, state, {
 			current: action.character,
 		});
-	case LOAD_CHARACTER:
+	case LOAD_CHARACTER: {
+		const data = add(action.characterData, state.stats);
 		return Object.assign({}, state, {
-			data: action.characterData,
+			base: action.characterData,
+			data,
 		});
-	case SET_STATS:
+	}
+	case SET_STATS: {
+		const stats = Object.assign(state.stats, action.stat);
+		const data = add(state.base, stats);
 		return Object.assign({}, state, {
-			stats: Object.assign(state.stats, action.stat),
+			data,
+			stats,
 		});
+	}
 	default:
 		return state;
 	}

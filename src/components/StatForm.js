@@ -21,12 +21,12 @@ class StatForm extends Component {
 		this.state = {
 			attack: 0,
 			health: 0,
-			// speed: 0,
-			// defense: 0,
+			speed: 0,
+			defense: 0,
 			crit_chance: 0,
 			crit_damage: 0,
-			// effectiveness: 0,
-			// effect_res: 0,
+			effectiveness: 0,
+			effect_res: 0,
 		};
 	}
 
@@ -46,12 +46,12 @@ class StatForm extends Component {
 		const {
 			attack,
 			health,
-			// speed,
-			// defense,
+			speed,
+			defense,
 			crit_chance,
 			crit_damage,
-			// effectiveness,
-			// effect_res,
+			effectiveness,
+			effect_res,
 		} = this.state;
 
 		return (
@@ -75,6 +75,20 @@ class StatForm extends Component {
 						/>
 					</ControlGroup>
 					<ControlGroup>
+						<Label>Speed</Label>
+						<NumericInput
+							onValueChange={this.handleStatChange('speed')}
+							value={speed}
+						/>
+					</ControlGroup>
+					<ControlGroup>
+						<Label>Defense</Label>
+						<NumericInput
+							onValueChange={this.handleStatChange('defense')}
+							value={defense}
+						/>
+					</ControlGroup>
+					<ControlGroup>
 						<Label>Crit Chance %</Label>
 						<NumericInput
 							onValueChange={this.handleStatChange('crit_chance')}
@@ -86,6 +100,20 @@ class StatForm extends Component {
 						<NumericInput
 							onValueChange={this.handleStatChange('crit_damage')}
 							value={crit_damage}
+						/>
+					</ControlGroup>
+					<ControlGroup>
+						<Label>Effectiveness %</Label>
+						<NumericInput
+							onValueChange={this.handleStatChange('effectiveness')}
+							value={effectiveness}
+						/>
+					</ControlGroup>
+					<ControlGroup>
+						<Label>Effect Resistance %</Label>
+						<NumericInput
+							onValueChange={this.handleStatChange('effect_res')}
+							value={effect_res}
 						/>
 					</ControlGroup>
 				</FormGroup>
