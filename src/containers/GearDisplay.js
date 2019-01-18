@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {
 	Button,
-	Dialog,
 } from '@blueprintjs/core';
+
+import GearDialog from '../components/GearDialog';
 
 class GearDisplay extends Component {
 	constructor(props) {
@@ -16,7 +17,7 @@ class GearDisplay extends Component {
 	handleDialogFor = (gear) => {
 		const dialog = `${gear}Dialog`;
 		this.setState(prevState => ({
-			[dialog]: prevState[dialog],
+			[dialog]: !prevState[dialog],
 		}));
 	}
 
@@ -27,13 +28,13 @@ class GearDisplay extends Component {
 
 		return (
 			<div>
-				<Dialog
-					isOpen={weaponDialog}
-					title="Palantir"
-					onClose={() => this.handleDialogFor('weapon')}
-				>
-					???
-				</Dialog>
+				<>
+					<GearDialog
+						isOpen={weaponDialog}
+						onClose={() => this.handleDialogFor('weapon')}
+						type="weapon"
+					/>
+				</>
 				<Button onClick={() => this.handleDialogFor('weapon')}>woopeen</Button>
 			</div>
 		);
