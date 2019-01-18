@@ -8,7 +8,7 @@ import {
 	NumericInput,
 } from '@blueprintjs/core';
 
-import { setStats } from '../actions/character';
+import { characterSetStats } from '../actions/character';
 
 class StatForm extends Component {
 	static propTypes = {
@@ -123,7 +123,7 @@ class StatForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-	set: stats => dispatch(setStats(stats)),
+	set: stats => dispatch(characterSetStats(stats)),
 });
 
 export default connect(null, mapDispatchToProps)(StatForm);

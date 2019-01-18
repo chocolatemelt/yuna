@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { characterLoad } from '../actions/character';
+import { loadCharacterData } from '../actions/character';
 
 class CharacterSheet extends Component {
 	static propTypes = {
@@ -71,7 +71,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-	loadCharacter: () => characterLoad(),
+	loadCharacter: () => loadCharacterData(),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterSheet);

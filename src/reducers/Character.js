@@ -1,7 +1,7 @@
 import {
-	SET_CHARACTER,
-	LOAD_CHARACTER,
-	SET_STATS,
+	CHARACTER_SET,
+	CHARACTER_LOAD,
+	CHARACTER_SET_STATS,
 } from '../actions';
 
 import { add } from '../utils/stats';
@@ -13,18 +13,18 @@ const character = (state = {
 	stats: {},
 }, action) => {
 	switch (action.type) {
-	case SET_CHARACTER:
+	case CHARACTER_SET:
 		return Object.assign({}, state, {
 			current: action.character,
 		});
-	case LOAD_CHARACTER: {
+	case CHARACTER_LOAD: {
 		const data = add(action.characterData, state.stats);
 		return Object.assign({}, state, {
 			base: action.characterData,
 			data,
 		});
 	}
-	case SET_STATS: {
+	case CHARACTER_SET_STATS: {
 		const stats = Object.assign(state.stats, action.stat);
 		const data = add(state.base, stats);
 		return Object.assign({}, state, {

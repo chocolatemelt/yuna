@@ -1,32 +1,32 @@
 import data from '../data/characters.json';
 
-export const SET_CHARACTER = 'SET_CHARACTER';
-export const LOAD_CHARACTER = 'LOAD_CHARACTER';
+export const CHARACTER_SET = 'CHARACTER_SET';
+export const CHARACTER_LOAD = 'CHARACTER_LOAD';
 
-export const SET_STATS = 'SET_STATS';
+export const CHARACTER_SET_STATS = 'CHARACTER_SET_STATS';
 
-export function setCharacter(character) {
+export function characterSet(character) {
 	return {
-		type: SET_CHARACTER,
+		type: CHARACTER_SET,
 		character,
 	};
 }
 
-export function loadCharacter(characterData) {
+export function characterLoad(characterData) {
 	return {
-		type: LOAD_CHARACTER,
+		type: CHARACTER_LOAD,
 		characterData,
 	};
 }
 
-export function setStats(stat) {
+export function characterSetStats(stat) {
 	return {
-		type: SET_STATS,
+		type: CHARACTER_SET_STATS,
 		stat,
 	};
 }
 
-export const characterLoad = () => (dispatch, getState) => {
+export const loadCharacterData = () => (dispatch, getState) => {
 	const character = getState().character.current;
-	dispatch(loadCharacter(data[character]));
+	dispatch(characterLoad(data[character]));
 };
