@@ -1,15 +1,84 @@
 {
-	"main": [
-		"attack_flat"
-	],
-	"sub": [
-		"attack_mult",
-		"hp_flat",
-		"hp_mult",
-		"crit_chance",
-		"crit_mult",
-		"effectiveness",
-		"resistance",
-		"speed"
-	]
+	"weapon": {
+		"main": [
+			"attack_flat"
+		],
+		"sub": [
+			"attack_mult",
+			"health_flat",
+			"health_mult",
+			"crit_chance",
+			"crit_damage",
+			"effectiveness",
+			"effect_res",
+			"speed"
+		]
+	},
+	"helmet": {
+		"main": [
+			"health_flat"
+		],
+		"sub": [
+			"attack_flat",
+			"attack_mult",
+			"health_mult",
+			"defense_flat",
+			"defense_mult",
+			"crit_chance",
+			"crit_damage",
+			"effectiveness",
+			"effect_res",
+			"speed"
+		]
+	},
+	"armor": {
+		"main": [
+			"defense_flat"
+		],
+		"sub": [
+			"health_flat",
+			"health_mult",
+			"defense_mult",
+			"crit_chance",
+			"crit_damage",
+			"effectiveness",
+			"effect_res",
+			"speed"
+		]
+	},
+	"necklace": {
+		"main": [
+			"attack_flat",
+			"attack_mult",
+			"health_flat",
+			"health_mult",
+			"defense_flat",
+			"defense_mult",
+			"crit_chance",
+			"crit_damage"
+		]
+	},
+	"ring": {
+		"main": [
+			"attack_flat",
+			"attack_mult",
+			"health_flat",
+			"health_mult",
+			"defense_flat",
+			"defense_mult",
+			"effectiveness",
+			"effect_res"
+		]
+	},
+	"boots": {
+		"main": [
+			"attack_flat",
+			"attack_mult",
+			"health_flat",
+			"health_mult",
+			"defense_flat",
+			"defense_mult",
+			"speed"
+		]
+	}
 }
