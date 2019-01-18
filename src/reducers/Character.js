@@ -11,7 +11,6 @@ const character = (state = {
 	base: {},
 	data: {},
 	stats: {},
-	modifiers: {},
 }, action) => {
 	switch (action.type) {
 	case SET_CHARACTER:
