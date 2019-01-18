@@ -1,13 +1,15 @@
 import React from 'react';
 
-import CharacterSheet from '../components/CharacterSheet';
-import SkillDisplay from '../components/SkillDisplay';
-import StatForm from '../components/StatForm';
+import CharacterSheet from './CharacterSheet';
+import SkillDisplay from './SkillDisplay';
+import StatForm from './StatForm';
+import GearDisplay from './GearDisplay';
 
 const Main = () => (
 	<div>
 		<CharacterSheet />
 		<StatForm />
+		<GearDisplay />
 		<SkillDisplay />
 	</div>
 );

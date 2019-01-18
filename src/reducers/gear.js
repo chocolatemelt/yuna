@@ -1,7 +1,9 @@
 import {
+	GEAR_SET,
+	GEAR_CLEAR,
 } from '../actions';
 
-import { add } from '../utils/stats';
+// import { add } from '../utils/stats';
 
 const gear = (state = {
 	artifact: {},
@@ -24,8 +26,21 @@ const gear = (state = {
 		effect_res: 0,
 		speed: 0,
 	},
+	sets: [],
 }, action) => {
 	switch (action.type) {
+	case GEAR_SET: {
+		const newGear = {
+			[action.gear]: action.modifiers,
+		};
+		return Object.assign({}, state, newGear);
+	}
+	case GEAR_CLEAR: {
+		const clear = {
+			[action.gear]: {},
+		};
+		return Object.assign({}, state, clear);
+	}
 	default:
 		return state;
 	}
