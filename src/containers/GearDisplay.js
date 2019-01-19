@@ -3,6 +3,7 @@ import {
 	Button,
 } from '@blueprintjs/core';
 
+import data from '../data/gear.json';
 import GearDialog from '../components/GearDialog';
 
 class GearDisplay extends Component {
@@ -33,9 +34,10 @@ class GearDisplay extends Component {
 						isOpen={weaponDialog}
 						onClose={() => this.handleDialogFor('weapon')}
 						type="weapon"
+						data={data.weapon}
 					/>
 				</>
-				<Button onClick={() => this.handleDialogFor('weapon')}>woopeen</Button>
+				<Button onClick={() => this.handleDialogFor('weapon')}>weapon</Button>
 			</div>
 		);
 	}
