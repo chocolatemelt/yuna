@@ -56,7 +56,8 @@
 			"defense_mult",
 			"crit_chance",
 			"crit_damage"
-		]
+		],
+		"sub": []
 	},
 	"ring": {
 		"main": [
@@ -68,7 +69,8 @@
 			"defense_mult",
 			"effectiveness",
 			"effect_res"
-		]
+		],
+		"sub": []
 	},
 	"boots": {
 		"main": [
@@ -79,6 +81,7 @@
 			"defense_flat",
 			"defense_mult",
 			"speed"
-		]
+		],
+		"sub": []
 	}
 }

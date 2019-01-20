@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
 	Button,
 } from '@blueprintjs/core';
@@ -11,33 +11,49 @@ class GearDisplay extends Component {
 		super(props);
 
 		this.state = {
-			weaponDialog: false,
+			dialogOpen: {
+				weapon: false,
+				helmet: false,
+				armor: false,
+				necklace: false,
+				ring: false,
+				boots: false,
+			},
 		};
 	}
 
 	handleDialogFor = (gear) => {
-		const dialog = `${gear}Dialog`;
 		this.setState(prevState => ({
-			[dialog]: !prevState[dialog],
+			dialogOpen: Object.assign(prevState.dialogOpen, {
+				[gear]: !prevState.dialogOpen[gear],
+			}),
 		}));
 	}
 
 	render() {
 		const {
-			weaponDialog,
+			dialogOpen,
 		} = this.state;
 
 		return (
 			<div>
-				<>
-					<GearDialog
-						isOpen={weaponDialog}
-						onClose={() => this.handleDialogFor('weapon')}
-						type="weapon"
-						data={data.weapon}
-					/>
-				</>
-				<Button onClick={() => this.handleDialogFor('weapon')}>weapon</Button>
+				{Object.keys(data).map(key => (
+					<Fragment key={`${key}group`}>
+						<GearDialog
+							key={`${key}dialog`}
+							isOpen={dialogOpen[key]}
+							onClose={() => this.handleDialogFor(key)}
+							type={key}
+							data={data[key]}
+						/>
+						<Button
+							key={`${key}button`}
+							onClick={() => this.handleDialogFor(key)}
+						>
+							{key}
+						</Button>
+					</Fragment>
+				))}
 			</div>
 		);
 	}

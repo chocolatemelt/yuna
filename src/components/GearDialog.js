@@ -101,31 +101,30 @@ class GearDialog extends Component {
 				title={type}
 			>
 				{substats.map((substat, idx) => (
-					<ControlGroup>
+					<ControlGroup key={`${substat}group`}>
 						<HTMLSelect
-							key={substat}
+							key={`${substat}select`}
 							options={(lefty(idx)) ? [substat] : add(pool, substat).sort()}
 							onChange={this.handleChange(idx)}
 							value={substat}
 						/>
 						<NumericInput
+							key={`${substat}input`}
 							clampValueOnBlur
 							min={0}
 						/>
-						{
-							lefty(idx)
-								? (
-									<Button
-										icon="plus"
-										onClick={this.addSubstat}
-									/>
-								) : (
-									<Button
-										icon="minus"
-										onClick={() => this.removeSubstat(idx)}
-									/>
-								)
-						}
+						<Button
+							key={`${substat}add`}
+							icon="plus"
+							onClick={this.addSubstat}
+						/>
+						{(idx !== 0) && (
+							<Button
+								key={`${substat}minus`}
+								icon="minus"
+								onClick={() => this.removeSubstat(idx)}
+							/>
+						)}
 					</ControlGroup>
 				))}
 			</Dialog>
