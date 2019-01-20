@@ -14,7 +14,7 @@ class GearDialog extends Component {
 	static propTypes = {
 		data: PropTypes.shape({
 			main: PropTypes.array,
-			sub: PropTypes.sub,
+			sub: PropTypes.array,
 		}).isRequired,
 		isOpen: PropTypes.bool.isRequired,
 		onClose: PropTypes.func.isRequired,
@@ -24,13 +24,16 @@ class GearDialog extends Component {
 	constructor(props) {
 		super(props);
 
+		const mainstat = props.data.main[0];
 		const main = remove(props.data.main, props.data.main[0]);
 
 		this.state = {
 			pool: main.concat(props.data.sub),
-			substats: [],
+			substats: [mainstat],
 		};
 	}
+
+	isLeft = type => (type === 'weapon' || type === 'helmet' || type === 'armor');
 
 	addSubstat = () => {
 		const {
@@ -39,12 +42,24 @@ class GearDialog extends Component {
 		} = this.state;
 
 		const nextSubstat = pool[0];
-		if (substats.length < 4) {
+		if (substats.length < 5) {
 			this.setState(prevState => ({
-				pool: remove(prevState.pool, nextSubstat),
+				pool: remove(prevState.pool, nextSubstat).sort(),
 				substats: add(prevState.substats, nextSubstat),
 			}));
 		}
+	}
+
+	removeSubstat = (idx) => {
+		const {
+			substats,
+		} = this.state;
+
+		const removedSubstat = substats[idx];
+		this.setState(prevState => ({
+			pool: add(prevState.pool, removedSubstat).sort(),
+			substats: remove(prevState.substats, removedSubstat),
+		}));
 	}
 
 	handleChange = index => (e) => {
@@ -72,11 +87,12 @@ class GearDialog extends Component {
 		} = this.state;
 
 		const {
-			data,
 			isOpen,
 			onClose,
 			type,
 		} = this.props;
+
+		const lefty = index => (index === 0 && this.isLeft(type));
 
 		return (
 			<Dialog
@@ -84,24 +100,11 @@ class GearDialog extends Component {
 				onClose={onClose}
 				title={type}
 			>
-				<ControlGroup>
-					<HTMLSelect
-						options={data.main}
-					/>
-					<NumericInput
-						clampValueOnBlur
-						min={0}
-					/>
-					<Button
-						icon="plus"
-						onClick={this.addSubstat}
-					/>
-				</ControlGroup>
 				{substats.map((substat, idx) => (
 					<ControlGroup>
 						<HTMLSelect
 							key={substat}
-							options={add(pool, substat)}
+							options={(lefty(idx)) ? [substat] : add(pool, substat).sort()}
 							onChange={this.handleChange(idx)}
 							value={substat}
 						/>
@@ -109,10 +112,20 @@ class GearDialog extends Component {
 							clampValueOnBlur
 							min={0}
 						/>
-						<Button
-							icon="minus"
-							onClick={this.addSubstat}
-						/>
+						{
+							lefty(idx)
+								? (
+									<Button
+										icon="plus"
+										onClick={this.addSubstat}
+									/>
+								) : (
+									<Button
+										icon="minus"
+										onClick={() => this.removeSubstat(idx)}
+									/>
+								)
+						}
 					</ControlGroup>
 				))}
 			</Dialog>
