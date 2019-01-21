@@ -57,7 +57,19 @@
 			"crit_chance",
 			"crit_damage"
 		],
-		"sub": []
+		"sub": [
+			"attack_flat",
+			"attack_mult",
+			"health_flat",
+			"health_mult",
+			"defense_flat",
+			"defense_mult",
+			"crit_chance",
+			"crit_damage",
+			"effectiveness",
+			"effect_res",
+			"speed"
+		]
 	},
 	"ring": {
 		"main": [
@@ -70,7 +82,19 @@
 			"effectiveness",
 			"effect_res"
 		],
-		"sub": []
+		"sub": [
+			"attack_flat",
+			"attack_mult",
+			"health_flat",
+			"health_mult",
+			"defense_flat",
+			"defense_mult",
+			"crit_chance",
+			"crit_damage",
+			"effectiveness",
+			"effect_res",
+			"speed"
+		]
 	},
 	"boots": {
 		"main": [
@@ -82,6 +106,18 @@
 			"defense_mult",
 			"speed"
 		],
-		"sub": []
+		"sub": [
+			"attack_flat",
+			"attack_mult",
+			"health_flat",
+			"health_mult",
+			"defense_flat",
+			"defense_mult",
+			"crit_chance",
+			"crit_damage",
+			"effectiveness",
+			"effect_res",
+			"speed"
+		]
 	}
 }

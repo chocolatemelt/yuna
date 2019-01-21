@@ -26,10 +26,12 @@ class GearDialog extends Component {
 
 		const mainstat = props.data.main[0];
 		const main = remove(props.data.main, props.data.main[0]);
+		const sub = remove(props.data.sub, props.data.main[0]);
 
 		this.state = {
-			pool: main.concat(props.data.sub),
-			substats: [mainstat],
+			mainpool: main,
+			subpool: sub,
+			stats: [mainstat], // the 0th index is the main stat
 		};
 	}
 
@@ -37,53 +39,75 @@ class GearDialog extends Component {
 
 	addSubstat = () => {
 		const {
-			pool,
-			substats,
+			subpool,
+			stats,
 		} = this.state;
+		const nextSubstat = subpool[0]; // we only "add" substats from the sub pool
 
-		const nextSubstat = pool[0];
-		if (substats.length < 5) {
+		if (stats.length < 5) {
 			this.setState(prevState => ({
-				pool: remove(prevState.pool, nextSubstat).sort(),
-				substats: add(prevState.substats, nextSubstat),
+				mainpool: remove(prevState.mainpool, nextSubstat).sort(),
+				subpool: remove(prevState.subpool, nextSubstat).sort(),
+				stats: add(prevState.stats, nextSubstat),
 			}));
 		}
 	}
 
 	removeSubstat = (idx) => {
 		const {
-			substats,
+			stats,
 		} = this.state;
+		const {
+			data,
+		} = this.props;
+		const removedSubstat = stats[idx];
 
-		const removedSubstat = substats[idx];
 		this.setState(prevState => ({
-			pool: add(prevState.pool, removedSubstat).sort(),
-			substats: remove(prevState.substats, removedSubstat),
+			subpool: add(prevState.subpool, removedSubstat).sort(),
+			stats: remove(prevState.stats, removedSubstat),
 		}));
+		if (data.main.includes(removedSubstat)) {
+			this.setState(prevState => ({
+				mainpool: add(prevState.mainpool, removedSubstat).sort(),
+			}));
+		}
 	}
 
 	handleChange = index => (e) => {
+		// this should only execute for right hand gear!
 		const {
-			pool,
-			substats,
+			mainpool,
+			subpool,
+			stats,
 		} = this.state;
-		const removedSubstat = substats[index];
+		const {
+			data,
+		} = this.props;
+		const removedSubstat = stats[index];
 		const nextSubstat = e.currentTarget.value;
-		const newPool = remove(add(pool, removedSubstat), nextSubstat);
-		const newSubstats = Object.assign([], substats, {
+		const newSubPool = remove(add(subpool, removedSubstat), nextSubstat).sort();
+		const newMainPool = remove(add(mainpool, removedSubstat), nextSubstat).sort();
+		const newSubstats = Object.assign([], stats, {
 			[index]: nextSubstat,
 		});
 
 		this.setState({
-			pool: newPool,
-			substats: newSubstats,
+			subpool: newSubPool,
+			stats: newSubstats,
 		});
+		// only remove from the main stat pool if it was part of it to begin with
+		if (data.main.includes(removedSubstat)) {
+			this.setState({
+				mainpool: newMainPool,
+			});
+		}
 	}
 
 	render() {
 		const {
-			substats,
-			pool,
+			stats,
+			mainpool,
+			subpool,
 		} = this.state;
 
 		const {
@@ -92,40 +116,53 @@ class GearDialog extends Component {
 			type,
 		} = this.props;
 
-		const lefty = index => (index === 0 && this.isLeft(type));
-
 		return (
 			<Dialog
 				isOpen={isOpen}
 				onClose={onClose}
 				title={type}
 			>
-				{substats.map((substat, idx) => (
-					<ControlGroup key={`${substat}group`}>
-						<HTMLSelect
-							key={`${substat}select`}
-							options={(lefty(idx)) ? [substat] : add(pool, substat).sort()}
-							onChange={this.handleChange(idx)}
-							value={substat}
-						/>
-						<NumericInput
-							key={`${substat}input`}
-							clampValueOnBlur
-							min={0}
-						/>
-						<Button
-							key={`${substat}add`}
-							icon="plus"
-							onClick={this.addSubstat}
-						/>
-						{(idx !== 0) && (
+				<ControlGroup>
+					<HTMLSelect
+						options={add(mainpool, stats[0]).sort()}
+						onChange={this.handleChange(0)}
+						value={stats[0]}
+					/>
+					<NumericInput
+						clampValueOnBlur
+						min={0}
+					/>
+					<Button
+						icon="plus"
+						onClick={this.addSubstat}
+					/>
+				</ControlGroup>
+				{stats.map((substat, idx) => (
+					(idx > 0) && (
+						<ControlGroup key={`${substat}group`}>
+							<HTMLSelect
+								key={`${substat}select`}
+								options={add(subpool, substat).sort()}
+								onChange={this.handleChange(idx)}
+								value={substat}
+							/>
+							<NumericInput
+								key={`${substat}input`}
+								clampValueOnBlur
+								min={0}
+							/>
+							<Button
+								key={`${substat}add`}
+								icon="plus"
+								onClick={this.addSubstat}
+							/>
 							<Button
 								key={`${substat}minus`}
 								icon="minus"
 								onClick={() => this.removeSubstat(idx)}
 							/>
-						)}
-					</ControlGroup>
+						</ControlGroup>
+					)
 				))}
 			</Dialog>
 		);
