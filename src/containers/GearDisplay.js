@@ -43,6 +43,7 @@ class GearDisplay extends Component {
 							key={`${key}dialog`}
 							isOpen={dialogOpen[key]}
 							onClose={() => this.handleDialogFor(key)}
+							onSave={(e) => console.log(e)}
 							type={key}
 							data={data[key]}
 						/>

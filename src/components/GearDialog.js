@@ -19,6 +19,7 @@ class GearDialog extends Component {
 		isOpen: PropTypes.bool.isRequired,
 		onClose: PropTypes.func.isRequired,
 		type: PropTypes.string.isRequired,
+		onSave: PropTypes.func.isRequired,
 	};
 
 	constructor(props) {
@@ -32,6 +33,7 @@ class GearDialog extends Component {
 			mainpool: main,
 			subpool: sub,
 			stats: [mainstat], // the 0th index is the main stat
+			values: new Array(5).fill(0),
 		};
 	}
 
@@ -103,11 +105,51 @@ class GearDialog extends Component {
 		}
 	}
 
+	handleValueChange = index => (val) => {
+		const {
+			values,
+		} = this.state;
+
+		values[index] = val;
+		this.setState({
+			values,
+		});
+	}
+
+	clear = () => {
+		const {
+			data,
+		} = this.props;
+		const mainstat = data.main[0];
+		const main = remove(data.main, data.main[0]);
+		const sub = remove(data.sub, data.main[0]);
+
+		this.setState({
+			mainpool: main,
+			subpool: sub,
+			stats: [mainstat],
+			values: new Array(5).fill(0),
+		});
+	}
+
+	save = () => {
+		const {
+			onSave,
+		} = this.props;
+		const {
+			stats,
+			values,
+		} = this.state;
+
+		onSave(stats.reduce((obj, key, idx) => ({ ...obj, [key]: values[idx] }), {}));
+	}
+
 	render() {
 		const {
 			stats,
 			mainpool,
 			subpool,
+			values,
 		} = this.state;
 
 		const {
@@ -131,6 +173,8 @@ class GearDialog extends Component {
 					<NumericInput
 						clampValueOnBlur
 						min={0}
+						onValueChange={this.handleValueChange(0)}
+						value={values[0]}
 					/>
 					<Button
 						icon="plus"
@@ -150,6 +194,8 @@ class GearDialog extends Component {
 								key={`${substat}input`}
 								clampValueOnBlur
 								min={0}
+								onValueChange={this.handleValueChange(idx)}
+								value={values[idx]}
 							/>
 							<Button
 								key={`${substat}add`}
@@ -164,6 +210,18 @@ class GearDialog extends Component {
 						</ControlGroup>
 					)
 				))}
+				<ControlGroup>
+					<Button
+						onClick={this.clear}
+					>
+						Clear
+					</Button>
+					<Button
+						onClick={this.save}
+					>
+						Save
+					</Button>
+				</ControlGroup>
 			</Dialog>
 		);
 	}
