@@ -1,0 +1,13 @@
+{
+  "attack": 4,
+  "critical": 2,
+  "defense": 2,
+  "destruction": 4,
+  "health": 2,
+  "hit": 2,
+  "immunity": 2,
+  "rage": 4,
+  "resist": 2,
+  "speed": 4,
+  "unity": 2
+}

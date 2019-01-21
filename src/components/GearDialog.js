@@ -9,6 +9,7 @@ import {
 } from '@blueprintjs/core';
 
 import { add, remove } from '../utils/misc';
+import sets from '../data/sets.json';
 
 class GearDialog extends Component {
 	static propTypes = {
@@ -28,12 +29,14 @@ class GearDialog extends Component {
 		const mainstat = props.data.main[0];
 		const main = remove(props.data.main, props.data.main[0]);
 		const sub = remove(props.data.sub, props.data.main[0]);
+		const defaultSet = Object.keys(sets)[0];
 
 		this.state = {
 			mainpool: main,
 			subpool: sub,
 			stats: [mainstat], // the 0th index is the main stat
 			values: new Array(5).fill(0),
+			set: defaultSet,
 		};
 	}
 
@@ -105,6 +108,12 @@ class GearDialog extends Component {
 		}
 	}
 
+	handleSets = (e) => {
+		this.setState({
+			set: e.target.value,
+		});
+	}
+
 	handleValueChange = index => (val) => {
 		const {
 			values,
@@ -139,9 +148,12 @@ class GearDialog extends Component {
 		const {
 			stats,
 			values,
+			set,
 		} = this.state;
+		const gearData = stats.reduce((obj, key, idx) => ({ ...obj, [key]: values[idx] }), {});
+		gearData.set = set;
 
-		onSave(stats.reduce((obj, key, idx) => ({ ...obj, [key]: values[idx] }), {}));
+		onSave(gearData);
 	}
 
 	render() {
@@ -150,6 +162,7 @@ class GearDialog extends Component {
 			mainpool,
 			subpool,
 			values,
+			set,
 		} = this.state;
 
 		const {
@@ -210,6 +223,13 @@ class GearDialog extends Component {
 						</ControlGroup>
 					)
 				))}
+				<ControlGroup>
+					<HTMLSelect
+						options={Object.keys(sets)}
+						onChange={this.handleSets}
+						value={set}
+					/>
+				</ControlGroup>
 				<ControlGroup>
 					<Button
 						onClick={this.clear}
