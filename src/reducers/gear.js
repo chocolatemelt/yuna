@@ -3,7 +3,7 @@ import {
 	GEAR_CLEAR,
 } from '../actions';
 
-// import { add } from '../utils/stats';
+import { add } from '../utils/stats';
 
 const gear = (state = {
 	artifact: {},
@@ -30,10 +30,11 @@ const gear = (state = {
 }, action) => {
 	switch (action.type) {
 	case GEAR_SET: {
-		const newGear = {
-			[action.gear]: action.modifiers,
-		};
-		return Object.assign({}, state, newGear);
+		const newModifiers = add(Object.assign({}, state.modifiers), action.stats);
+		return Object.assign({}, state, {
+			[action.gear]: action.stats,
+			modifiers: newModifiers,
+		});
 	}
 	case GEAR_CLEAR: {
 		const clear = {

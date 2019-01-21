@@ -25,7 +25,7 @@ const character = (state = {
 		});
 	}
 	case CHARACTER_SET_STATS: {
-		const stats = Object.assign(state.stats, action.stat);
+		const stats = Object.assign({}, state.stats, action.stat);
 		const data = add(state.base, stats);
 		return Object.assign({}, state, {
 			data,

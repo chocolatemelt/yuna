@@ -1,12 +1,19 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
 	Button,
 } from '@blueprintjs/core';
 
-import data from '../data/gear.json';
+import { gearSet } from '../actions/gear';
 import GearDialog from '../components/GearDialog';
+import data from '../data/gear.json';
 
 class GearDisplay extends Component {
+	static propTypes = {
+		setGear: PropTypes.func.isRequired,
+	}
+
 	constructor(props) {
 		super(props);
 
@@ -32,6 +39,9 @@ class GearDisplay extends Component {
 
 	render() {
 		const {
+			setGear,
+		} = this.props;
+		const {
 			dialogOpen,
 		} = this.state;
 
@@ -43,7 +53,7 @@ class GearDisplay extends Component {
 							key={`${key}dialog`}
 							isOpen={dialogOpen[key]}
 							onClose={() => this.handleDialogFor(key)}
-							onSave={(e) => console.log(e)}
+							onSave={e => setGear(key, e)}
 							type={key}
 							data={data[key]}
 						/>
@@ -60,4 +70,8 @@ class GearDisplay extends Component {
 	}
 }
 
-export default GearDisplay;
+const mapDispatchToProps = dispatch => ({
+	setGear: (gear, stats) => dispatch(gearSet(gear, stats)),
+});
+
+export default connect(null, mapDispatchToProps)(GearDisplay);

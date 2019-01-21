@@ -1,15 +1,15 @@
 export const GEAR_SET = 'GEAR_SET';
 export const GEAR_CLEAR = 'GEAR_CLEAR';
 
-export function setGear(gear, modifiers) {
+export function gearSet(gear, stats) {
 	return {
 		type: GEAR_SET,
 		gear,
-		modifiers,
+		stats,
 	};
 }
 
-export function clearGear(gear) {
+export function gearClear(gear) {
 	return {
 		type: GEAR_CLEAR,
 		gear,

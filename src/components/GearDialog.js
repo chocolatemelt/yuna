@@ -143,6 +143,7 @@ class GearDialog extends Component {
 
 	save = () => {
 		const {
+			onClose,
 			onSave,
 		} = this.props;
 		const {
@@ -154,6 +155,7 @@ class GearDialog extends Component {
 		gearData.set = set;
 
 		onSave(gearData);
+		onClose();
 	}
 
 	render() {
