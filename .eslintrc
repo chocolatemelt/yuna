@@ -33,6 +33,8 @@
                     "effect_res",
                     "flat_scaling",
                     "mult_scaling",
+                    "mod_speed",
+                    "mod_effectiveness",
                 ],
             },
         ],

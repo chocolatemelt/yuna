@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { calculateDamage } from '../utils/calculations';
 
-class CharacterSheet extends Component {
+class SkillDisplay extends Component {
 	static propTypes = {
-		character: PropTypes.shape({
+		data: PropTypes.shape({
 			name: PropTypes.string,
 			element: PropTypes.string,
 			attack: PropTypes.number,
@@ -32,19 +31,19 @@ class CharacterSheet extends Component {
 
 	componentWillReceiveProps = (nextProps) => {
 		const {
-			character,
+			data,
 		} = nextProps;
 
 		const {
 			s1,
 			s2,
 			s3,
-		} = character;
+		} = data;
 
 		this.setState({
-			s1: calculateDamage(character, s1),
-			s2: calculateDamage(character, s2),
-			s3: calculateDamage(character, s3),
+			s1: calculateDamage(data, s1),
+			s2: calculateDamage(data, s2),
+			s3: calculateDamage(data, s3),
 		});
 	}
 
@@ -67,8 +66,4 @@ class CharacterSheet extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	character: state.character.data,
-});
-
-export default connect(mapStateToProps)(CharacterSheet);
+export default SkillDisplay;

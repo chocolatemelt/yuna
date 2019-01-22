@@ -5,7 +5,7 @@ import {
 	Button,
 } from '@blueprintjs/core';
 
-import { gearSet } from '../actions/gear';
+import { updateGear } from '../actions/gear';
 import GearDialog from '../components/GearDialog';
 import data from '../data/gear.json';
 
@@ -71,7 +71,7 @@ class GearDisplay extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-	setGear: (gear, stats) => dispatch(gearSet(gear, stats)),
+	setGear: (gear, stats) => dispatch(updateGear(gear, stats)),
 });
 
 export default connect(null, mapDispatchToProps)(GearDisplay);
