@@ -63,6 +63,8 @@ class StatForm extends Component {
 					<ControlGroup>
 						<Label>Attack</Label>
 						<NumericInput
+							clampValueOnBlur
+							min={0}
 							onValueChange={this.handleStatChange('attack')}
 							value={attack}
 						/>
@@ -70,6 +72,8 @@ class StatForm extends Component {
 					<ControlGroup>
 						<Label>Health</Label>
 						<NumericInput
+							clampValueOnBlur
+							min={0}
 							onValueChange={this.handleStatChange('health')}
 							value={health}
 						/>
@@ -77,6 +81,8 @@ class StatForm extends Component {
 					<ControlGroup>
 						<Label>Speed</Label>
 						<NumericInput
+							clampValueOnBlur
+							min={0}
 							onValueChange={this.handleStatChange('speed')}
 							value={speed}
 						/>
@@ -84,6 +90,8 @@ class StatForm extends Component {
 					<ControlGroup>
 						<Label>Defense</Label>
 						<NumericInput
+							clampValueOnBlur
+							min={0}
 							onValueChange={this.handleStatChange('defense')}
 							value={defense}
 						/>
@@ -91,6 +99,8 @@ class StatForm extends Component {
 					<ControlGroup>
 						<Label>Crit Chance %</Label>
 						<NumericInput
+							clampValueOnBlur
+							min={0}
 							onValueChange={this.handleStatChange('crit_chance')}
 							value={crit_chance}
 						/>
@@ -98,6 +108,8 @@ class StatForm extends Component {
 					<ControlGroup>
 						<Label>Crit Damage %</Label>
 						<NumericInput
+							clampValueOnBlur
+							min={0}
 							onValueChange={this.handleStatChange('crit_damage')}
 							value={crit_damage}
 						/>
@@ -105,6 +117,8 @@ class StatForm extends Component {
 					<ControlGroup>
 						<Label>Effectiveness %</Label>
 						<NumericInput
+							clampValueOnBlur
+							min={0}
 							onValueChange={this.handleStatChange('effectiveness')}
 							value={effectiveness}
 						/>
@@ -112,6 +126,8 @@ class StatForm extends Component {
 					<ControlGroup>
 						<Label>Effect Resistance %</Label>
 						<NumericInput
+							clampValueOnBlur
+							min={0}
 							onValueChange={this.handleStatChange('effect_res')}
 							value={effect_res}
 						/>
