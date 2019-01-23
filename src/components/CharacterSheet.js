@@ -1,32 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { statNames, getName } from '../utils/misc';
+
 const CharacterSheet = ({ character, modifiers }) => (
 	<div>
 		<h1>{character.name}</h1>
 		<ul>
-			<li>{`Element: ${character.element}`}</li>
-			<li>{`Attack: ${character.attack}`}</li>
-			<li>{`Health: ${character.health}`}</li>
-			<li>{`Speed: ${character.speed}`}</li>
-			<li>{`Defense: ${character.defense}`}</li>
-			<li>{`Crit Chance: ${character.crit_chance}%`}</li>
-			<li>{`Crit Damage: ${character.crit_damage}%`}</li>
-			<li>{`Effectiveness: ${character.effectiveness}%`}</li>
-			<li>{`Eff. Resistance: ${character.effect_res}%`}</li>
+			{Object.keys(character).map(key => (
+				Object.keys(statNames).includes(key) && <li>{`${getName(key)}: ${character[key]}`}</li>
+			))}
 		</ul>
 		<ul>
-			<li>{`Bonus Attack: ${modifiers.attack_flat}`}</li>
-			<li>{`Bonus Attack %: ${modifiers.attack_mult}%`}</li>
-			<li>{`Bonus Health: ${modifiers.health_flat}`}</li>
-			<li>{`Bonus Health %: ${modifiers.health_mult}%`}</li>
-			<li>{`Bonus Speed: ${modifiers.speed}`}</li>
-			<li>{`Bonus Defense: ${modifiers.defense_flat}`}</li>
-			<li>{`Bonus Defense %: ${modifiers.defense_mult}%`}</li>
-			<li>{`Bonus Crit Chance: ${modifiers.crit_chance}%`}</li>
-			<li>{`Bonus Crit Damage: ${modifiers.crit_damage}%`}</li>
-			<li>{`Bonus Effectiveness: ${modifiers.effectiveness}%`}</li>
-			<li>{`Bonus Eff. Resistance: ${modifiers.effect_res}%`}</li>
+			{Object.keys(modifiers).map(key => (
+				Object.keys(statNames).includes(key) && <li>{`Bonus ${getName(key)}: ${modifiers[key]}`}</li>
+			))}
 		</ul>
 	</div>
 );

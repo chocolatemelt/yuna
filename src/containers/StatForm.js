@@ -9,6 +9,7 @@ import {
 } from '@blueprintjs/core';
 
 import { characterSetStats } from '../actions/character';
+import { getName } from '../utils/misc';
 
 class StatForm extends Component {
 	static propTypes = {
@@ -43,95 +44,23 @@ class StatForm extends Component {
 	}
 
 	render() {
-		const {
-			attack,
-			health,
-			speed,
-			defense,
-			crit_chance,
-			crit_damage,
-			effectiveness,
-			effect_res,
-		} = this.state;
-
 		return (
 			<div style={{ width: '30%' }}>
 				<p>put in the values in orange on your character below</p>
 				<FormGroup
 					label="Stat Sheet"
 				>
-					<ControlGroup>
-						<Label>Attack</Label>
-						<NumericInput
-							clampValueOnBlur
-							min={0}
-							onValueChange={this.handleStatChange('attack')}
-							value={attack}
-						/>
-					</ControlGroup>
-					<ControlGroup>
-						<Label>Health</Label>
-						<NumericInput
-							clampValueOnBlur
-							min={0}
-							onValueChange={this.handleStatChange('health')}
-							value={health}
-						/>
-					</ControlGroup>
-					<ControlGroup>
-						<Label>Speed</Label>
-						<NumericInput
-							clampValueOnBlur
-							min={0}
-							onValueChange={this.handleStatChange('speed')}
-							value={speed}
-						/>
-					</ControlGroup>
-					<ControlGroup>
-						<Label>Defense</Label>
-						<NumericInput
-							clampValueOnBlur
-							min={0}
-							onValueChange={this.handleStatChange('defense')}
-							value={defense}
-						/>
-					</ControlGroup>
-					<ControlGroup>
-						<Label>Crit Chance %</Label>
-						<NumericInput
-							clampValueOnBlur
-							min={0}
-							onValueChange={this.handleStatChange('crit_chance')}
-							value={crit_chance}
-						/>
-					</ControlGroup>
-					<ControlGroup>
-						<Label>Crit Damage %</Label>
-						<NumericInput
-							clampValueOnBlur
-							min={0}
-							onValueChange={this.handleStatChange('crit_damage')}
-							value={crit_damage}
-						/>
-					</ControlGroup>
-					<ControlGroup>
-						<Label>Effectiveness %</Label>
-						<NumericInput
-							clampValueOnBlur
-							min={0}
-							onValueChange={this.handleStatChange('effectiveness')}
-							value={effectiveness}
-						/>
-					</ControlGroup>
-					<ControlGroup>
-						<Label>Effect Resistance %</Label>
-						<NumericInput
-							clampValueOnBlur
-							min={0}
-							onValueChange={this.handleStatChange('effect_res')}
-							value={effect_res}
-						/>
-					</ControlGroup>
+					{Object.keys(this.state).map(key => (
+						<ControlGroup>
+							<Label>{getName(key)}</Label>
+							<NumericInput
+								clampValueOnBlur
+								min={0}
+								onValueChange={this.handleStatChange(key)}
+								value={this.state[key]}
+							/>
+						</ControlGroup>
+					))}
 				</FormGroup>
 			</div>
 		);
