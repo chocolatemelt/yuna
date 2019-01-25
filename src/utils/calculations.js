@@ -1,15 +1,7 @@
-export function calculate(character, items) {
-	// collect modifiers
-	// const modifiers = {};
-
-	// for item in items
-	// put modifiers in
-
-	// calculate flats and normal (eff, crit)
-	// calculate multipliers
-}
-
 export function calculateDamage(character, skill) {
+	// if empty skill (non-damaging), just return N/A
+	if (!skill) return 'N/A';
+
 	// calculate flat scaling, if applicable
 	let flat = 0;
 	if ('flat_scaling' in skill) {

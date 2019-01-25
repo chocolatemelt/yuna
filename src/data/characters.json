@@ -35,5 +35,29 @@
 				}
 			]
 		}
+	},
+	"cdom": {
+		"name": "Challenger Dominiel",
+		"element": "Dark",
+		"attack": 1187,
+		"health": 4491,
+		"speed": 96,
+		"defense": 627,
+		"crit_chance": 24,
+		"crit_damage": 156,
+		"effectiveness": 0,
+		"effect_res": 0,
+		"s1": {
+			"att_rate": 1,
+			"pow": 0.9,
+			"mult_scaling": [
+				{
+					"scalar": 0.2,
+					"stat": "is_crit"
+				}
+			]
+		},
+		"s2": null,
+		"s3": null
 	}
 }

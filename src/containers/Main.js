@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-
+import CharacterSelect from '../components/CharacterSelect';
 import CharacterSheet from '../components/CharacterSheet';
 import SkillDisplay from './SkillDisplay';
 import StatForm from './StatForm';
@@ -54,6 +54,7 @@ class Main extends Component {
 
 		return (
 			<div>
+				<CharacterSelect />
 				<CharacterSheet
 					character={character}
 					modifiers={modifiers}
