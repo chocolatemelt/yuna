@@ -44,6 +44,8 @@ class StatForm extends Component {
 	}
 
 	render() {
+		const stats = this.state;
+
 		return (
 			<div style={{ width: '30%' }}>
 				<p>put in the values in orange on your character below</p>
@@ -51,13 +53,13 @@ class StatForm extends Component {
 					label="Stat Sheet"
 				>
 					{Object.keys(this.state).map(key => (
-						<ControlGroup>
+						<ControlGroup key={`statform${key}`}>
 							<Label>{getName(key)}</Label>
 							<NumericInput
 								clampValueOnBlur
 								min={0}
 								onValueChange={this.handleStatChange(key)}
-								value={this.state[key]}
+								value={stats[key]}
 							/>
 						</ControlGroup>
 					))}

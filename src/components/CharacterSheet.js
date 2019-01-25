@@ -8,12 +8,12 @@ const CharacterSheet = ({ character, modifiers }) => (
 		<h1>{character.name}</h1>
 		<ul>
 			{Object.keys(character).map(key => (
-				Object.keys(statNames).includes(key) && <li>{`${getName(key)}: ${character[key]}`}</li>
+				Object.keys(statNames).includes(key) && <li key={`base${key}`}>{`${getName(key)}: ${character[key]}`}</li>
 			))}
 		</ul>
 		<ul>
 			{Object.keys(modifiers).map(key => (
-				Object.keys(statNames).includes(key) && <li>{`Bonus ${getName(key)}: ${modifiers[key]}`}</li>
+				Object.keys(statNames).includes(key) && <li key={`mod${key}`}>{`Bonus ${getName(key)}: ${modifiers[key]}`}</li>
 			))}
 		</ul>
 	</div>
