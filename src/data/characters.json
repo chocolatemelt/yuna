@@ -36,7 +36,7 @@
 			]
 		}
 	},
-	"cdom": {
+	"challenger_dominiel": {
 		"name": "Challenger Dominiel",
 		"element": "Dark",
 		"attack": 1187,
@@ -50,10 +50,10 @@
 		"s1": {
 			"att_rate": 1,
 			"pow": 0.9,
-			"mult_scaling": [
+			"misc_scaling": [
 				{
-					"scalar": 0.2,
-					"stat": "is_crit"
+					"name": "bonus_crit",
+					"scalar": 0.2
 				}
 			]
 		},

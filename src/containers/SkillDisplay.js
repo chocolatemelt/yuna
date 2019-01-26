@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import SkillDamageDisplay from '../components/SkillDamageDisplay';
 import { calculateDamage } from '../utils/calculations';
 
 class SkillDisplay extends Component {
@@ -23,9 +24,9 @@ class SkillDisplay extends Component {
 		super(props);
 
 		this.state = {
-			s1: 0,
-			s2: 0,
-			s3: 0,
+			s1: {},
+			s2: {},
+			s3: {},
 		};
 	}
 
@@ -56,11 +57,18 @@ class SkillDisplay extends Component {
 
 		return (
 			<div>
-				<ul>
-					<li>{`s1: ${s1}`}</li>
-					<li>{`s2: ${s2}`}</li>
-					<li>{`s3: ${s3}`}</li>
-				</ul>
+				<SkillDamageDisplay
+					damageCalc={s1}
+					name="s1"
+				/>
+				<SkillDamageDisplay
+					damageCalc={s2}
+					name="s2"
+				/>
+				<SkillDamageDisplay
+					damageCalc={s3}
+					name="s3"
+				/>
 			</div>
 		);
 	}

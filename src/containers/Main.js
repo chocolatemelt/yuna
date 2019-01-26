@@ -29,8 +29,11 @@ class Main extends Component {
 		const {
 			loadCharacter,
 		} = this.props;
+		const {
+			character,
+		} = this.state;
 
-		loadCharacter();
+		loadCharacter(character.current);
 	}
 
 	componentWillReceiveProps = (nextProps) => {
@@ -75,7 +78,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-	loadCharacter: () => loadCharacterData(),
+	loadCharacter: character => loadCharacterData(character),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

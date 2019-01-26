@@ -26,7 +26,11 @@ export function characterSetStats(stat) {
 	};
 }
 
-export const loadCharacterData = () => (dispatch, getState) => {
-	const character = getState().character.current;
+export const loadCharacterData = character => (dispatch) => {
+	dispatch(characterLoad(data[character]));
+};
+
+export const setCharacterData = character => (dispatch) => {
+	dispatch(characterSet(character));
 	dispatch(characterLoad(data[character]));
 };
