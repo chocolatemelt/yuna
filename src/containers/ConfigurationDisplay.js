@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import ConfigurationOption from '../components/ConfigurationOption';
+
 class ConfigurationDisplay extends Component {
 	static propTypes = {
 		data: PropTypes.shape({
@@ -30,7 +32,7 @@ class ConfigurationDisplay extends Component {
 	render() {
 		return (
 			<div>
-        omegalul
+				<ConfigurationOption checked={false} label="xd" />
 			</div>
 		);
 	}

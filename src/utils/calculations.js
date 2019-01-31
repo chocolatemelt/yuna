@@ -9,7 +9,7 @@ function getMiscScaling(skill, scale) {
 	if ('misc_scaling' in skill) {
 		// there should only ever be one instance of a particular scaling modifier in misc_scaling
 		const ret = skill.misc_scaling.filter(el => el.name === scale)[0];
-		return (ret.length === 0) ? false : ret;
+		return (ret && ret.length === 0) ? false : ret;
 	}
 	return false;
 }

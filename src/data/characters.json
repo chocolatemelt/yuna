@@ -55,7 +55,11 @@
 					"name": "bonus_crit",
 					"scalar": 0.2
 				}
-			]
+			],
+			"soulburn": {
+				"att_rate": 2.5,
+				"pow": 1
+			}
 		},
 		"s2": null,
 		"s3": null
@@ -89,7 +93,10 @@
 					"name": "missing_health",
 					"scalar": 0.005
 				}
-			]
+			],
+			"soulburn": {
+				"att_rate": 1
+			}
 		},
 		"s3": {
 			"att_rate": 1.8,
