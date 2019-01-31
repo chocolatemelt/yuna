@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import CharacterSelect from '../components/CharacterSelect';
 import CharacterSheet from '../components/CharacterSheet';
+import ConfigurationDisplay from './ConfigurationDisplay';
 import SkillDisplay from './SkillDisplay';
 import StatForm from './StatForm';
 import GearDisplay from './GearDisplay';
@@ -62,7 +63,9 @@ class Main extends Component {
 					character={character}
 					modifiers={modifiers}
 				/>
+				<p>bonus stats from below will be applied before gear</p>
 				<StatForm />
+				<ConfigurationDisplay />
 				<GearDisplay />
 				<SkillDisplay
 					data={character}

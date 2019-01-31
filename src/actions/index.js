@@ -5,6 +5,11 @@ import {
 } from './character';
 
 import {
+	CONFIGURATION_SET,
+	CONFIGURATION_CLEAR,
+} from './configuration';
+
+import {
 	GEAR_RECALCULATE,
 	GEAR_SET,
 	GEAR_CLEAR,
@@ -13,6 +18,8 @@ import {
 export {
 	CHARACTER_SET,
 	CHARACTER_LOAD,
+	CONFIGURATION_SET,
+	CONFIGURATION_CLEAR,
 	CHARACTER_SET_STATS,
 	GEAR_RECALCULATE,
 	GEAR_SET,

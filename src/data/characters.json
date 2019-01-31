@@ -59,5 +59,47 @@
 		},
 		"s2": null,
 		"s3": null
+	},
+	"chaos_sect_axe": {
+		"name": "Chaos Sect Axe",
+		"element": "Dark",
+		"attack": 1144,
+		"health": 4895,
+		"speed": 101,
+		"defense": 543,
+		"crit_chance": 21,
+		"crit_damage": 150,
+		"effectiveness": 0,
+		"effect_res": 0,
+		"s1": {
+			"att_rate": 1,
+			"pow": 0.95,
+			"misc_scaling": [
+				{
+					"name": "missing_health",
+					"scalar": 0.002
+				}
+			]
+		},
+		"s2": {
+			"att_rate": 0.8,
+			"pow": 0.95,
+			"misc_scaling": [
+				{
+					"name": "missing_health",
+					"scalar": 0.005
+				}
+			]
+		},
+		"s3": {
+			"att_rate": 1.8,
+			"pow": 0.9,
+			"misc_scaling": [
+				{
+					"name": "self_max_health",
+					"scalar": 0.05
+				}
+			]
+		}
 	}
 }

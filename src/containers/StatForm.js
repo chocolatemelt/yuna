@@ -48,7 +48,6 @@ class StatForm extends Component {
 
 		return (
 			<div style={{ width: '30%' }}>
-				<p>put in the values in orange on your character below</p>
 				<FormGroup
 					label="Stat Sheet"
 				>

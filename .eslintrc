@@ -35,6 +35,8 @@
                     "mult_scaling",
                     "mod_speed",
                     "mod_effectiveness",
+                    "missing_health",
+                    "self_max_health",
                 ],
             },
         ],
