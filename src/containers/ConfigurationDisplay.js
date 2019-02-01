@@ -44,6 +44,7 @@ class ConfigurationDisplay extends Component {
 			clearConfiguration,
 		} = this.props;
 		const {
+			rounding,
 			selfHealthPerc,
 			soulburn,
 			stacks,
@@ -53,7 +54,7 @@ class ConfigurationDisplay extends Component {
 		return (
 			<div>
 				<FormGroup
-					label="Stat Sheet"
+					label="Configuration"
 				>
 					<ConfigurationValue
 						label="Stacks"
@@ -74,6 +75,12 @@ class ConfigurationDisplay extends Component {
 						checked={soulburn}
 						label="Soulburned"
 						onChange={this.handleCheck('soulburn')}
+					/>
+					<ConfigurationValue
+						label="Rounding"
+						max={5}
+						onChange={this.handleValueChange('rounding')}
+						value={rounding}
 					/>
 					<Button
 						onClick={clearConfiguration}

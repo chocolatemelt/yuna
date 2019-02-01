@@ -25,9 +25,24 @@ class SkillDisplay extends Component {
 		super(props);
 
 		this.state = {
-			s1: {},
-			s2: {},
-			s3: {},
+			s1: {
+				hit: 0,
+				miss: 0,
+				crit: 0,
+				crush: 0,
+			},
+			s2: {
+				hit: 0,
+				miss: 0,
+				crit: 0,
+				crush: 0,
+			},
+			s3: {
+				hit: 0,
+				miss: 0,
+				crit: 0,
+				crush: 0,
+			},
 		};
 	}
 
@@ -52,6 +67,9 @@ class SkillDisplay extends Component {
 
 	render() {
 		const {
+			configuration,
+		} = this.props;
+		const {
 			s1,
 			s2,
 			s3,
@@ -62,14 +80,17 @@ class SkillDisplay extends Component {
 				<SkillDamageDisplay
 					damageCalc={s1}
 					name="s1"
+					rounding={configuration.rounding}
 				/>
 				<SkillDamageDisplay
 					damageCalc={s2}
 					name="s2"
+					rounding={configuration.rounding}
 				/>
 				<SkillDamageDisplay
 					damageCalc={s3}
 					name="s3"
+					rounding={configuration.rounding}
 				/>
 			</div>
 		);

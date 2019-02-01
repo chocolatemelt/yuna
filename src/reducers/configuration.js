@@ -4,12 +4,13 @@ import {
 } from '../actions';
 
 const configuration = (state = {
-	stacks: 0,
 	buffs: [],
 	debuffs: [],
+	rounding: 0,
 	selfHealthPerc: 100,
 	targetHealthPerc: 100,
 	soulburn: false,
+	stacks: 0,
 }, action) => {
 	switch (action.type) {
 	case CONFIGURATION_SET:
@@ -18,12 +19,13 @@ const configuration = (state = {
 		});
 	case CONFIGURATION_CLEAR:
 		return Object.assign({}, state, {
-			stacks: 0,
 			buffs: [],
 			debuffs: [],
+			rounding: 0,
 			selfHealthPerc: 100,
 			targetHealthPerc: 100,
 			soulburn: false,
+			stacks: 0,
 		});
 	default:
 		return state;

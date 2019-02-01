@@ -58,6 +58,13 @@ export default function calculateDamage(character, activeSkill, configuration) {
 		});
 	}
 
+	// missing health is calculated as a multiplicative scalar per 1% target missing health
+	const missingHealth = getMiscScaling(skill, 'missing_health');
+	if (missingHealth) {
+		const targetMissingHealth = 100 - configuration.targetHealthPerc;
+		mult *= 1 + (targetMissingHealth * missingHealth.scalar);
+	}
+
 	// c.dominiel bonus damage from stacked crits
 	const stackedCrit = getMiscScaling(skill, 'stacked_crit');
 	if (stackedCrit) {

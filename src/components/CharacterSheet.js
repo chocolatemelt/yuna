@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import { statNames, getName } from '../utils/misc';
 
-const CharacterSheet = ({ character, modifiers }) => (
+const CharacterSheet = ({ character, modifiers, rounding }) => (
 	<div>
 		<h1>{character.name}</h1>
 		<ul>
 			{Object.keys(character).map(key => (
-				Object.keys(statNames).includes(key) && <li key={`base${key}`}>{`${getName(key)}: ${character[key]}`}</li>
+				Object.keys(statNames).includes(key) && <li key={`base${key}`}>{`${getName(key)}: ${(typeof character[key] === 'number') ? Number.parseFloat(character[key].toFixed(rounding)) : character[key]}`}</li>
 			))}
 		</ul>
 		<ul>
@@ -45,6 +45,7 @@ CharacterSheet.propTypes = {
 		effect_res: PropTypes.number,
 		effectiveness: PropTypes.number,
 	}).isRequired,
+	rounding: PropTypes.number.isRequired,
 };
 
 export default CharacterSheet;

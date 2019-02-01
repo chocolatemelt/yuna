@@ -13,6 +13,7 @@ import { calculateStats } from '../utils/stats';
 
 class Main extends Component {
 	static propTypes = {
+		configuration: PropTypes.shape({}).isRequired,
 		character: PropTypes.shape({}).isRequired,
 		modifiers: PropTypes.shape({}).isRequired,
 		loadCharacter: PropTypes.func.isRequired,
@@ -63,6 +64,7 @@ class Main extends Component {
 				<CharacterSheet
 					character={character}
 					modifiers={modifiers}
+					rounding={configuration.rounding}
 				/>
 				<p>bonus stats from below will be applied before gear</p>
 				<StatForm />
@@ -70,8 +72,8 @@ class Main extends Component {
 				<p>gear</p>
 				<GearDisplay />
 				<SkillDisplay
-					data={character}
 					configuration={configuration}
+					data={character}
 				/>
 			</div>
 		);

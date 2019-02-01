@@ -22,8 +22,7 @@
 		},
 		"s2": {
 			"att_rate": 1.5,
-			"pow": 1,
-			"flat_scaling": []
+			"pow": 1
 		},
 		"s3": {
 			"att_rate": 0.9,
@@ -105,10 +104,84 @@
 		"s3": {
 			"att_rate": 1.8,
 			"pow": 0.9,
+			"flat_scaling": [
+				{
+					"scalar": 0.05,
+					"stat": "health"
+				}
+			]
+		}
+	},
+	"sez": {
+		"name": "Sez",
+		"element": "Ice",
+		"attack": 1228,
+		"health": 6266,
+		"speed": 113,
+		"defense": 473,
+		"crit_chance": 21,
+		"crit_damage": 150,
+		"effectiveness": 0,
+		"effect_res": 0,
+		"s1": {
+			"att_rate": 1,
+			"pow": 0.95,
 			"misc_scaling": [
 				{
-					"name": "self_max_health",
-					"scalar": 0.05
+					"name": "missing_health",
+					"scalar": 0.002
+				}
+			]
+		},
+		"s2": {
+			"att_rate": 0.5,
+			"pow": 1
+		},
+		"s3": {
+			"att_rate": 1.8,
+			"pow": 0.95,
+			"misc_scaling": [
+				{
+					"name": "missing_health",
+					"scalar": 0.003
+				}
+			],
+			"soulburn": {
+				"att_rate": 1.8,
+				"misc_scaling": [
+					{
+						"name": "missing_health",
+						"scalar": 0.007
+					}
+				]
+			}
+		}
+	},
+	"watcher_schuri": {
+		"name": "Watcher Schuri",
+		"element": "Light",
+		"attack": 970,
+		"health": 5935,
+		"speed": 106,
+		"defense": 557,
+		"crit_chance": 24,
+		"crit_damage": 150,
+		"effectiveness": 0,
+		"effect_res": 0,
+		"s1": {
+			"att_rate": 1,
+			"pow": 1
+		},
+		"s2": {
+			"att_rate": 0.7,
+			"pow": 1.05
+		},
+		"s3": {
+			"att_rate": 0.8,
+			"pow": 0.95,
+			"misc_scaling": [
+				{
+					"name": "penetrates_defense"
 				}
 			]
 		}
