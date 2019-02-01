@@ -8,7 +8,8 @@ const CharacterSheet = ({ character, modifiers, rounding }) => (
 		<h1>{character.name}</h1>
 		<ul>
 			{Object.keys(character).map(key => (
-				Object.keys(statNames).includes(key) && <li key={`base${key}`}>{`${getName(key)}: ${(typeof character[key] === 'number') ? Number.parseFloat(character[key].toFixed(rounding)) : character[key]}`}</li>
+				Object.keys(statNames).includes(key)
+					&&	(<li key={`base${key}`}>{`${getName(key)}: ${(typeof character[key] === 'number') ? Number.parseFloat(character[key].toFixed(rounding)) : character[key]}`}</li>)
 			))}
 		</ul>
 		<ul>

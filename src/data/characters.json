@@ -181,7 +181,7 @@
 			"pow": 0.95,
 			"misc_scaling": [
 				{
-					"name": "penetrates_defense"
+					"name": "defense_penetration"
 				}
 			]
 		}

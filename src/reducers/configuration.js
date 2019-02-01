@@ -9,6 +9,8 @@ const configuration = (state = {
 	rounding: 0,
 	selfHealthPerc: 100,
 	targetHealthPerc: 100,
+	targetDefense: 0,
+	elementalAdvantage: false,
 	soulburn: false,
 	stacks: 0,
 }, action) => {
@@ -24,6 +26,8 @@ const configuration = (state = {
 			rounding: 0,
 			selfHealthPerc: 100,
 			targetHealthPerc: 100,
+			targetDefense: 0,
+			elementalAdvantage: false,
 			soulburn: false,
 			stacks: 0,
 		});

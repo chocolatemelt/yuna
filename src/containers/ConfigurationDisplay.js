@@ -44,10 +44,12 @@ class ConfigurationDisplay extends Component {
 			clearConfiguration,
 		} = this.props;
 		const {
+			elementalAdvantage,
 			rounding,
 			selfHealthPerc,
 			soulburn,
 			stacks,
+			targetDefense,
 			targetHealthPerc,
 		} = configuration;
 
@@ -70,6 +72,16 @@ class ConfigurationDisplay extends Component {
 						label="Target Health %"
 						onChange={this.handleValueChange('targetHealthPerc')}
 						value={targetHealthPerc}
+					/>
+					<ConfigurationValue
+						label="Target Defense"
+						onChange={this.handleValueChange('targetDefense')}
+						value={targetDefense}
+					/>
+					<ConfigurationOption
+						checked={elementalAdvantage}
+						label="Elemental Advantage"
+						onChange={this.handleCheck('elementalAdvantage')}
 					/>
 					<ConfigurationOption
 						checked={soulburn}

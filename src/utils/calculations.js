@@ -71,8 +71,21 @@ export default function calculateDamage(character, activeSkill, configuration) {
 		mult *= 1 + (configuration.stacks * stackedCrit.scalar);
 	}
 
+	// calculate any defense the enemy may have
+	// if a skill penetrates defense, mitigation set to 1 (no defense)
+	const defensePenetration = getMiscScaling(skill, 'defense_penetration');
+	const mitigation = (defensePenetration) ? 1 : (configuration.targetDefense / 300 + 1);
+
+	// elemental advantage is an additional 1.1 multiplier (misses are still 1.0)
+	const elementalAdvantage = configuration.elementalAdvantage ? 1.1 : 1.0;
+
 	// overall base hit damage
-	const hit = (character.attack * skill.att_rate + flat) * mult * skill.pow * 1.871;
+	const hit = (character.attack * skill.att_rate + flat)
+    * mult
+    * skill.pow
+    * 1.871
+    / mitigation
+    * elementalAdvantage;
 
 	// calculate additional hitTypes
 	const miss = hit * 0.75;
