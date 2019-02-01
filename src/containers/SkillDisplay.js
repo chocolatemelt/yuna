@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import SkillDamageDisplay from '../components/SkillDamageDisplay';
-import { calculateDamage } from '../utils/calculations';
+import calculateDamage from '../utils/calculations';
 
 class SkillDisplay extends Component {
 	static propTypes = {

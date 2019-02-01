@@ -54,6 +54,10 @@
 				{
 					"name": "bonus_crit",
 					"scalar": 0.2
+				},
+				{
+					"name": "stacked_crit",
+					"scalar": 0.054
 				}
 			],
 			"soulburn": {
