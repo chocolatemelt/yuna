@@ -60,16 +60,19 @@ class ConfigurationDisplay extends Component {
 				>
 					<ConfigurationValue
 						label="Stacks"
+						max={100}
 						onChange={this.handleValueChange('stacks')}
 						value={stacks}
 					/>
 					<ConfigurationValue
 						label="Self Health %"
+						max={100}
 						onChange={this.handleValueChange('selfHealthPerc')}
 						value={selfHealthPerc}
 					/>
 					<ConfigurationValue
 						label="Target Health %"
+						max={100}
 						onChange={this.handleValueChange('targetHealthPerc')}
 						value={targetHealthPerc}
 					/>

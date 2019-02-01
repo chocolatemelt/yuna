@@ -26,7 +26,6 @@ const ConfigurationValue = ({
 );
 
 ConfigurationValue.defaultProps = {
-	max: 100,
 	min: 0,
 };
 
