@@ -6,6 +6,7 @@ import { calculateDamage } from '../utils/calculations';
 
 class SkillDisplay extends Component {
 	static propTypes = {
+		configuration: PropTypes.shape({}).isRequired,
 		data: PropTypes.shape({
 			name: PropTypes.string,
 			element: PropTypes.string,
@@ -32,6 +33,7 @@ class SkillDisplay extends Component {
 
 	componentWillReceiveProps = (nextProps) => {
 		const {
+			configuration,
 			data,
 		} = nextProps;
 
@@ -42,9 +44,9 @@ class SkillDisplay extends Component {
 		} = data;
 
 		this.setState({
-			s1: calculateDamage(data, s1),
-			s2: calculateDamage(data, s2),
-			s3: calculateDamage(data, s3),
+			s1: calculateDamage(data, s1, configuration),
+			s2: calculateDamage(data, s2, configuration),
+			s3: calculateDamage(data, s3, configuration),
 		});
 	}
 

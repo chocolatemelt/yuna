@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {
+	Button,
+	FormGroup,
+} from '@blueprintjs/core';
 
 import {
 	configurationSet,
@@ -37,6 +41,7 @@ class ConfigurationDisplay extends Component {
 	render() {
 		const {
 			configuration,
+			clearConfiguration,
 		} = this.props;
 		const {
 			selfHealthPerc,
@@ -47,26 +52,35 @@ class ConfigurationDisplay extends Component {
 
 		return (
 			<div>
-				<ConfigurationValue
-					label="Stacks"
-					onChange={this.handleValueChange('stacks')}
-					value={stacks}
-				/>
-				<ConfigurationValue
-					label="Self Health %"
-					onChange={this.handleValueChange('selfHealthPerc')}
-					value={selfHealthPerc}
-				/>
-				<ConfigurationValue
-					label="Target Health %"
-					onChange={this.handleValueChange('targetHealthPerc')}
-					value={targetHealthPerc}
-				/>
-				<ConfigurationOption
-					checked={soulburn}
-					label="Soulburned"
-					onChange={this.handleCheck('soulburn')}
-				/>
+				<FormGroup
+					label="Stat Sheet"
+				>
+					<ConfigurationValue
+						label="Stacks"
+						onChange={this.handleValueChange('stacks')}
+						value={stacks}
+					/>
+					<ConfigurationValue
+						label="Self Health %"
+						onChange={this.handleValueChange('selfHealthPerc')}
+						value={selfHealthPerc}
+					/>
+					<ConfigurationValue
+						label="Target Health %"
+						onChange={this.handleValueChange('targetHealthPerc')}
+						value={targetHealthPerc}
+					/>
+					<ConfigurationOption
+						checked={soulburn}
+						label="Soulburned"
+						onChange={this.handleCheck('soulburn')}
+					/>
+					<Button
+						onClick={clearConfiguration}
+					>
+						Clear
+					</Button>
+				</FormGroup>
 			</div>
 		);
 	}
@@ -78,7 +92,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	setConfiguration: (key, value) => dispatch(configurationSet(key, value)),
-	clearConfiguration: () => dispatch(configurationClear),
+	clearConfiguration: () => dispatch(configurationClear()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConfigurationDisplay);
