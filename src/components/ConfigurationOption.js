@@ -1,32 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
 	Checkbox,
 	ControlGroup,
+	Label,
 } from '@blueprintjs/core';
 
-class ConfigurationOption extends Component {
-  static propTypes = {
-  	checked: PropTypes.bool.isRequired,
-  	label: PropTypes.string.isRequired,
-  }
+const ConfigurationOption = ({ checked, label, onChange }) => (
+	<ControlGroup>
+		<Label>{label}</Label>
+		<Checkbox
+			checked={checked}
+			onChange={onChange}
+		/>
+	</ControlGroup>
+);
 
-  render() {
-  	const {
-  		checked,
-  		label,
-  	} = this.props;
-
-  	return (
- 	    <ControlGroup>
-	      <Checkbox
-    			checked={checked}
-    		>
-  			   {label}
-  			</Checkbox>
-  		</ControlGroup>
-  	);
-  }
-}
+ConfigurationOption.propTypes = {
+	checked: PropTypes.bool.isRequired,
+	label: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired,
+};
 
 export default ConfigurationOption;

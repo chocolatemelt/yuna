@@ -1,41 +1,62 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import {
+	configurationSet,
+	configurationClear,
+} from '../actions/configuration';
 import ConfigurationOption from '../components/ConfigurationOption';
 
 class ConfigurationDisplay extends Component {
 	static propTypes = {
-		data: PropTypes.shape({
-			name: PropTypes.string,
-			element: PropTypes.string,
-			attack: PropTypes.number,
-			health: PropTypes.number,
-			speed: PropTypes.number,
-			defense: PropTypes.number,
-			crit_chance: PropTypes.number,
-			crit_damage: PropTypes.number,
-			effectiveness: PropTypes.number,
-			effect_res: PropTypes.number,
+		configuration: PropTypes.shape({
+			soulburn: PropTypes.bool,
 		}).isRequired,
-	};
+		setConfiguration: PropTypes.func.isRequired,
+		clearConfiguration: PropTypes.func.isRequired,
+	}
 
-	constructor(props) {
-		super(props);
+	handleCheck = key => (e) => {
+		const {
+			setConfiguration,
+		} = this.props;
 
-		this.state = {
-			s1: {},
-			s2: {},
-			s3: {},
-		};
+		setConfiguration(key, e.target.checked);
 	}
 
 	render() {
+		const {
+			configuration,
+		} = this.props;
+		const {
+			soulburn,
+		} = configuration;
+
 		return (
 			<div>
-				<ConfigurationOption checked={false} label="xd" />
+				<ConfigurationOption
+					checked={soulburn}
+					label="Soulburned"
+					onChange={this.handleCheck('soulburn')}
+				/>
+				<ConfigurationOption
+					checked={soulburn}
+					label="Soulburned"
+					onChange={this.handleCheck('soulburn')}
+				/>
 			</div>
 		);
 	}
 }
 
-export default ConfigurationDisplay;
+const mapStateToProps = state => ({
+	configuration: state.configuration,
+});
+
+const mapDispatchToProps = dispatch => ({
+	setConfiguration: (key, value) => dispatch(configurationSet(key, value)),
+	clearConfiguration: () => dispatch(configurationClear),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConfigurationDisplay);
