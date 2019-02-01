@@ -7,6 +7,7 @@ import {
 	configurationClear,
 } from '../actions/configuration';
 import ConfigurationOption from '../components/ConfigurationOption';
+import ConfigurationValue from '../components/ConfigurationValue';
 
 class ConfigurationDisplay extends Component {
 	static propTypes = {
@@ -25,20 +26,41 @@ class ConfigurationDisplay extends Component {
 		setConfiguration(key, e.target.checked);
 	}
 
+	handleValueChange = key => (value) => {
+		const {
+			setConfiguration,
+		} = this.props;
+
+		setConfiguration(key, value);
+	}
+
 	render() {
 		const {
 			configuration,
 		} = this.props;
 		const {
+			selfHealthPerc,
 			soulburn,
+			stacks,
+			targetHealthPerc,
 		} = configuration;
 
 		return (
 			<div>
-				<ConfigurationOption
-					checked={soulburn}
-					label="Soulburned"
-					onChange={this.handleCheck('soulburn')}
+				<ConfigurationValue
+					label="Stacks"
+					onChange={this.handleValueChange('stacks')}
+					value={stacks}
+				/>
+				<ConfigurationValue
+					label="Self Health %"
+					onChange={this.handleValueChange('selfHealthPerc')}
+					value={selfHealthPerc}
+				/>
+				<ConfigurationValue
+					label="Target Health %"
+					onChange={this.handleValueChange('targetHealthPerc')}
+					value={targetHealthPerc}
 				/>
 				<ConfigurationOption
 					checked={soulburn}

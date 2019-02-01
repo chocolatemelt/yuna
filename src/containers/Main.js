@@ -65,7 +65,9 @@ class Main extends Component {
 				/>
 				<p>bonus stats from below will be applied before gear</p>
 				<StatForm />
+				<p>configuration</p>
 				<ConfigurationDisplay />
+				<p>gear</p>
 				<GearDisplay />
 				<SkillDisplay
 					data={character}

@@ -18,9 +18,10 @@ function getMiscScaling(skill, scale) {
  * calculates damage given a character and a skill
  * @param  Object character
  * @param  Object skill
- * @return Ojbect           calculated total damage
+ * @param  Object configuration
+ * @return Object                calculated total damage
  */
-export function calculateDamage(character, skill) {
+export function calculateDamage(character, skill, configuration) {
 	// if empty skill (non-damaging), just return N/A
 	if (!skill) return 'N/A';
 
