@@ -82,7 +82,7 @@ export default function calculateDamage(character, activeSkill, configuration) {
 	const targetMaxHealth = getMiscScaling(skill, 'target_max_health');
 	let maxHealthDamage = 0;
 	if (targetMaxHealth) {
-		maxHealthDamage += configuration.targetHealthCurrent * targetMaxHealth.scalar;
+		maxHealthDamage += configuration.targetHealthMax * targetMaxHealth.scalar;
 	}
 
 	// calculate any defense the enemy may have

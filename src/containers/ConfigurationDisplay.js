@@ -51,7 +51,7 @@ class ConfigurationDisplay extends Component {
 			stacks,
 			targetDefense,
 			targetHealthPerc,
-			targetHealthCurrent,
+			targetHealthMax,
 			numTargets,
 		} = configuration;
 
@@ -79,9 +79,9 @@ class ConfigurationDisplay extends Component {
 						value={targetHealthPerc}
 					/>
 					<ConfigurationValue
-						label="Target Current Health"
-						onChange={this.handleValueChange('targetHealthCurrent')}
-						value={targetHealthCurrent}
+						label="Target Max Health"
+						onChange={this.handleValueChange('targetHealthMax')}
+						value={targetHealthMax}
 					/>
 					<ConfigurationValue
 						label="Target Defense"
