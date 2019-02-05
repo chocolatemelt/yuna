@@ -52,6 +52,7 @@ class ConfigurationDisplay extends Component {
 			targetDefense,
 			targetHealthPerc,
 			targetHealthCurrent,
+			numTargets,
 		} = configuration;
 
 		return (
@@ -86,6 +87,13 @@ class ConfigurationDisplay extends Component {
 						label="Target Defense"
 						onChange={this.handleValueChange('targetDefense')}
 						value={targetDefense}
+					/>
+					<ConfigurationValue
+						label="Number of Enemies"
+						max={5}
+						min={1}
+						onChange={this.handleValueChange('numTargets')}
+						value={numTargets}
 					/>
 					<ConfigurationOption
 						checked={elementalAdvantage}
