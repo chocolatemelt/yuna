@@ -65,10 +65,24 @@ export default function calculateDamage(character, activeSkill, configuration) {
 		mult *= 1 + (targetMissingHealth * missingHealth.scalar);
 	}
 
+	// increased damage from extra targets
+	const incMultTargets = getMiscScaling(skill, 'increased_multiple_targets');
+	if (incMultTargets) {
+		mult *= 1 + (configuration.numTargets - 1) * 0.1;
+	}
+
 	// c.dominiel bonus damage from stacked crits
 	const stackedCrit = getMiscScaling(skill, 'stacked_crit');
 	if (stackedCrit) {
 		mult *= 1 + (configuration.stacks * stackedCrit.scalar);
+	}
+
+	// % max hp is PROBABLY calculated after pow and before mitigation... otherwise it's about
+	// double the stated value and absolutely bonkers on top of crit damage (16% max hp anyone? 32%?)
+	const targetMaxHealth = getMiscScaling(skill, 'target_max_health');
+	let maxHealthDamage = 0;
+	if (targetMaxHealth) {
+		maxHealthDamage += configuration.targetHealthCurrent * targetMaxHealth.scalar;
 	}
 
 	// calculate any defense the enemy may have
@@ -79,11 +93,10 @@ export default function calculateDamage(character, activeSkill, configuration) {
 	// elemental advantage is an additional 1.1 multiplier (misses are still 1.0)
 	const elementalAdvantage = configuration.elementalAdvantage ? 1.1 : 1.0;
 
-	// overall base hit damage
-	const hit = (character.attack * skill.att_rate + flat)
-    * mult
-    * skill.pow
-    * 1.871
+	// overall base hit damage... pardon the ugliness
+	const hit = (((character.attack * skill.att_rate + flat)
+    * mult * skill.pow * 1.871)
+		+ maxHealthDamage)
     / mitigation
     * elementalAdvantage;
 
