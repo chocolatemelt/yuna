@@ -35,6 +35,45 @@
 			]
 		}
 	},
+	"bellona": {
+		"name": "Bellona",
+		"element": "Earth",
+		"attack": 1003,
+		"health": 5704,
+		"speed": 115,
+		"defense": 585,
+		"crit_chance": 15,
+		"crit_damage": 150,
+		"effectiveness": 15,
+		"effect_res": 0,
+		"s1": {
+			"att_rate": 1,
+			"pow": 0.95,
+			"misc_scaling": [
+				{
+					"name": "target_max_health",
+					"scalar": 0.04
+				}
+			]
+		},
+		"s2": {
+			"att_rate": 0.8,
+			"pow": 0.95,
+			"misc_scaling": [
+				{
+					"name": "increased_multiple_targets",
+					"scalar": 0.1
+				}
+			]
+		},
+		"s3": {
+			"att_rate": 0.95,
+			"pow": 1,
+			"soulburn": {
+				"att_rate": 1.2
+			}
+		}
+	},
 	"challenger_dominiel": {
 		"name": "Challenger Dominiel",
 		"element": "Dark",
@@ -110,6 +149,30 @@
 					"stat": "health"
 				}
 			]
+		}
+	},
+	"iseria": {
+		"name": "Iseria",
+		"element": "Earth",
+		"attack": 1158,
+		"health": 6002,
+		"speed": 112,
+		"defense": 553,
+		"crit_chance": 21,
+		"crit_damage": 150,
+		"effectiveness": 0,
+		"effect_res": 0,
+		"s1": {
+			"att_rate": 1,
+			"pow": 0.95,
+			"soulburn": {
+				"att_rate": 2
+			}
+		},
+		"s2": null,
+		"s3": {
+			"att_rate": 2,
+			"pow": 0.9
 		}
 	},
 	"sez": {
