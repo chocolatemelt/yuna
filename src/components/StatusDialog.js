@@ -71,7 +71,6 @@ class StatusDialog extends Component {
 		const nextBuff = e.currentTarget.value;
 		const newBuffPool = remove(add(buffpool, removedBuff), nextBuff).sort();
 		const newBuffs = remove(add(buffs, nextBuff), removedBuff).sort();
-		console.log(newBuffPool, newBuffs);
 
 		this.setState({
 			buffs: newBuffs,
