@@ -1,11 +1,13 @@
 import {
 	CONFIGURATION_SET,
 	CONFIGURATION_CLEAR,
+	CONFIGURATION_STATUS_SET,
+	CONFIGURATION_STATUS_CLEAR,
 } from '../actions';
 
 const configuration = (state = {
-	buffs: [],
-	debuffs: [],
+	self: [],
+	target: [],
 	rounding: 0,
 	selfHealthPerc: 100,
 	targetHealthPerc: 100,
@@ -23,8 +25,8 @@ const configuration = (state = {
 		});
 	case CONFIGURATION_CLEAR:
 		return Object.assign({}, state, {
-			buffs: [],
-			debuffs: [],
+			self: [],
+			target: [],
 			rounding: 0,
 			selfHealthPerc: 100,
 			targetHealthPerc: 100,
@@ -34,6 +36,14 @@ const configuration = (state = {
 			elementalAdvantage: false,
 			soulburn: false,
 			stacks: 0,
+		});
+	case CONFIGURATION_STATUS_SET:
+		return Object.assign({}, state, {
+			[action.target]: action.status,
+		});
+	case CONFIGURATION_STATUS_CLEAR:
+		return Object.assign({}, state, {
+			[action.target]: [],
 		});
 	default:
 		return state;

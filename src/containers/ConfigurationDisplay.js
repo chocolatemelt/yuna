@@ -3,13 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
 	Button,
+	ControlGroup,
 	FormGroup,
+	Label,
 } from '@blueprintjs/core';
 
 import {
 	configurationSet,
 	configurationClear,
 } from '../actions/configuration';
+import StatusDialog from '../components/StatusDialog';
 import ConfigurationOption from '../components/ConfigurationOption';
 import ConfigurationValue from '../components/ConfigurationValue';
 
@@ -22,12 +25,33 @@ class ConfigurationDisplay extends Component {
 		clearConfiguration: PropTypes.func.isRequired,
 	}
 
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			selfStatusDialog: false,
+			targetStatusDialog: false,
+		};
+	}
+
 	handleCheck = key => (e) => {
 		const {
 			setConfiguration,
 		} = this.props;
 
 		setConfiguration(key, e.target.checked);
+	}
+
+	handleSelfDialog = () => {
+		this.setState(prevState => ({
+			selfStatusDialog: !prevState.selfStatusDialog,
+		}));
+	}
+
+	handleTargetDialog = () => {
+		this.setState(prevState => ({
+			targetStatusDialog: !prevState.targetStatusDialog,
+		}));
 	}
 
 	handleValueChange = key => (value) => {
@@ -111,12 +135,39 @@ class ConfigurationDisplay extends Component {
 						onChange={this.handleValueChange('rounding')}
 						value={rounding}
 					/>
+					<ControlGroup>
+						<Label>Buffs / Debuffs</Label>
+						<Button
+							onClick={this.handleSelfDialog}
+						>
+							Self
+						</Button>
+						<Button
+							onClick={this.handleTargetDialog}
+						>
+							Target
+						</Button>
+					</ControlGroup>
 					<Button
 						onClick={clearConfiguration}
 					>
 						Clear
 					</Button>
 				</FormGroup>
+				<>
+					<StatusDialog
+						isOpen={this.state.selfStatusDialog}
+						onClose={this.handleSelfDialog}
+						onSave={e => console.log(e)}
+						type="self"
+					/>
+					<StatusDialog
+						isOpen={this.state.targetStatusDialog}
+						onClose={this.handleTargetDialog}
+						onSave={e => console.log(e)}
+						type="xd"
+					/>
+				</>
 			</div>
 		);
 	}
