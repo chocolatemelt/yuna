@@ -1,0 +1,13 @@
+{
+  "attack_up": 0.5,
+  "attack_up_greater": 0.75,
+  "defense_up": 0.6,
+  "speed_up": 0.3,
+  "speed_up_greater": 0.45,
+  "crit_rate_up": 50,
+  "crit_damage_up": 50,
+  "heal_regen": 0.15,
+  "stealth": 0.5,
+  "crit_resistance": 0.5,
+  "arky": 0.2
+}
