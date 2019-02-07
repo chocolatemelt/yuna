@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
+	Classes,
 	ControlGroup,
 	FormGroup,
 	Label,
 	NumericInput,
+	Tooltip,
 } from '@blueprintjs/core';
 
 import { characterSetStats } from '../actions/character';
@@ -48,9 +50,13 @@ class StatForm extends Component {
 
 		return (
 			<div style={{ width: '30%' }}>
-				<FormGroup
-					label="Stat Sheet"
-				>
+				<FormGroup>
+					<Tooltip
+						className={Classes.TOOLTIP_INDICATOR}
+						content="As a quick way to calculate DPS, you can directly add flat stats here."
+					>
+						<Label>Stat Sheet</Label>
+					</Tooltip>
 					{Object.keys(this.state).map(key => (
 						<ControlGroup key={`statform${key}`}>
 							<Label>{getName(key)}</Label>

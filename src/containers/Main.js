@@ -66,10 +66,8 @@ class Main extends Component {
 					modifiers={modifiers}
 					rounding={configuration.rounding}
 				/>
-				<p>bonus stats from below will be applied before gear</p>
 				<StatForm />
 				<ConfigurationDisplay />
-				<p>gear</p>
 				<GearDisplay />
 				<SkillDisplay
 					configuration={configuration}

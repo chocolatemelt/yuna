@@ -1,14 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+	Classes,
 	Checkbox,
 	ControlGroup,
 	Label,
+	Tooltip,
 } from '@blueprintjs/core';
 
-const ConfigurationOption = ({ checked, label, onChange }) => (
+const ConfigurationOption = ({
+	description,
+	checked,
+	label,
+	onChange,
+}) => (
 	<ControlGroup>
-		<Label>{label}</Label>
+		{(description !== '')
+			? (
+				<Tooltip
+					className={Classes.TOOLTIP_INDICATOR}
+					content={description}
+				>
+					<Label>{label}</Label>
+				</Tooltip>
+			)
+			: <Label>{label}</Label>}
 		<Checkbox
 			checked={checked}
 			onChange={onChange}
@@ -16,7 +32,12 @@ const ConfigurationOption = ({ checked, label, onChange }) => (
 	</ControlGroup>
 );
 
+ConfigurationOption.defaultProps = {
+	description: '',
+};
+
 ConfigurationOption.propTypes = {
+	description: PropTypes.string,
 	checked: PropTypes.bool.isRequired,
 	label: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,

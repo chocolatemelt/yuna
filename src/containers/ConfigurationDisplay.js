@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
 	Button,
+	Classes,
 	ControlGroup,
 	FormGroup,
 	Label,
+	Tooltip,
 } from '@blueprintjs/core';
 
 import {
@@ -89,6 +91,7 @@ class ConfigurationDisplay extends Component {
 					label="Configuration"
 				>
 					<ConfigurationValue
+						description="Miscellaneous stacking modifier for characters such as C. Dominiel."
 						label="Stacks"
 						max={100}
 						onChange={this.handleValueChange('stacks')}
@@ -140,7 +143,12 @@ class ConfigurationDisplay extends Component {
 						value={rounding}
 					/>
 					<ControlGroup>
-						<Label>Buffs / Debuffs</Label>
+						<Tooltip
+							className={Classes.TOOLTIP_INDICATOR}
+							content="Statuses cover both buffs and debuffs. You can have a maximum of 10 at a time."
+						>
+							<Label>Statuses</Label>
+						</Tooltip>
 						<Button onClick={this.handleSelfDialog}>Self</Button>
 						<Button onClick={this.handleTargetDialog}>Target</Button>
 					</ControlGroup>

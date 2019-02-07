@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+	Classes,
 	ControlGroup,
 	Label,
 	NumericInput,
+	Tooltip,
 } from '@blueprintjs/core';
 
 const ConfigurationValue = ({
+	description,
 	value,
 	label,
 	max,
@@ -14,7 +17,16 @@ const ConfigurationValue = ({
 	onChange,
 }) => (
 	<ControlGroup>
-		<Label>{label}</Label>
+		{(description !== '')
+			? (
+				<Tooltip
+					className={Classes.TOOLTIP_INDICATOR}
+					content={description}
+				>
+					<Label>{label}</Label>
+				</Tooltip>
+			)
+			: <Label>{label}</Label>}
 		<NumericInput
 			clampValueOnBlur
 			max={max}
@@ -26,10 +38,12 @@ const ConfigurationValue = ({
 );
 
 ConfigurationValue.defaultProps = {
+	description: '',
 	min: 0,
 };
 
 ConfigurationValue.propTypes = {
+	description: PropTypes.string,
 	value: PropTypes.number.isRequired,
 	label: PropTypes.string.isRequired,
 	max: PropTypes.number,

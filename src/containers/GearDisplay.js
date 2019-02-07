@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
 	Button,
+	Classes,
+	Tooltip,
 } from '@blueprintjs/core';
 
 import { updateGear } from '../actions/gear';
@@ -47,6 +49,12 @@ class GearDisplay extends Component {
 
 		return (
 			<div>
+				<Tooltip
+					className={Classes.TOOLTIP_INDICATOR}
+					content="Gear is calculated on base stats alone; stat sheet is treated as flat bonuses."
+				>
+					<p>Gear</p>
+				</Tooltip>
 				{Object.keys(data).map(key => (
 					<Fragment key={`${key}group`}>
 						<GearDialog
