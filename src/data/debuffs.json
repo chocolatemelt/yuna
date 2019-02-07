@@ -3,6 +3,7 @@
   "defense_down": 0.7,
   "speed_down": 0.3,
   "sleep": 0,
+  "provoke": 0,
   "marked": 0.15,
   "hit_chance_down": 0.5
 }
