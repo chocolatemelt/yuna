@@ -115,6 +115,7 @@ class ConfigurationDisplay extends Component {
 						value={targetHealthMax}
 					/>
 					<ConfigurationValue
+						description="As a quick endgame estimate, Wyvern 11 boss has about 1260."
 						label="Target Defense"
 						onChange={this.handleValueChange('targetDefense')}
 						value={targetDefense}
