@@ -78,6 +78,10 @@ class ConfigurationDisplay extends Component {
 			targetHealthMax,
 			numTargets,
 		} = configuration;
+		const {
+			selfStatusDialog,
+			targetStatusDialog,
+		} = this.state;
 
 		return (
 			<div>
@@ -137,34 +141,22 @@ class ConfigurationDisplay extends Component {
 					/>
 					<ControlGroup>
 						<Label>Buffs / Debuffs</Label>
-						<Button
-							onClick={this.handleSelfDialog}
-						>
-							Self
-						</Button>
-						<Button
-							onClick={this.handleTargetDialog}
-						>
-							Target
-						</Button>
+						<Button onClick={this.handleSelfDialog}>Self</Button>
+						<Button onClick={this.handleTargetDialog}>Target</Button>
 					</ControlGroup>
-					<Button
-						onClick={clearConfiguration}
-					>
-						Clear
-					</Button>
+					<Button onClick={clearConfiguration}>Clear</Button>
 				</FormGroup>
 				<>
 					<StatusDialog
-						isOpen={this.state.selfStatusDialog}
+						isOpen={selfStatusDialog}
 						onClose={this.handleSelfDialog}
-						onSave={e => console.log(e)}
+						onSave={this.handleValueChange('self')}
 						type="self"
 					/>
 					<StatusDialog
-						isOpen={this.state.targetStatusDialog}
+						isOpen={targetStatusDialog}
 						onClose={this.handleTargetDialog}
-						onSave={e => console.log(e)}
+						onSave={this.handleValueChange('target')}
 						type="xd"
 					/>
 				</>

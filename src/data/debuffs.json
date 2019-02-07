@@ -4,8 +4,5 @@
   "speed_down": 0.3,
   "sleep": 0,
   "marked": 0.15,
-  "hit_chance_down": 0.5,
-  "burn": 0.6,
-  "bleed": 0.3,
-  "poison": 0.05
+  "hit_chance_down": 0.5
 }

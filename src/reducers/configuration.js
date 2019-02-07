@@ -6,8 +6,22 @@ import {
 } from '../actions';
 
 const configuration = (state = {
-	self: [],
-	target: [],
+	self: {
+		buffs: [],
+		debuffs: [],
+		burn: 0,
+		bleed: 0,
+		poison: 0,
+		total: 0,
+	},
+	target: {
+		buffs: [],
+		debuffs: [],
+		burn: 0,
+		bleed: 0,
+		poison: 0,
+		total: 0,
+	},
 	rounding: 0,
 	selfHealthPerc: 100,
 	targetHealthPerc: 100,
@@ -25,8 +39,22 @@ const configuration = (state = {
 		});
 	case CONFIGURATION_CLEAR:
 		return Object.assign({}, state, {
-			self: [],
-			target: [],
+			self: {
+				buffs: [],
+				debuffs: [],
+				burn: 0,
+				bleed: 0,
+				poison: 0,
+				total: 0,
+			},
+			target: {
+				buffs: [],
+				debuffs: [],
+				burn: 0,
+				bleed: 0,
+				poison: 0,
+				total: 0,
+			},
 			rounding: 0,
 			selfHealthPerc: 100,
 			targetHealthPerc: 100,
