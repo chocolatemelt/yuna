@@ -4,7 +4,7 @@
   "defense_up": 0.6,
   "speed_up": 0.3,
   "speed_up_greater": 0.45,
-  "crit_rate_up": 50,
+  "crit_chance_up": 50,
   "crit_damage_up": 50,
   "heal_regen": 0.15,
   "stealth": 0.5,

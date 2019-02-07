@@ -41,11 +41,12 @@ class Main extends Component {
 	componentWillReceiveProps = (nextProps) => {
 		const {
 			character,
+			configuration,
 			modifiers,
 		} = nextProps;
 
 		this.setState({
-			character: calculateStats(character.data, modifiers),
+			character: calculateStats(character.base, character.stats, modifiers, configuration.self),
 		});
 	}
 

@@ -1,3 +1,6 @@
+import buffList from '../data/buffs.json';
+import debuffList from '../data/debuffs.json';
+
 /**
  * retrieves a misc_scaling object if it exists in the misc_scaling array, based on the name
  * property
@@ -35,6 +38,13 @@ export default function calculateDamage(character, activeSkill, configuration) {
 	// if empty skill (non-damaging), just return N/A
 	if (!activeSkill) return 'N/A';
 
+	const {
+		target,
+	} = configuration;
+	const {
+		buffs,
+		debuffs,
+	} = target;
 	let skill = activeSkill;
 
 	// if soulburned, get the soulburn attributes instead
@@ -71,10 +81,18 @@ export default function calculateDamage(character, activeSkill, configuration) {
 		mult *= 1 + (configuration.numTargets - 1) * 0.1;
 	}
 
-	// c.dominiel bonus damage from stacked crits
+	// c.dominiel's increased damage from stacked crits
 	const stackedCrit = getMiscScaling(skill, 'stacked_crit');
 	if (stackedCrit) {
 		mult *= 1 + (configuration.stacks * stackedCrit.scalar);
+	}
+
+	// zerato's increased damage from "target is debuffed"
+	const targetIsDebuffed = getMiscScaling(skill, 'target_is_debuffed');
+	if (targetIsDebuffed) {
+		if (debuffs.length > 0) {
+			mult *= 1 + (targetIsDebuffed.scalar);
+		}
 	}
 
 	// % max hp is PROBABLY calculated after pow and before mitigation... otherwise it's about
@@ -87,18 +105,32 @@ export default function calculateDamage(character, activeSkill, configuration) {
 
 	// calculate any defense the enemy may have
 	// if a skill penetrates defense, mitigation set to 1 (no defense)
+	let defenseMult = 0;
+	if (buffs.includes('defense_up')) {
+		defenseMult += buffList.defense_up;
+	}
+	if (debuffs.includes('defense_down')) {
+		defenseMult -= debuffList.defense_down;
+	}
+	const actualDefense = configuration.targetDefense * (1 + defenseMult);
 	const defensePenetration = getMiscScaling(skill, 'defense_penetration');
-	const mitigation = (defensePenetration) ? 1 : (configuration.targetDefense / 300 + 1);
+	const mitigation = (defensePenetration) ? 1 : (actualDefense / 300 + 1);
 
 	// elemental advantage is an additional 1.1 multiplier (misses are still 1.0)
 	const elementalAdvantage = configuration.elementalAdvantage ? 1.1 : 1.0;
 
 	// overall base hit damage... pardon the ugliness
-	const hit = (((character.attack * skill.att_rate + flat)
+	let hit = (((character.attack * skill.att_rate + flat)
     * mult * skill.pow * 1.871)
 		+ maxHealthDamage)
     / mitigation
     * elementalAdvantage;
+
+	// targeted debuff increases damage by another 15%, presumably after mitigation
+	// based on the wording
+	if (debuffs.includes('marked')) {
+		hit *= (1 + debuffList.marked);
+	}
 
 	// calculate additional hitTypes
 	const miss = hit * 0.75;

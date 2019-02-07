@@ -1,6 +1,6 @@
 {
-  "defense_down": 0.7,
   "attack_down": 0.5,
+  "defense_down": 0.7,
   "speed_down": 0.3,
   "sleep": 0,
   "marked": 0.15,
