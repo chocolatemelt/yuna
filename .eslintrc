@@ -4,7 +4,10 @@
         "es6": true,
         "node": true,
     },
-    "extends": "airbnb",
+    "extends": [
+        "airbnb",
+        "prettier"
+    ],
     "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
@@ -15,6 +18,7 @@
     },
     "plugins": [
         "react",
+        "prettier"
     ],
     "rules": {
         "camelcase": [
@@ -40,15 +44,12 @@
                 ],
             },
         ],
-        "indent": [
-            "error",
-            "tab",
-        ],
         "linebreak-style": [
             "error",
             "unix",
         ],
         "no-tabs": 0,
+        "prettier/prettier": ["error"],
         "quotes": [
             "error",
             "single",
@@ -58,8 +59,8 @@
             "always",
         ],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "react/jsx-indent": [1, "tab"],
-        "react/jsx-indent-props": [1, "tab"],
+        "react/jsx-indent": [2, 2],
+        "react/jsx-indent-props": [2, 2],
         "react/jsx-uses-react": 2,
         "react/jsx-uses-vars": 2,
         "react/no-unescaped-entities": 0,

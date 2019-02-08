@@ -12,81 +12,68 @@ import { loadCharacterData } from '../actions/character';
 import { calculateStats } from '../utils/stats';
 
 class Main extends Component {
-	static propTypes = {
-		configuration: PropTypes.shape({}).isRequired,
-		character: PropTypes.shape({}).isRequired,
-		modifiers: PropTypes.shape({}).isRequired,
-		loadCharacter: PropTypes.func.isRequired,
-	};
+  static propTypes = {
+    configuration: PropTypes.shape({}).isRequired,
+    character: PropTypes.shape({}).isRequired,
+    modifiers: PropTypes.shape({}).isRequired,
+    loadCharacter: PropTypes.func.isRequired
+  };
 
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			character: props.character,
-		};
-	}
+    this.state = {
+      character: props.character
+    };
+  }
 
-	componentWillMount = () => {
-		const {
-			loadCharacter,
-		} = this.props;
-		const {
-			character,
-		} = this.state;
+  componentWillMount = () => {
+    const { loadCharacter } = this.props;
+    const { character } = this.state;
 
-		loadCharacter(character.current);
-	}
+    loadCharacter(character.current);
+  };
 
-	componentWillReceiveProps = (nextProps) => {
-		const {
-			character,
-			configuration,
-			modifiers,
-		} = nextProps;
+  componentWillReceiveProps = nextProps => {
+    const { character, configuration, modifiers } = nextProps;
 
-		this.setState({
-			character: calculateStats(character.base, character.stats, modifiers, configuration.self),
-		});
-	}
+    this.setState({
+      character: calculateStats(character.base, character.stats, modifiers, configuration.self)
+    });
+  };
 
-	render() {
-		const {
-			configuration,
-			modifiers,
-		} = this.props;
-		const {
-			character,
-		} = this.state;
+  render() {
+    const { configuration, modifiers } = this.props;
+    const { character } = this.state;
 
-		return (
-			<div>
-				<CharacterSelect />
-				<CharacterSheet
-					character={character}
-					modifiers={modifiers}
-					rounding={configuration.rounding}
-				/>
-				<StatForm />
-				<ConfigurationDisplay />
-				<GearDisplay />
-				<SkillDisplay
-					configuration={configuration}
-					data={character}
-				/>
-			</div>
-		);
-	}
+    return (
+      <div>
+        <CharacterSelect />
+        <CharacterSheet
+          character={character}
+          modifiers={modifiers}
+          rounding={configuration.rounding}
+        />
+        <StatForm />
+        <ConfigurationDisplay />
+        <GearDisplay />
+        <SkillDisplay configuration={configuration} data={character} />
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-	character: state.character,
-	configuration: state.configuration,
-	modifiers: state.gear.modifiers,
+  character: state.character,
+  configuration: state.configuration,
+  modifiers: state.gear.modifiers
 });
 
 const mapDispatchToProps = {
-	loadCharacter: character => loadCharacterData(character),
+  loadCharacter: character => loadCharacterData(character)
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);
