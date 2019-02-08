@@ -1,285 +1,312 @@
 {
-	"ras": {
-		"name": "Ras",
-		"element": "Fire",
-		"attack": 758,
-		"health": 5826,
-		"speed": 95,
-		"defense": 672,
-		"crit_chance": 15,
-		"crit_damage": 150,
-		"effectiveness": 0,
-		"effect_res": 6,
-		"s1": {
-			"att_rate": 0.9,
-			"pow": 1,
-			"flat_scaling": [
-				{
-					"scalar": 0.04,
-					"stat": "health"
-				}
-			]
-		},
-		"s2": {
-			"att_rate": 1.5,
-			"pow": 1
-		},
-		"s3": {
-			"att_rate": 0.9,
-			"pow": 1,
-			"flat_scaling": [
-				{
-					"scalar": 0.04,
-					"stat": "health"
-				}
-			]
-		}
-	},
-	"bellona": {
-		"name": "Bellona",
-		"element": "Earth",
-		"attack": 1003,
-		"health": 5704,
-		"speed": 115,
-		"defense": 585,
-		"crit_chance": 15,
-		"crit_damage": 150,
-		"effectiveness": 15,
-		"effect_res": 0,
-		"s1": {
-			"att_rate": 1,
-			"pow": 0.95,
-			"misc_scaling": [
-				{
-					"name": "target_max_health",
-					"scalar": 0.04
-				}
-			]
-		},
-		"s2": {
-			"att_rate": 0.8,
-			"pow": 0.95,
-			"misc_scaling": [
-				{
-					"name": "increased_multiple_targets",
-					"scalar": 0.1
-				}
-			]
-		},
-		"s3": {
-			"att_rate": 0.95,
-			"pow": 1,
-			"soulburn": {
-				"att_rate": 1.2
-			}
-		}
-	},
-	"challenger_dominiel": {
-		"name": "Challenger Dominiel",
-		"element": "Dark",
-		"attack": 1187,
-		"health": 4491,
-		"speed": 96,
-		"defense": 627,
-		"crit_chance": 24,
-		"crit_damage": 156,
-		"effectiveness": 0,
-		"effect_res": 0,
-		"s1": {
-			"att_rate": 1,
-			"pow": 0.9,
-			"misc_scaling": [
-				{
-					"name": "bonus_crit",
-					"scalar": 0.2
-				},
-				{
-					"name": "stacked_crit",
-					"scalar": 0.054
-				}
-			],
-			"soulburn": {
-				"att_rate": 2.5,
-				"pow": 1
-			}
-		},
-		"s2": null,
-		"s3": null
-	},
-	"chaos_sect_axe": {
-		"name": "Chaos Sect Axe",
-		"element": "Dark",
-		"attack": 1144,
-		"health": 4895,
-		"speed": 101,
-		"defense": 543,
-		"crit_chance": 21,
-		"crit_damage": 150,
-		"effectiveness": 0,
-		"effect_res": 0,
-		"s1": {
-			"att_rate": 1,
-			"pow": 0.95,
-			"misc_scaling": [
-				{
-					"name": "missing_health",
-					"scalar": 0.002
-				}
-			]
-		},
-		"s2": {
-			"att_rate": 0.8,
-			"pow": 0.95,
-			"misc_scaling": [
-				{
-					"name": "missing_health",
-					"scalar": 0.005
-				}
-			],
-			"soulburn": {
-				"att_rate": 1
-			}
-		},
-		"s3": {
-			"att_rate": 1.8,
-			"pow": 0.9,
-			"flat_scaling": [
-				{
-					"scalar": 0.05,
-					"stat": "health"
-				}
-			]
-		}
-	},
-	"iseria": {
-		"name": "Iseria",
-		"element": "Earth",
-		"attack": 1158,
-		"health": 6002,
-		"speed": 112,
-		"defense": 553,
-		"crit_chance": 21,
-		"crit_damage": 150,
-		"effectiveness": 0,
-		"effect_res": 0,
-		"s1": {
-			"att_rate": 1,
-			"pow": 0.95,
-			"soulburn": {
-				"att_rate": 2
-			}
-		},
-		"s2": null,
-		"s3": {
-			"att_rate": 2,
-			"pow": 0.9
-		}
-	},
-	"sez": {
-		"name": "Sez",
-		"element": "Ice",
-		"attack": 1228,
-		"health": 6266,
-		"speed": 113,
-		"defense": 473,
-		"crit_chance": 21,
-		"crit_damage": 150,
-		"effectiveness": 0,
-		"effect_res": 0,
-		"s1": {
-			"att_rate": 1,
-			"pow": 0.95,
-			"misc_scaling": [
-				{
-					"name": "missing_health",
-					"scalar": 0.002
-				}
-			]
-		},
-		"s2": {
-			"att_rate": 0.5,
-			"pow": 1
-		},
-		"s3": {
-			"att_rate": 1.8,
-			"pow": 0.95,
-			"misc_scaling": [
-				{
-					"name": "missing_health",
-					"scalar": 0.003
-				}
-			],
-			"soulburn": {
-				"att_rate": 1.8,
-				"misc_scaling": [
-					{
-						"name": "missing_health",
-						"scalar": 0.007
-					}
-				]
-			}
-		}
-	},
-	"watcher_schuri": {
-		"name": "Watcher Schuri",
-		"element": "Light",
-		"attack": 970,
-		"health": 5935,
-		"speed": 106,
-		"defense": 557,
-		"crit_chance": 24,
-		"crit_damage": 150,
-		"effectiveness": 0,
-		"effect_res": 0,
-		"s1": {
-			"att_rate": 1,
-			"pow": 1
-		},
-		"s2": {
-			"att_rate": 0.7,
-			"pow": 1.05
-		},
-		"s3": {
-			"att_rate": 0.8,
-			"pow": 0.95,
-			"misc_scaling": [
-				{
-					"name": "defense_penetration"
-				}
-			]
-		}
-	},
-	"zerato": {
-		"name": "Zerato",
-		"element": "Ice",
-		"attack": 1159,
-		"health": 4733,
-		"speed": 99,
-		"defense": 627,
-		"crit_chance": 24,
-		"crit_damage": 150,
-		"effectiveness": 0,
-		"effect_res": 0,
-		"s1": {
-			"att_rate": 1.05,
-			"pow": 1
-		},
-		"s2": {
-			"att_rate": 1.5,
-			"pow": 0.95,
-			"misc_scaling": [
-				{
-					"name": "target_is_debuffed",
-					"scalar": 0.3
-				}
-			],
-			"soulburn": {
-				"att_rate": 2
-			}
-		},
-		"s3": {
-			"att_rate": 0.7,
-			"pow": 1
-		}
-	}
+  "ras": {
+    "name": "Ras",
+    "element": "Fire",
+    "attack": 758,
+    "health": 5826,
+    "speed": 95,
+    "defense": 672,
+    "crit_chance": 15,
+    "crit_damage": 150,
+    "effectiveness": 0,
+    "effect_res": 6,
+    "s1": {
+      "att_rate": 0.9,
+      "pow": 1,
+      "flat_scaling": [
+        {
+          "scalar": 0.04,
+          "stat": "health"
+        }
+      ]
+    },
+    "s2": {
+      "att_rate": 1.5,
+      "pow": 1
+    },
+    "s3": {
+      "att_rate": 0.9,
+      "pow": 1,
+      "flat_scaling": [
+        {
+          "scalar": 0.04,
+          "stat": "health"
+        }
+      ]
+    }
+  },
+  "bellona": {
+    "name": "Bellona",
+    "element": "Earth",
+    "attack": 1003,
+    "health": 5704,
+    "speed": 115,
+    "defense": 585,
+    "crit_chance": 15,
+    "crit_damage": 150,
+    "effectiveness": 15,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "target_max_health",
+          "scalar": 0.04
+        }
+      ]
+    },
+    "s2": {
+      "att_rate": 0.8,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "increased_multiple_targets",
+          "scalar": 0.1
+        }
+      ]
+    },
+    "s3": {
+      "att_rate": 0.95,
+      "pow": 1,
+      "soulburn": {
+        "att_rate": 1.2
+      }
+    }
+  },
+  "challenger_dominiel": {
+    "name": "Challenger Dominiel",
+    "element": "Dark",
+    "attack": 1187,
+    "health": 4491,
+    "speed": 96,
+    "defense": 627,
+    "crit_chance": 24,
+    "crit_damage": 156,
+    "effectiveness": 0,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1,
+      "pow": 0.9,
+      "misc_scaling": [
+        {
+          "name": "bonus_crit",
+          "scalar": 0.2
+        },
+        {
+          "name": "stacked_crit",
+          "scalar": 0.054
+        }
+      ],
+      "soulburn": {
+        "att_rate": 2.5,
+        "pow": 1
+      }
+    },
+    "s2": null,
+    "s3": null
+  },
+  "chaos_sect_axe": {
+    "name": "Chaos Sect Axe",
+    "element": "Dark",
+    "attack": 1144,
+    "health": 4895,
+    "speed": 101,
+    "defense": 543,
+    "crit_chance": 21,
+    "crit_damage": 150,
+    "effectiveness": 0,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "missing_health",
+          "scalar": 0.002
+        }
+      ]
+    },
+    "s2": {
+      "att_rate": 0.8,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "missing_health",
+          "scalar": 0.005
+        }
+      ],
+      "soulburn": {
+        "att_rate": 1
+      }
+    },
+    "s3": {
+      "att_rate": 1.8,
+      "pow": 0.9,
+      "flat_scaling": [
+        {
+          "scalar": 0.05,
+          "stat": "health"
+        }
+      ]
+    }
+  },
+  "iseria": {
+    "name": "Iseria",
+    "element": "Earth",
+    "attack": 1158,
+    "health": 6002,
+    "speed": 112,
+    "defense": 553,
+    "crit_chance": 21,
+    "crit_damage": 150,
+    "effectiveness": 0,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1,
+      "pow": 0.95,
+      "soulburn": {
+        "att_rate": 2
+      }
+    },
+    "s2": null,
+    "s3": {
+      "att_rate": 2,
+      "pow": 0.9
+    }
+  },
+  "sez": {
+    "name": "Sez",
+    "element": "Ice",
+    "attack": 1228,
+    "health": 6266,
+    "speed": 113,
+    "defense": 473,
+    "crit_chance": 21,
+    "crit_damage": 150,
+    "effectiveness": 0,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "missing_health",
+          "scalar": 0.002
+        }
+      ]
+    },
+    "s2": {
+      "att_rate": 0.5,
+      "pow": 1
+    },
+    "s3": {
+      "att_rate": 1.8,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "missing_health",
+          "scalar": 0.003
+        }
+      ],
+      "soulburn": {
+        "att_rate": 1.8,
+        "misc_scaling": [
+          {
+            "name": "missing_health",
+            "scalar": 0.007
+          }
+        ]
+      }
+    }
+  },
+  "specter_tenebria": {
+    "name": "Specter Tenebria",
+    "element": "Dark",
+    "attack": 1197,
+    "health": 4572,
+    "speed": 106,
+    "defense": 683,
+    "crit_chance": 15,
+    "crit_damage": 150,
+    "effectiveness": 15,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1,
+      "pow": 1
+    },
+    "s2": null,
+    "s3": {
+      "att_rate": 1.8,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "increased_per_debuff",
+          "scalar": 0.2
+        }
+      ]
+    }
+  },
+  "watcher_schuri": {
+    "name": "Watcher Schuri",
+    "element": "Light",
+    "attack": 970,
+    "health": 5935,
+    "speed": 106,
+    "defense": 557,
+    "crit_chance": 24,
+    "crit_damage": 150,
+    "effectiveness": 0,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1,
+      "pow": 1
+    },
+    "s2": {
+      "att_rate": 0.7,
+      "pow": 1.05
+    },
+    "s3": {
+      "att_rate": 0.8,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "defense_penetration"
+        }
+      ]
+    }
+  },
+  "zerato": {
+    "name": "Zerato",
+    "element": "Ice",
+    "attack": 1159,
+    "health": 4733,
+    "speed": 99,
+    "defense": 627,
+    "crit_chance": 24,
+    "crit_damage": 150,
+    "effectiveness": 0,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1.05,
+      "pow": 1
+    },
+    "s2": {
+      "att_rate": 1.5,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "target_is_debuffed",
+          "scalar": 0.3
+        }
+      ],
+      "soulburn": {
+        "att_rate": 2
+      }
+    },
+    "s3": {
+      "att_rate": 0.7,
+      "pow": 1
+    }
+  }
 }
