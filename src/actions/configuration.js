@@ -7,13 +7,13 @@ export function configurationSet(key, value) {
   return {
     type: CONFIGURATION_SET,
     key,
-    value
+    value,
   };
 }
 
 export function configurationClear() {
   return {
-    type: CONFIGURATION_CLEAR
+    type: CONFIGURATION_CLEAR,
   };
 }
 
@@ -21,13 +21,13 @@ export function configurationStatusSet(target, status) {
   return {
     type: CONFIGURATION_STATUS_SET,
     target,
-    status
+    status,
   };
 }
 
 export function configurationStatusClear(target) {
   return {
     type: CONFIGURATION_STATUS_CLEAR,
-    target
+    target,
   };
 }

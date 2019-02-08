@@ -9,12 +9,12 @@ class GearDialog extends Component {
   static propTypes = {
     data: PropTypes.shape({
       main: PropTypes.array,
-      sub: PropTypes.array
+      sub: PropTypes.array,
     }).isRequired,
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
-    onSave: PropTypes.func.isRequired
+    onSave: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -30,7 +30,7 @@ class GearDialog extends Component {
       subpool: sub,
       stats: [mainstat], // the 0th index is the main stat
       values: new Array(5).fill(0),
-      set: defaultSet
+      set: defaultSet,
     };
   }
 
@@ -44,7 +44,7 @@ class GearDialog extends Component {
       this.setState(prevState => ({
         mainpool: remove(prevState.mainpool, nextSubstat).sort(),
         subpool: remove(prevState.subpool, nextSubstat).sort(),
-        stats: add(prevState.stats, nextSubstat)
+        stats: add(prevState.stats, nextSubstat),
       }));
     }
   };
@@ -56,11 +56,11 @@ class GearDialog extends Component {
 
     this.setState(prevState => ({
       subpool: add(prevState.subpool, removedSubstat).sort(),
-      stats: remove(prevState.stats, removedSubstat)
+      stats: remove(prevState.stats, removedSubstat),
     }));
     if (data.main.includes(removedSubstat)) {
       this.setState(prevState => ({
-        mainpool: add(prevState.mainpool, removedSubstat).sort()
+        mainpool: add(prevState.mainpool, removedSubstat).sort(),
       }));
     }
   };
@@ -74,24 +74,24 @@ class GearDialog extends Component {
     const newSubPool = remove(add(subpool, removedSubstat), nextSubstat).sort();
     const newMainPool = remove(add(mainpool, removedSubstat), nextSubstat).sort();
     const newSubstats = Object.assign([], stats, {
-      [index]: nextSubstat
+      [index]: nextSubstat,
     });
 
     this.setState({
       subpool: newSubPool,
-      stats: newSubstats
+      stats: newSubstats,
     });
     // only remove from the main stat pool if it was part of it to begin with
     if (data.main.includes(removedSubstat)) {
       this.setState({
-        mainpool: newMainPool
+        mainpool: newMainPool,
       });
     }
   };
 
   handleSets = e => {
     this.setState({
-      set: e.target.value
+      set: e.target.value,
     });
   };
 
@@ -100,7 +100,7 @@ class GearDialog extends Component {
 
     values[index] = val;
     this.setState({
-      values
+      values,
     });
   };
 
@@ -114,7 +114,7 @@ class GearDialog extends Component {
       mainpool: main,
       subpool: sub,
       stats: [mainstat],
-      values: new Array(5).fill(0)
+      values: new Array(5).fill(0),
     });
   };
 

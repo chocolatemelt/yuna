@@ -7,20 +7,20 @@ const character = (
     current: 'ras',
     base: {},
     data: {},
-    stats: {}
+    stats: {},
   },
   action
 ) => {
   switch (action.type) {
     case CHARACTER_SET:
       return Object.assign({}, state, {
-        current: action.character
+        current: action.character,
       });
     case CHARACTER_LOAD: {
       const data = add(action.characterData, state.stats);
       return Object.assign({}, state, {
         base: action.characterData,
-        data
+        data,
       });
     }
     case CHARACTER_SET_STATS: {
@@ -28,7 +28,7 @@ const character = (
       const data = add(state.base, stats);
       return Object.assign({}, state, {
         data,
-        stats
+        stats,
       });
     }
     default:

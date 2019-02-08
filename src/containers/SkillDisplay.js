@@ -17,8 +17,8 @@ class SkillDisplay extends Component {
       crit_chance: PropTypes.number,
       crit_damage: PropTypes.number,
       effectiveness: PropTypes.number,
-      effect_res: PropTypes.number
-    }).isRequired
+      effect_res: PropTypes.number,
+    }).isRequired,
   };
 
   constructor(props) {
@@ -29,20 +29,20 @@ class SkillDisplay extends Component {
         hit: 0,
         miss: 0,
         crit: 0,
-        crush: 0
+        crush: 0,
       },
       s2: {
         hit: 0,
         miss: 0,
         crit: 0,
-        crush: 0
+        crush: 0,
       },
       s3: {
         hit: 0,
         miss: 0,
         crit: 0,
-        crush: 0
-      }
+        crush: 0,
+      },
     };
   }
 
@@ -54,7 +54,7 @@ class SkillDisplay extends Component {
     this.setState({
       s1: calculateDamage(data, s1, configuration),
       s2: calculateDamage(data, s2, configuration),
-      s3: calculateDamage(data, s3, configuration)
+      s3: calculateDamage(data, s3, configuration),
     });
   };
 

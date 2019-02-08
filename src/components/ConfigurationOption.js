@@ -16,14 +16,14 @@ const ConfigurationOption = ({ description, checked, label, onChange }) => (
 );
 
 ConfigurationOption.defaultProps = {
-  description: ''
+  description: '',
 };
 
 ConfigurationOption.propTypes = {
   description: PropTypes.string,
   checked: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 
 export default ConfigurationOption;

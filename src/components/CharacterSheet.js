@@ -42,7 +42,7 @@ CharacterSheet.propTypes = {
     crit_chance: PropTypes.number,
     crit_damage: PropTypes.number,
     effectiveness: PropTypes.number,
-    effect_res: PropTypes.number
+    effect_res: PropTypes.number,
   }).isRequired,
   modifiers: PropTypes.shape({
     attack_flat: PropTypes.number,
@@ -55,9 +55,9 @@ CharacterSheet.propTypes = {
     crit_chance: PropTypes.number,
     crit_damage: PropTypes.number,
     effect_res: PropTypes.number,
-    effectiveness: PropTypes.number
+    effectiveness: PropTypes.number,
   }).isRequired,
-  rounding: PropTypes.number.isRequired
+  rounding: PropTypes.number.isRequired,
 };
 
 export default CharacterSheet;

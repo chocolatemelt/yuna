@@ -21,7 +21,7 @@ export const statNames = {
   crit_chance: 'Crit. Chance',
   crit_damage: 'Crit. Damage',
   effectiveness: 'Effectiveness',
-  effect_res: 'Effect Resistance'
+  effect_res: 'Effect Resistance',
 };
 
 export const getName = stat => statNames[stat];

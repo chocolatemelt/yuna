@@ -8,7 +8,7 @@ import data from '../data/characters.json';
 
 class CharacterSelect extends Component {
   static propTypes = {
-    setCharacter: PropTypes.func.isRequired
+    setCharacter: PropTypes.func.isRequired,
   };
 
   handleChange = e => {
@@ -34,7 +34,7 @@ class CharacterSelect extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setCharacter: character => dispatch(setCharacterData(character))
+  setCharacter: character => dispatch(setCharacterData(character)),
 });
 
 export default connect(

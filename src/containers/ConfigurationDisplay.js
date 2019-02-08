@@ -11,10 +11,10 @@ import ConfigurationValue from '../components/ConfigurationValue';
 class ConfigurationDisplay extends Component {
   static propTypes = {
     configuration: PropTypes.shape({
-      soulburn: PropTypes.bool
+      soulburn: PropTypes.bool,
     }).isRequired,
     setConfiguration: PropTypes.func.isRequired,
-    clearConfiguration: PropTypes.func.isRequired
+    clearConfiguration: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -22,7 +22,7 @@ class ConfigurationDisplay extends Component {
 
     this.state = {
       selfStatusDialog: false,
-      targetStatusDialog: false
+      targetStatusDialog: false,
     };
   }
 
@@ -34,13 +34,13 @@ class ConfigurationDisplay extends Component {
 
   handleSelfDialog = () => {
     this.setState(prevState => ({
-      selfStatusDialog: !prevState.selfStatusDialog
+      selfStatusDialog: !prevState.selfStatusDialog,
     }));
   };
 
   handleTargetDialog = () => {
     this.setState(prevState => ({
-      targetStatusDialog: !prevState.targetStatusDialog
+      targetStatusDialog: !prevState.targetStatusDialog,
     }));
   };
 
@@ -61,7 +61,7 @@ class ConfigurationDisplay extends Component {
       targetDefense,
       targetHealthPerc,
       targetHealthMax,
-      numTargets
+      numTargets,
     } = configuration;
     const { selfStatusDialog, targetStatusDialog } = this.state;
 
@@ -153,12 +153,12 @@ class ConfigurationDisplay extends Component {
 }
 
 const mapStateToProps = state => ({
-  configuration: state.configuration
+  configuration: state.configuration,
 });
 
 const mapDispatchToProps = dispatch => ({
   setConfiguration: (key, value) => dispatch(configurationSet(key, value)),
-  clearConfiguration: () => dispatch(configurationClear())
+  clearConfiguration: () => dispatch(configurationClear()),
 });
 
 export default connect(

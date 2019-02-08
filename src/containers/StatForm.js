@@ -8,7 +8,7 @@ import { getName } from '../utils/misc';
 
 class StatForm extends Component {
   static propTypes = {
-    set: PropTypes.func.isRequired
+    set: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -22,14 +22,14 @@ class StatForm extends Component {
       crit_chance: 0,
       crit_damage: 0,
       effectiveness: 0,
-      effect_res: 0
+      effect_res: 0,
     };
   }
 
   handleStatChange = stat => value => {
     const { set } = this.props;
     const change = {
-      [stat]: value
+      [stat]: value,
     };
 
     this.setState(change);
@@ -66,7 +66,7 @@ class StatForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  set: stats => dispatch(characterSetStats(stats))
+  set: stats => dispatch(characterSetStats(stats)),
 });
 
 export default connect(

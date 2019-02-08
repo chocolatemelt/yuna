@@ -16,14 +16,14 @@ class Main extends Component {
     configuration: PropTypes.shape({}).isRequired,
     character: PropTypes.shape({}).isRequired,
     modifiers: PropTypes.shape({}).isRequired,
-    loadCharacter: PropTypes.func.isRequired
+    loadCharacter: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      character: props.character
+      character: props.character,
     };
   }
 
@@ -38,7 +38,7 @@ class Main extends Component {
     const { character, configuration, modifiers } = nextProps;
 
     this.setState({
-      character: calculateStats(character.base, character.stats, modifiers, configuration.self)
+      character: calculateStats(character.base, character.stats, modifiers, configuration.self),
     });
   };
 
@@ -66,11 +66,11 @@ class Main extends Component {
 const mapStateToProps = state => ({
   character: state.character,
   configuration: state.configuration,
-  modifiers: state.gear.modifiers
+  modifiers: state.gear.modifiers,
 });
 
 const mapDispatchToProps = {
-  loadCharacter: character => loadCharacterData(character)
+  loadCharacter: character => loadCharacterData(character),
 };
 
 export default connect(

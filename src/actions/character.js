@@ -7,21 +7,21 @@ export const CHARACTER_SET_STATS = 'CHARACTER_SET_STATS';
 export function characterSet(character) {
   return {
     type: CHARACTER_SET,
-    character
+    character,
   };
 }
 
 export function characterLoad(characterData) {
   return {
     type: CHARACTER_LOAD,
-    characterData
+    characterData,
   };
 }
 
 export function characterSetStats(stat) {
   return {
     type: CHARACTER_SET_STATS,
-    stat
+    stat,
   };
 }
 

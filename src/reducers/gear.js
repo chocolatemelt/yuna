@@ -13,7 +13,7 @@ const baseModifiers = {
   crit_damage: 0,
   effectiveness: 0,
   effect_res: 0,
-  speed: 0
+  speed: 0,
 };
 
 const gear = (
@@ -26,7 +26,7 @@ const gear = (
     ring: {},
     boots: {},
     modifiers: baseModifiers,
-    sets: []
+    sets: [],
   },
   action
 ) => {
@@ -40,19 +40,19 @@ const gear = (
         }
       });
       return Object.assign({}, state, {
-        modifiers: newModifiers
+        modifiers: newModifiers,
       });
     }
     case GEAR_SET: {
       return Object.assign({}, state, {
-        [action.gear]: action.stats
+        [action.gear]: action.stats,
       });
     }
     case GEAR_CLEAR: {
       const clear = {
         [action.gear]: {},
         modifiers: baseModifiers,
-        sets: []
+        sets: [],
       };
       return Object.assign({}, state, clear);
     }

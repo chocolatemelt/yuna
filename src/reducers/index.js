@@ -7,5 +7,5 @@ import gear from './gear';
 export default combineReducers({
   character,
   configuration,
-  gear
+  gear,
 });

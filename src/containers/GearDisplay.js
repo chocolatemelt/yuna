@@ -9,7 +9,7 @@ import data from '../data/gear.json';
 
 class GearDisplay extends Component {
   static propTypes = {
-    setGear: PropTypes.func.isRequired
+    setGear: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -22,16 +22,16 @@ class GearDisplay extends Component {
         armor: false,
         necklace: false,
         ring: false,
-        boots: false
-      }
+        boots: false,
+      },
     };
   }
 
   handleDialogFor = gear => {
     this.setState(prevState => ({
       dialogOpen: Object.assign(prevState.dialogOpen, {
-        [gear]: !prevState.dialogOpen[gear]
-      })
+        [gear]: !prevState.dialogOpen[gear],
+      }),
     }));
   };
 
@@ -68,7 +68,7 @@ class GearDisplay extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setGear: (gear, stats) => dispatch(updateGear(gear, stats))
+  setGear: (gear, stats) => dispatch(updateGear(gear, stats)),
 });
 
 export default connect(

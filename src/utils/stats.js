@@ -9,7 +9,7 @@ export const baseStats = {
   crit_chance: 0,
   crit_damage: 0,
   effectiveness: 0,
-  effect_res: 0
+  effect_res: 0,
 };
 
 /**

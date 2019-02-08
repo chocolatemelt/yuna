@@ -4,7 +4,7 @@ export const GEAR_CLEAR = 'GEAR_CLEAR';
 
 export function gearRecalculate() {
   return {
-    type: GEAR_RECALCULATE
+    type: GEAR_RECALCULATE,
   };
 }
 
@@ -12,14 +12,14 @@ export function gearSet(gear, stats) {
   return {
     type: GEAR_SET,
     gear,
-    stats
+    stats,
   };
 }
 
 export function gearClear(gear) {
   return {
     type: GEAR_CLEAR,
-    gear
+    gear,
   };
 }
 

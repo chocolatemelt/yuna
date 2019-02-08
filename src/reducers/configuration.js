@@ -2,7 +2,7 @@ import {
   CONFIGURATION_SET,
   CONFIGURATION_CLEAR,
   CONFIGURATION_STATUS_SET,
-  CONFIGURATION_STATUS_CLEAR
+  CONFIGURATION_STATUS_CLEAR,
 } from '../actions';
 
 const configuration = (
@@ -13,7 +13,7 @@ const configuration = (
       burn: 0,
       bleed: 0,
       poison: 0,
-      total: 0
+      total: 0,
     },
     target: {
       buffs: [],
@@ -21,7 +21,7 @@ const configuration = (
       burn: 0,
       bleed: 0,
       poison: 0,
-      total: 0
+      total: 0,
     },
     rounding: 0,
     selfHealthPerc: 100,
@@ -31,14 +31,14 @@ const configuration = (
     numTargets: 1,
     elementalAdvantage: false,
     soulburn: false,
-    stacks: 0
+    stacks: 0,
   },
   action
 ) => {
   switch (action.type) {
     case CONFIGURATION_SET:
       return Object.assign({}, state, {
-        [action.key]: action.value
+        [action.key]: action.value,
       });
     case CONFIGURATION_CLEAR:
       return Object.assign({}, state, {
@@ -48,7 +48,7 @@ const configuration = (
           burn: 0,
           bleed: 0,
           poison: 0,
-          total: 0
+          total: 0,
         },
         target: {
           buffs: [],
@@ -56,7 +56,7 @@ const configuration = (
           burn: 0,
           bleed: 0,
           poison: 0,
-          total: 0
+          total: 0,
         },
         rounding: 0,
         selfHealthPerc: 100,
@@ -66,15 +66,15 @@ const configuration = (
         numTargets: 1,
         elementalAdvantage: false,
         soulburn: false,
-        stacks: 0
+        stacks: 0,
       });
     case CONFIGURATION_STATUS_SET:
       return Object.assign({}, state, {
-        [action.target]: action.status
+        [action.target]: action.status,
       });
     case CONFIGURATION_STATUS_CLEAR:
       return Object.assign({}, state, {
-        [action.target]: []
+        [action.target]: [],
       });
     default:
       return state;

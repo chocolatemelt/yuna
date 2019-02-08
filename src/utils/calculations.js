@@ -141,6 +141,6 @@ export default function calculateDamage(character, activeSkill, configuration) {
     miss,
     hit,
     crush,
-    crit
+    crit,
   };
 }

@@ -17,7 +17,7 @@ const ConfigurationValue = ({ description, value, label, max, min, onChange }) =
 
 ConfigurationValue.defaultProps = {
   description: '',
-  min: 0
+  min: 0,
 };
 
 ConfigurationValue.propTypes = {
@@ -26,7 +26,7 @@ ConfigurationValue.propTypes = {
   label: PropTypes.string.isRequired,
   max: PropTypes.number,
   min: PropTypes.number,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 
 export default ConfigurationValue;

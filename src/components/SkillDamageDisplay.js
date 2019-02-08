@@ -23,12 +23,12 @@ SkillDamageDisplay.propTypes = {
       miss: PropTypes.number,
       hit: PropTypes.number,
       crush: PropTypes.number,
-      crit: PropTypes.number
+      crit: PropTypes.number,
     }),
-    PropTypes.string
+    PropTypes.string,
   ]),
   name: PropTypes.string.isRequired,
-  rounding: PropTypes.number.isRequired
+  rounding: PropTypes.number.isRequired,
 };
 
 export default SkillDamageDisplay;

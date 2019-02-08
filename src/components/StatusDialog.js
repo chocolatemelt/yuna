@@ -4,7 +4,7 @@ import {
   Button,
   ControlGroup,
   Dialog,
-  HTMLSelect
+  HTMLSelect,
   // NumericInput,
 } from '@blueprintjs/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
@@ -18,7 +18,7 @@ class StatusDialog extends Component {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
-    onSave: PropTypes.func.isRequired
+    onSave: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -36,7 +36,7 @@ class StatusDialog extends Component {
       buffList,
       debuffList,
       buffpool: buffList,
-      debuffpool: debuffList
+      debuffpool: debuffList,
     };
   }
 
@@ -48,7 +48,7 @@ class StatusDialog extends Component {
       this.setState(prevState => ({
         buffpool: remove(prevState.buffpool, nextBuff).sort(),
         buffs: add(prevState.buffs, nextBuff),
-        total: prevState.total + 1
+        total: prevState.total + 1,
       }));
     }
   };
@@ -61,7 +61,7 @@ class StatusDialog extends Component {
       this.setState(prevState => ({
         debuffpool: remove(prevState.debuffpool, nextDebuff).sort(),
         debuffs: add(prevState.debuffs, nextDebuff),
-        total: prevState.total + 1
+        total: prevState.total + 1,
       }));
     }
   };
@@ -73,7 +73,7 @@ class StatusDialog extends Component {
     this.setState(prevState => ({
       buffpool: add(prevState.buffpool, removedBuff).sort(),
       buffs: remove(prevState.buffs, removedBuff),
-      total: prevState.total - 1
+      total: prevState.total - 1,
     }));
   };
 
@@ -84,7 +84,7 @@ class StatusDialog extends Component {
     this.setState(prevState => ({
       debuffpool: add(prevState.debuffpool, removedDebuff).sort(),
       debuffs: remove(prevState.debuffs, removedDebuff),
-      total: prevState.total - 1
+      total: prevState.total - 1,
     }));
   };
 
@@ -95,12 +95,12 @@ class StatusDialog extends Component {
     const nextBuff = e.currentTarget.value;
     const newBuffPool = remove(add(buffpool, removedBuff), nextBuff);
     const newBuffs = Object.assign([], buffs, {
-      [index]: nextBuff
+      [index]: nextBuff,
     });
 
     this.setState({
       buffs: newBuffs,
-      buffpool: newBuffPool
+      buffpool: newBuffPool,
     });
   };
 
@@ -111,12 +111,12 @@ class StatusDialog extends Component {
     const nextDebuff = e.currentTarget.value;
     const newDebuffPool = remove(add(debuffpool, removedDebuff), nextDebuff);
     const newDebuffs = Object.assign([], debuffs, {
-      [index]: nextDebuff
+      [index]: nextDebuff,
     });
 
     this.setState({
       debuffs: newDebuffs,
-      debuffpool: newDebuffPool
+      debuffpool: newDebuffPool,
     });
   };
 
@@ -140,7 +140,7 @@ class StatusDialog extends Component {
       poison: 0,
       total: 0,
       buffpool: prevState.buffList,
-      debuffpool: prevState.debuffList
+      debuffpool: prevState.debuffList,
     }));
   };
 
@@ -154,7 +154,7 @@ class StatusDialog extends Component {
       burn,
       bleed,
       poison,
-      total
+      total,
     });
     onClose();
   };
