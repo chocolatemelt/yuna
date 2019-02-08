@@ -118,17 +118,17 @@ class StatusDialog extends Component {
     // good lord this is some r/programminghorror material
     // seems like i can't access this within reduce, so i need to export state... yuck!
     const { state } = this;
-    const { buffs, debuffs, burn, bleed, poison } = state;
+    const { buffs, debuffs } = state;
     const filteredStackingDebuffs = ['burn', 'bleed', 'poison'].filter(debuff => debuff !== key);
     const totalOther =
       buffs.length +
       debuffs.length +
       filteredStackingDebuffs.reduce((acc, debuff) => acc + state[debuff], 0);
     const cappedValue = totalOther + value > 10 ? state[key] : value;
-    this.setState(prevState => ({
+    this.setState({
       [key]: cappedValue,
-      total: prevState.buffs.length + prevState.debuffs.length + burn + bleed + poison,
-    }));
+      total: totalOther + cappedValue,
+    });
   };
 
   clear = () => {
