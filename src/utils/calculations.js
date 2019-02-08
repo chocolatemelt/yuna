@@ -63,8 +63,15 @@ export default function calculateDamage(character, activeSkill, configuration) {
     });
   }
 
+  // gunther gets 0.5 increased attack... but can't crit
+  // since he has no flat modifiers, this is just a 50% increase in damage
+  const isGunther = getMiscScaling(skill, 'is_gunther');
+  if (isGunther) {
+    mult *= 1 + isGunther.scalar;
+  }
+
   // missing health is calculated as a multiplicative scalar per 1% target missing health
-  const missingHealth = getMiscScaling(skill, 'missing_health');
+  const missingHealth = getMiscScaling(skill, 'increased_per_missing_health');
   if (missingHealth) {
     const targetMissingHealth = 100 - configuration.targetHealthPerc;
     mult *= 1 + targetMissingHealth * missingHealth.scalar;
@@ -88,6 +95,13 @@ export default function calculateDamage(character, activeSkill, configuration) {
     if (debuffs.length > 0) {
       mult *= 1 + targetIsDebuffed.scalar;
     }
+  }
+
+  // jena and s.tenebria increase damage per debuff
+  const increasedPerDebuff = getMiscScaling(skill, 'increased_per_debuff');
+  if (increasedPerDebuff) {
+    const numDebuffs = debuffs.length;
+    mult *= 1 + numDebuffs * increasedPerDebuff.scalar;
   }
 
   // % max hp is PROBABLY calculated after pow and before mitigation... otherwise it's about
@@ -135,6 +149,11 @@ export default function calculateDamage(character, activeSkill, configuration) {
   const bonusCrit = getMiscScaling(skill, 'bonus_crit');
   if (bonusCrit) {
     crit *= 1 + bonusCrit.scalar;
+  }
+
+  // gunther can't crit... let's just return N/A
+  if (isGunther) {
+    crit = 'N/A';
   }
 
   return {

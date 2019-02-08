@@ -122,7 +122,7 @@
       "pow": 0.95,
       "misc_scaling": [
         {
-          "name": "missing_health",
+          "name": "increased_per_missing_health",
           "scalar": 0.002
         }
       ]
@@ -132,7 +132,7 @@
       "pow": 0.95,
       "misc_scaling": [
         {
-          "name": "missing_health",
+          "name": "increased_per_missing_health",
           "scalar": 0.005
         }
       ],
@@ -149,6 +149,46 @@
           "stat": "health"
         }
       ]
+    }
+  },
+  "gunther": {
+    "name": "Gunther",
+    "element": "Light",
+    "attack": 1426,
+    "health": 5517,
+    "speed": 104,
+    "defense": 583,
+    "crit_chance": 15,
+    "crit_damage": 150,
+    "effectiveness": 0,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1,
+      "pow": 0.85,
+      "misc_scaling": [
+        {
+          "name": "is_gunther",
+          "scalar": 0.5
+        }
+      ]
+    },
+    "s2": null,
+    "s3": {
+      "att_rate": 1.7,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "is_gunther",
+          "scalar": 0.5
+        },
+        {
+          "name": "target_is_bleeding",
+          "scalar": 0.3
+        }
+      ],
+      "soulburn": {
+        "att_rate": 2.4
+      }
     }
   },
   "iseria": {
@@ -175,6 +215,36 @@
       "pow": 0.9
     }
   },
+  "jena": {
+    "name": "Jena",
+    "element": "Ice",
+    "attack": 1063,
+    "health": 4491,
+    "speed": 97,
+    "defense": 599,
+    "crit_chance": 24,
+    "crit_damage": 150,
+    "effectiveness": 9,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "increased_per_debuff",
+          "scalar": 0.1
+        }
+      ]
+    },
+    "s2": null,
+    "s3": {
+      "att_rate": 0.85,
+      "pow": 0.95,
+      "soulburn": {
+        "att_rate": 1.1
+      }
+    }
+  },
   "sez": {
     "name": "Sez",
     "element": "Ice",
@@ -191,7 +261,7 @@
       "pow": 0.95,
       "misc_scaling": [
         {
-          "name": "missing_health",
+          "name": "increased_per_missing_health",
           "scalar": 0.002
         }
       ]
@@ -205,7 +275,7 @@
       "pow": 0.95,
       "misc_scaling": [
         {
-          "name": "missing_health",
+          "name": "increased_per_missing_health",
           "scalar": 0.003
         }
       ],
@@ -213,7 +283,7 @@
         "att_rate": 1.8,
         "misc_scaling": [
           {
-            "name": "missing_health",
+            "name": "increased_per_missing_health",
             "scalar": 0.007
           }
         ]

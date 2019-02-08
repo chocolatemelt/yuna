@@ -11,7 +11,11 @@ const SkillDamageDisplay = ({ damageCalc, name, rounding }) => (
         <p>{Number.parseFloat(damageCalc.miss.toFixed(rounding))}</p>
         <p>{Number.parseFloat(damageCalc.hit.toFixed(rounding))}</p>
         <p>{Number.parseFloat(damageCalc.crush.toFixed(rounding))}</p>
-        <p>{Number.parseFloat(damageCalc.crit.toFixed(rounding))}</p>
+        <p>
+          {typeof damageCalc.crit === 'number'
+            ? Number.parseFloat(damageCalc.crit.toFixed(rounding))
+            : 'N/A'}
+        </p>
       </>
     )}
   </div>
@@ -23,7 +27,7 @@ SkillDamageDisplay.propTypes = {
       miss: PropTypes.number,
       hit: PropTypes.number,
       crush: PropTypes.number,
-      crit: PropTypes.number,
+      crit: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     }),
     PropTypes.string,
   ]),

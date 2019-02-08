@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  ControlGroup,
-  Dialog,
-  HTMLSelect,
-  // NumericInput,
-} from '@blueprintjs/core';
+import { Button, ControlGroup, Dialog, HTMLSelect, NumericInput } from '@blueprintjs/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import { add, remove } from '../utils/misc';
@@ -120,16 +114,22 @@ class StatusDialog extends Component {
     });
   };
 
-  // handleValueChange = index => (val) => {
-  // 	const {
-  // 		values,
-  // 	} = this.state;
-  //
-  // 	values[index] = val;
-  // 	this.setState({
-  // 		values,
-  // 	});
-  // }
+  handleValueChange = key => value => {
+    // good lord this is some r/programminghorror material
+    // seems like i can't access this within reduce, so i need to export state... yuck!
+    const { state } = this;
+    const { buffs, debuffs, burn, bleed, poison } = state;
+    const filteredStackingDebuffs = ['burn', 'bleed', 'poison'].filter(debuff => debuff !== key);
+    const totalOther =
+      buffs.length +
+      debuffs.length +
+      filteredStackingDebuffs.reduce((acc, debuff) => acc + state[debuff], 0);
+    const cappedValue = totalOther + value > 10 ? state[key] : value;
+    this.setState(prevState => ({
+      [key]: cappedValue,
+      total: prevState.buffs.length + prevState.debuffs.length + burn + bleed + poison,
+    }));
+  };
 
   clear = () => {
     this.setState(prevState => ({
@@ -160,7 +160,7 @@ class StatusDialog extends Component {
   };
 
   render() {
-    const { buffs, debuffs, buffpool, debuffpool } = this.state;
+    const { buffs, debuffs, buffpool, debuffpool, bleed, poison, burn } = this.state;
 
     const { isOpen, onClose, type } = this.props;
 
@@ -209,6 +209,36 @@ class StatusDialog extends Component {
                   />
                 </ControlGroup>
               ))}
+              <ControlGroup>
+                Bleed
+                <NumericInput
+                  clampValueOnBlur
+                  max={10}
+                  min={0}
+                  onValueChange={this.handleValueChange('bleed')}
+                  value={bleed}
+                />
+              </ControlGroup>
+              <ControlGroup>
+                Burn
+                <NumericInput
+                  clampValueOnBlur
+                  max={10}
+                  min={0}
+                  onValueChange={this.handleValueChange('burn')}
+                  value={burn}
+                />
+              </ControlGroup>
+              <ControlGroup>
+                Poison
+                <NumericInput
+                  clampValueOnBlur
+                  max={10}
+                  min={0}
+                  onValueChange={this.handleValueChange('poison')}
+                  value={poison}
+                />
+              </ControlGroup>
             </Col>
           </Row>
           <Row>

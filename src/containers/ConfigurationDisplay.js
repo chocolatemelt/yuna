@@ -144,7 +144,7 @@ class ConfigurationDisplay extends Component {
             isOpen={targetStatusDialog}
             onClose={this.handleTargetDialog}
             onSave={this.handleValueChange('target')}
-            type="xd"
+            type="target"
           />
         </>
       </div>
