@@ -39,7 +39,7 @@ export default function calculateDamage(character, activeSkill, configuration) {
   if (!activeSkill) return 'N/A';
 
   const { target } = configuration;
-  const { buffs, debuffs } = target;
+  const { buffs, debuffs, bleed, burn, poison } = target;
   let skill = activeSkill;
 
   // if soulburned, get the soulburn attributes instead
@@ -89,6 +89,14 @@ export default function calculateDamage(character, activeSkill, configuration) {
     mult *= 1 + configuration.stacks * stackedCrit.scalar;
   }
 
+  // gunther gets increased damage if target is bleeding
+  const targetIsBleeding = getMiscScaling(skill, 'target_is_bleeding');
+  if (targetIsBleeding) {
+    if (bleed > 0) {
+      mult *= 1 + targetIsBleeding.scalar;
+    }
+  }
+
   // zerato's increased damage from "target is debuffed"
   const targetIsDebuffed = getMiscScaling(skill, 'target_is_debuffed');
   if (targetIsDebuffed) {
@@ -100,7 +108,7 @@ export default function calculateDamage(character, activeSkill, configuration) {
   // jena and s.tenebria increase damage per debuff
   const increasedPerDebuff = getMiscScaling(skill, 'increased_per_debuff');
   if (increasedPerDebuff) {
-    const numDebuffs = debuffs.length;
+    const numDebuffs = debuffs.length + bleed + burn + poison;
     mult *= 1 + numDebuffs * increasedPerDebuff.scalar;
   }
 
