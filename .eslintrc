@@ -39,7 +39,7 @@
                     "mult_scaling",
                     "mod_speed",
                     "mod_effectiveness",
-                    "missing_health",
+                    "increased_per_missing_health",
                     "self_max_health",
                 ],
             },
