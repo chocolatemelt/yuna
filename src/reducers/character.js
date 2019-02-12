@@ -7,7 +7,16 @@ const character = (
     current: 'ras',
     base: {},
     data: {},
-    stats: {},
+    stats: {
+      attack: 0,
+      health: 0,
+      speed: 0,
+      defense: 0,
+      crit_chance: 0,
+      crit_damage: 0,
+      effectiveness: 0,
+      effect_res: 0,
+    },
   },
   action
 ) => {

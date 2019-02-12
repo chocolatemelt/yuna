@@ -9,22 +9,8 @@ import { getName } from '../utils/misc';
 class StatForm extends Component {
   static propTypes = {
     set: PropTypes.func.isRequired,
+    stats: PropTypes.shape({}).isRequired,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      attack: 0,
-      health: 0,
-      speed: 0,
-      defense: 0,
-      crit_chance: 0,
-      crit_damage: 0,
-      effectiveness: 0,
-      effect_res: 0,
-    };
-  }
 
   handleStatChange = stat => value => {
     const { set } = this.props;
@@ -32,12 +18,11 @@ class StatForm extends Component {
       [stat]: value,
     };
 
-    this.setState(change);
     set(change);
   };
 
   render() {
-    const stats = this.state;
+    const { stats } = this.props;
 
     return (
       <div style={{ width: '30%' }}>
@@ -48,7 +33,7 @@ class StatForm extends Component {
           >
             <Label>Stat Sheet</Label>
           </Tooltip>
-          {Object.keys(this.state).map(key => (
+          {Object.keys(stats).map(key => (
             <ControlGroup key={`statform${key}`}>
               <Label>{getName(key)}</Label>
               <NumericInput
@@ -65,11 +50,15 @@ class StatForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  stats: state.character.stats,
+});
+
 const mapDispatchToProps = dispatch => ({
   set: stats => dispatch(characterSetStats(stats)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(StatForm);

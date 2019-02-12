@@ -5,69 +5,42 @@ import {
   CONFIGURATION_STATUS_CLEAR,
 } from '../actions';
 
-const configuration = (
-  state = {
-    self: {
-      buffs: [],
-      debuffs: [],
-      burn: 0,
-      bleed: 0,
-      poison: 0,
-      total: 0,
-    },
-    target: {
-      buffs: [],
-      debuffs: [],
-      burn: 0,
-      bleed: 0,
-      poison: 0,
-      total: 0,
-    },
-    rounding: 0,
-    selfHealthPerc: 100,
-    targetHealthPerc: 100,
-    targetHealthMax: 50000,
-    targetDefense: 0,
-    numTargets: 1,
-    elementalAdvantage: false,
-    soulburn: false,
-    stacks: 0,
+const baseConfigurationState = {
+  self: {
+    buffs: [],
+    debuffs: [],
+    burn: 0,
+    bleed: 0,
+    poison: 0,
+    total: 0,
   },
-  action
-) => {
+  target: {
+    buffs: [],
+    debuffs: [],
+    burn: 0,
+    bleed: 0,
+    poison: 0,
+    total: 0,
+  },
+  rounding: 0,
+  selfHealthPerc: 100,
+  targetHealthPerc: 100,
+  targetHealthMax: 50000,
+  targetDefense: 0,
+  numTargets: 1,
+  elementalAdvantage: false,
+  soulburn: false,
+  stacks: 0,
+};
+
+const configuration = (state = baseConfigurationState, action) => {
   switch (action.type) {
     case CONFIGURATION_SET:
       return Object.assign({}, state, {
         [action.key]: action.value,
       });
     case CONFIGURATION_CLEAR:
-      return Object.assign({}, state, {
-        self: {
-          buffs: [],
-          debuffs: [],
-          burn: 0,
-          bleed: 0,
-          poison: 0,
-          total: 0,
-        },
-        target: {
-          buffs: [],
-          debuffs: [],
-          burn: 0,
-          bleed: 0,
-          poison: 0,
-          total: 0,
-        },
-        rounding: 0,
-        selfHealthPerc: 100,
-        targetHealthPerc: 100,
-        targetHealthMax: 50000,
-        targetDefense: 0,
-        numTargets: 1,
-        elementalAdvantage: false,
-        soulburn: false,
-        stacks: 0,
-      });
+      return Object.assign({}, state, baseConfigurationState);
     case CONFIGURATION_STATUS_SET:
       return Object.assign({}, state, {
         [action.target]: action.status,

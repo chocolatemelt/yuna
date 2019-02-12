@@ -1,3 +1,5 @@
+import characterData from '../data/characters.json';
+
 export function add(a, e) {
   return a.concat([e]);
 }
@@ -25,3 +27,7 @@ export const statNames = {
 };
 
 export const getName = stat => statNames[stat];
+
+export const getIdentifier = name => name.replace(/ /g, '_').toLowerCase();
+
+export const getCharacterName = identifier => characterData[identifier].name;
