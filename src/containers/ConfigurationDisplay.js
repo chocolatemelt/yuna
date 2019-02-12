@@ -91,13 +91,19 @@ class ConfigurationDisplay extends Component {
           />
           <ConfigurationValue
             label="Target Max Health"
+            majorStepSize={1000}
+            minorStepSize={10}
             onChange={this.handleValueChange('targetHealthMax')}
+            stepSize={100}
             value={targetHealthMax}
           />
           <ConfigurationValue
             description="As a quick endgame estimate, Wyvern 11 boss has about 1260."
             label="Target Defense"
+            majorStepSize={100}
+            minorStepSize={1}
             onChange={this.handleValueChange('targetDefense')}
+            stepSize={10}
             value={targetDefense}
           />
           <ConfigurationValue
