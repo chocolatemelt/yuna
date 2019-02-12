@@ -9,6 +9,7 @@ import data from '../data/gear.json';
 
 class GearDisplay extends Component {
   static propTypes = {
+    gear: PropTypes.shape({}).isRequired,
     setGear: PropTypes.func.isRequired,
   };
 
@@ -36,7 +37,7 @@ class GearDisplay extends Component {
   };
 
   render() {
-    const { setGear } = this.props;
+    const { gear, setGear } = this.props;
     const { dialogOpen } = this.state;
 
     return (
@@ -54,6 +55,7 @@ class GearDisplay extends Component {
               isOpen={dialogOpen[key]}
               onClose={() => this.handleDialogFor(key)}
               onSave={e => setGear(key, e)}
+              store={gear[key]}
               type={key}
               data={data[key]}
             />
@@ -67,11 +69,15 @@ class GearDisplay extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  gear: state.gear,
+});
+
 const mapDispatchToProps = dispatch => ({
   setGear: (gear, stats) => dispatch(updateGear(gear, stats)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(GearDisplay);

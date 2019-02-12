@@ -13,6 +13,9 @@ class GearDialog extends Component {
     }).isRequired,
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
+    store: PropTypes.shape({
+      dialogState: PropTypes.shape({}),
+    }).isRequired,
     type: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,
   };
@@ -25,13 +28,19 @@ class GearDialog extends Component {
     const sub = remove(props.data.sub, props.data.main[0]);
     const defaultSet = Object.keys(sets)[0];
 
-    this.state = {
-      mainpool: main,
-      subpool: sub,
-      stats: [mainstat], // the 0th index is the main stat
-      values: new Array(5).fill(0),
-      set: defaultSet,
-    };
+    // i was incredibly lazy here and decided to save the dialog state directly into localStorage...
+    // but it's probably less complex than reverse-engineering the true dialog state from the given
+    // gear state. on the other hand, this makes loading from persisted state very easy!
+    this.state = Object.assign(
+      {
+        mainpool: main,
+        subpool: sub,
+        stats: [mainstat], // the 0th index is the main stat
+        values: new Array(5).fill(0),
+        set: defaultSet,
+      },
+      props.store.dialogState // sorry pt.1
+    );
   }
 
   isLeft = type => type === 'weapon' || type === 'helmet' || type === 'armor';
@@ -123,6 +132,7 @@ class GearDialog extends Component {
     const { stats, values, set } = this.state;
     const gearData = stats.reduce((obj, key, idx) => ({ ...obj, [key]: values[idx] }), {});
     gearData.set = set;
+    gearData.dialogState = this.state; // sorry pt.2, see above
 
     onSave(gearData);
     onClose();
