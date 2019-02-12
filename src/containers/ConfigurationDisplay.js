@@ -53,6 +53,8 @@ class ConfigurationDisplay extends Component {
   render() {
     const { configuration, clearConfiguration } = this.props;
     const {
+      self,
+      target,
       elementalAdvantage,
       rounding,
       selfHealthPerc,
@@ -138,12 +140,14 @@ class ConfigurationDisplay extends Component {
             isOpen={selfStatusDialog}
             onClose={this.handleSelfDialog}
             onSave={this.handleValueChange('self')}
+            store={self}
             type="self"
           />
           <StatusDialog
             isOpen={targetStatusDialog}
             onClose={this.handleTargetDialog}
             onSave={this.handleValueChange('target')}
+            store={target}
             type="target"
           />
         </>

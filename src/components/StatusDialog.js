@@ -13,6 +13,7 @@ class StatusDialog extends Component {
     onClose: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,
+    store: PropTypes.shape({}).isRequired,
   };
 
   constructor(props) {
@@ -20,18 +21,22 @@ class StatusDialog extends Component {
     const buffList = Object.keys(buffData).sort();
     const debuffList = Object.keys(debuffData).sort();
 
-    this.state = {
-      buffs: [],
-      debuffs: [],
-      burn: 0,
-      bleed: 0,
-      poison: 0,
-      total: 0,
-      buffList,
-      debuffList,
-      buffpool: buffList,
-      debuffpool: debuffList,
-    };
+    // apply initial app state, if any
+    this.state = Object.assign(
+      {
+        buffs: [],
+        debuffs: [],
+        burn: 0,
+        bleed: 0,
+        poison: 0,
+        total: 0,
+        buffList,
+        debuffList,
+        buffpool: buffList,
+        debuffpool: debuffList,
+      },
+      props.store
+    );
   }
 
   addBuff = () => {
