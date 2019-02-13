@@ -40,6 +40,35 @@ h6 {
   padding-inline-start: 0;
 }
 
+/** skill damage display **/
+.yuna-skill-name {
+  font-weight: 700;
+}
+
+.yuna-skill {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.yuna-miss {
+  color: #999;
+}
+
+.yuna-hit {
+  font-size: 1.2em;
+  color: #888;
+}
+
+.yuna-crush {
+  font-size: 1.4em;
+  color: #777;
+}
+
+.yuna-crit {
+  font-size: 1.6em;
+  color: #d75040;
+}
+
 /** gearing **/
 .yuna-gear {
   margin-bottom: 15px;

@@ -1,21 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Label } from '@blueprintjs/core';
 
 const SkillDamageDisplay = ({ damageCalc, name, rounding }) => (
   <div>
-    <h3>{name}</h3>
+    <Label className="yuna-skill-name">{name}</Label>
     {damageCalc === 'N/A' ? (
       <p>N/A</p>
     ) : (
       <>
-        <p>{Number.parseFloat(damageCalc.miss.toFixed(rounding))}</p>
-        <p>{Number.parseFloat(damageCalc.hit.toFixed(rounding))}</p>
-        <p>{Number.parseFloat(damageCalc.crush.toFixed(rounding))}</p>
-        <p>
-          {typeof damageCalc.crit === 'number'
-            ? Number.parseFloat(damageCalc.crit.toFixed(rounding))
-            : 'N/A'}
+        <p className="yuna-skill yuna-miss">
+          {Number.parseFloat(damageCalc.miss.toFixed(rounding))}
         </p>
+        <p className="yuna-skill yuna-hit">{Number.parseFloat(damageCalc.hit.toFixed(rounding))}</p>
+        <p className="yuna-skill yuna-crush">
+          {Number.parseFloat(damageCalc.crush.toFixed(rounding))}
+        </p>
+        {typeof damageCalc.crit === 'number' && (
+          <p className="yuna-skill yuna-crit">
+            {Number.parseFloat(damageCalc.crit.toFixed(rounding))}
+          </p>
+        )}
       </>
     )}
   </div>
