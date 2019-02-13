@@ -41,8 +41,9 @@ export default function calculateDamage(character, activeSkill, configuration) {
   const { elementalAdvantage: eleAdv, self, target } = configuration;
   const { buffs: selfBuffs } = self;
   const { buffs, debuffs, bleed, burn, poison } = target;
-  let { att_rate } = activeSkill;
-  let skill = activeSkill;
+
+  // get attack, which can be modified (currently only gunther)
+  let { attack } = character;
 
   // base flat / multiplicative modifiers
   let flat = 0;
@@ -52,9 +53,14 @@ export default function calculateDamage(character, activeSkill, configuration) {
   let hasElementalAdvantage = eleAdv;
 
   // if soulburned, get the soulburn attributes instead
+  // soulburn can increase other multipliers, so att_rate modifications are separate (see below)
+  let skill = activeSkill;
   if (skill.soulburn && configuration.soulburn) {
     skill = soulburn(skill);
   }
+
+  // get att_rate, which can be modified (currently only luna)
+  let { att_rate } = skill;
 
   // calculate flat scaling, if applicable
   if ('flat_scaling' in skill) {
@@ -88,10 +94,9 @@ export default function calculateDamage(character, activeSkill, configuration) {
   }
 
   // gunther gets 0.5 increased attack... but can't crit
-  // since he has no flat modifiers, this is just a 50% increase in damage
   const isGunther = getMiscScaling(skill, 'is_gunther');
   if (isGunther) {
-    mult *= 1 + isGunther.scalar;
+    attack *= 1 + isGunther.scalar;
   }
 
   // missing health is calculated as a multiplicative scalar per 1% target missing health
@@ -169,8 +174,7 @@ export default function calculateDamage(character, activeSkill, configuration) {
 
   // overall base hit damage... pardon the ugliness
   let hit =
-    (((character.attack * att_rate + flat) * mult * skill.pow * 1.871 + maxHealthDamage) /
-      mitigation) *
+    (((attack * att_rate + flat) * mult * skill.pow * 1.871 + maxHealthDamage) / mitigation) *
     elementalAdvantage;
 
   // targeted debuff increases damage by another 15%, presumably after mitigation
