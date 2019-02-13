@@ -47,17 +47,25 @@ class Main extends Component {
     const { character } = this.state;
 
     return (
-      <div>
-        <CharacterSelect />
-        <CharacterSheet
-          character={character}
-          modifiers={modifiers}
-          rounding={configuration.rounding}
-        />
-        <StatForm />
-        <ConfigurationDisplay />
-        <GearDisplay />
-        <SkillDisplay configuration={configuration} data={character} />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-4">
+            <CharacterSelect />
+            <CharacterSheet
+              character={character}
+              modifiers={modifiers}
+              rounding={configuration.rounding}
+            />
+            <StatForm />
+          </div>
+          <div className="col-md-4">
+            <SkillDisplay configuration={configuration} data={character} />
+          </div>
+          <div className="col-md-4">
+            <GearDisplay />
+            <ConfigurationDisplay />
+          </div>
+        </div>
       </div>
     );
   }

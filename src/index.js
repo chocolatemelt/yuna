@@ -5,6 +5,7 @@ import Root from './Root';
 import configureStore from './store/configureStore';
 import * as serviceWorker from './serviceWorker';
 import 'normalize.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '@blueprintjs/core/lib/css/blueprint.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 import './index.css';
