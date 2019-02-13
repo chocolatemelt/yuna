@@ -185,6 +185,7 @@ class StatusDialog extends Component {
               {buffs.map((buff, idx) => (
                 <ControlGroup key={`${buff}group`}>
                   <HTMLSelect
+                    className="yuna-select"
                     key={`${buff}select`}
                     options={add(buffpool, buff).sort()}
                     onChange={this.handleBuffChange(idx)}
@@ -202,6 +203,7 @@ class StatusDialog extends Component {
               {debuffs.map((debuff, idx) => (
                 <ControlGroup key={`${debuff}group`}>
                   <HTMLSelect
+                    className="yuna-select"
                     key={`${debuff}select`}
                     options={add(debuffpool, debuff).sort()}
                     onChange={this.handleDebuffChange(idx)}
@@ -214,36 +216,38 @@ class StatusDialog extends Component {
                   />
                 </ControlGroup>
               ))}
-              <ControlGroup>
-                Bleed
-                <NumericInput
-                  clampValueOnBlur
-                  max={10}
-                  min={0}
-                  onValueChange={this.handleValueChange('bleed')}
-                  value={bleed}
-                />
-              </ControlGroup>
-              <ControlGroup>
-                Burn
-                <NumericInput
-                  clampValueOnBlur
-                  max={10}
-                  min={0}
-                  onValueChange={this.handleValueChange('burn')}
-                  value={burn}
-                />
-              </ControlGroup>
-              <ControlGroup>
-                Poison
-                <NumericInput
-                  clampValueOnBlur
-                  max={10}
-                  min={0}
-                  onValueChange={this.handleValueChange('poison')}
-                  value={poison}
-                />
-              </ControlGroup>
+              <div className="yuna-dialog-stacking">
+                <ControlGroup>
+                  <div className="yuna-dialog-form-label">Bleed</div>
+                  <NumericInput
+                    clampValueOnBlur
+                    max={10}
+                    min={0}
+                    onValueChange={this.handleValueChange('bleed')}
+                    value={bleed}
+                  />
+                </ControlGroup>
+                <ControlGroup>
+                  <div className="yuna-dialog-form-label">Burn</div>
+                  <NumericInput
+                    clampValueOnBlur
+                    max={10}
+                    min={0}
+                    onValueChange={this.handleValueChange('burn')}
+                    value={burn}
+                  />
+                </ControlGroup>
+                <ControlGroup>
+                  <div className="yuna-dialog-form-label">Poison</div>
+                  <NumericInput
+                    clampValueOnBlur
+                    max={10}
+                    min={0}
+                    onValueChange={this.handleValueChange('poison')}
+                    value={poison}
+                  />
+                </ControlGroup>
+              </div>
             </Col>
           </Row>
           <Row>

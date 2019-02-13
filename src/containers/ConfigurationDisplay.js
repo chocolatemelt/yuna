@@ -69,7 +69,8 @@ class ConfigurationDisplay extends Component {
 
     return (
       <div>
-        <FormGroup label="Configuration">
+        <FormGroup>
+          <Label>Configuration</Label>
           <ConfigurationValue
             description="Miscellaneous stacking modifier for characters such as C. Dominiel."
             label="Stacks"
@@ -113,6 +114,13 @@ class ConfigurationDisplay extends Component {
             onChange={this.handleValueChange('numTargets')}
             value={numTargets}
           />
+          <ConfigurationValue
+            description="Everything is rounded in post. This doesn't affect calculations."
+            label="Rounding"
+            max={5}
+            onChange={this.handleValueChange('rounding')}
+            value={rounding}
+          />
           <ConfigurationOption
             checked={elementalAdvantage}
             label="Elemental Advantage"
@@ -122,12 +130,6 @@ class ConfigurationDisplay extends Component {
             checked={soulburn}
             label="Soulburned"
             onChange={this.handleCheck('soulburn')}
-          />
-          <ConfigurationValue
-            label="Rounding"
-            max={5}
-            onChange={this.handleValueChange('rounding')}
-            value={rounding}
           />
           <ControlGroup>
             <div className="yuna-form-label">

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Button, Classes, Tooltip } from '@blueprintjs/core';
+import { Button, Label, Classes, Tooltip } from '@blueprintjs/core';
 
 import { updateGear, gearClearAll } from '../actions/gear';
 import GearDialog from '../components/GearDialog';
@@ -42,29 +42,31 @@ class GearDisplay extends Component {
     const { dialogOpen } = this.state;
 
     return (
-      <div>
+      <div className="yuna-gear">
         <Tooltip
           className={Classes.TOOLTIP_INDICATOR}
           content="Gear is calculated on base stats alone; stat sheet is treated as flat bonuses."
         >
-          <p>Gear</p>
+          <Label>Gear</Label>
         </Tooltip>
-        {Object.keys(data).map(key => (
-          <Fragment key={`${key}group`}>
-            <GearDialog
-              key={`${key}dialog`}
-              isOpen={dialogOpen[key]}
-              onClose={() => this.handleDialogFor(key)}
-              onSave={e => setGear(key, e)}
-              store={gear[key]}
-              type={key}
-              data={data[key]}
-            />
-            <Button key={`${key}button`} onClick={() => this.handleDialogFor(key)}>
-              {key}
-            </Button>
-          </Fragment>
-        ))}
+        <div>
+          {Object.keys(data).map(key => (
+            <Fragment key={`${key}group`}>
+              <GearDialog
+                key={`${key}dialog`}
+                isOpen={dialogOpen[key]}
+                onClose={() => this.handleDialogFor(key)}
+                onSave={e => setGear(key, e)}
+                store={gear[key]}
+                type={key}
+                data={data[key]}
+              />
+              <Button key={`${key}button`} onClick={() => this.handleDialogFor(key)}>
+                {key}
+              </Button>
+            </Fragment>
+          ))}
+        </div>
         <Button onClick={clearAllGear}>Clear All</Button>
       </div>
     );

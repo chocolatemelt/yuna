@@ -40,7 +40,26 @@ h6 {
   padding-inline-start: 0;
 }
 
+/** gearing **/
+.yuna-gear {
+  margin-bottom: 15px;
+}
+
 /** inputs **/
 .yuna-form-label {
   width: 160px;
+}
+
+.yuna-select {
+  width: 160px;
+}
+
+/** dialog boxes **/
+.yuna-dialog-form-label {
+  width: 100px;
+}
+
+.yuna-dialog-stacking {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

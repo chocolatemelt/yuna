@@ -43,8 +43,6 @@ class GearDialog extends Component {
     );
   }
 
-  isLeft = type => type === 'weapon' || type === 'helmet' || type === 'armor';
-
   addSubstat = () => {
     const { subpool, stats } = this.state;
     const nextSubstat = subpool[0]; // we only "add" substats from the sub pool
@@ -140,17 +138,28 @@ class GearDialog extends Component {
 
   render() {
     const { stats, mainpool, subpool, values, set } = this.state;
-
     const { isOpen, onClose, type } = this.props;
+    const selectMainPool = add(mainpool, stats[0]).sort();
 
     return (
       <Dialog isOpen={isOpen} onClose={onClose} title={type}>
         <ControlGroup>
-          <HTMLSelect
-            options={add(mainpool, stats[0]).sort()}
-            onChange={this.handleChange(0)}
-            value={stats[0]}
-          />
+          {selectMainPool.length > 1 ? (
+            <HTMLSelect
+              className="yuna-select"
+              options={selectMainPool}
+              onChange={this.handleChange(0)}
+              value={stats[0]}
+            />
+          ) : (
+            <HTMLSelect
+              className="yuna-select"
+              options={selectMainPool}
+              onChange={this.handleChange(0)}
+              value={stats[0]}
+              disabled
+            />
+          )}
           <NumericInput
             clampValueOnBlur
             min={0}
@@ -164,6 +173,7 @@ class GearDialog extends Component {
             idx > 0 && (
               <ControlGroup key={`${substat}group`}>
                 <HTMLSelect
+                  className="yuna-select"
                   key={`${substat}select`}
                   options={add(subpool, substat).sort()}
                   onChange={this.handleChange(idx)}
@@ -186,7 +196,12 @@ class GearDialog extends Component {
             )
         )}
         <ControlGroup>
-          <HTMLSelect options={Object.keys(sets)} onChange={this.handleSets} value={set} />
+          <HTMLSelect
+            className="yuna-select"
+            options={Object.keys(sets)}
+            onChange={this.handleSets}
+            value={set}
+          />
         </ControlGroup>
         <ControlGroup>
           <Button onClick={this.clear}>Clear</Button>
