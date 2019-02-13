@@ -38,9 +38,12 @@ export default function calculateDamage(character, activeSkill, configuration) {
   // if empty skill (non-damaging), just return N/A
   if (!activeSkill) return 'N/A';
 
-  const { target } = configuration;
+  const { elementalAdvantage: eleAdv, target } = configuration;
   const { buffs, debuffs, bleed, burn, poison } = target;
   let skill = activeSkill;
+
+  // elemental advantage configuration is mutable for certain skills, so reassign it here
+  let hasElementalAdvantage = eleAdv;
 
   // if soulburned, get the soulburn attributes instead
   if (skill.soulburn && configuration.soulburn) {
@@ -56,11 +59,25 @@ export default function calculateDamage(character, activeSkill, configuration) {
   }
 
   // calculate multiplicative scaling, if applicable
-  let mult = 1;
+  let mult = 0;
   if ('mult_scaling' in skill) {
+    mult = 1;
     skill.mult_scaling.forEach(scaling => {
       mult *= scaling.scalar * character[scaling.stat];
     });
+  }
+
+  // cidd and luna get elemental advantage on their s3
+  // cidd requires a speed buff
+  const usesElementalAdvantage = getMiscScaling(skill, 'uses_elemental_advantage');
+  if (usesElementalAdvantage) {
+    if (usesElementalAdvantage.requiresAnyOf) {
+      hasElementalAdvantage = usesElementalAdvantage.requiresAnyOf.some(buff =>
+        buffs.includes(buff)
+      );
+    } else {
+      hasElementalAdvantage = true;
+    }
   }
 
   // gunther gets 0.5 increased attack... but can't crit
@@ -134,11 +151,12 @@ export default function calculateDamage(character, activeSkill, configuration) {
   const mitigation = defensePenetration ? 1 : actualDefense / 300 + 1;
 
   // elemental advantage is an additional 1.1 multiplier (misses are still 1.0)
-  const elementalAdvantage = configuration.elementalAdvantage ? 1.1 : 1.0;
+  const elementalAdvantage = hasElementalAdvantage ? 1.1 : 1.0;
 
   // overall base hit damage... pardon the ugliness
   let hit =
-    (((character.attack * skill.att_rate + flat) * mult * skill.pow * 1.871 + maxHealthDamage) /
+    (((character.attack * skill.att_rate + flat) * (1 + mult) * skill.pow * 1.871 +
+      maxHealthDamage) /
       mitigation) *
     elementalAdvantage;
 

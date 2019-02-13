@@ -151,6 +151,48 @@
       ]
     }
   },
+  "cidd": {
+    "name": "Cidd",
+    "element": "earth",
+    "attack": 1029,
+    "health": 5097,
+    "speed": 126,
+    "defense": 473,
+    "crit_chance": 21,
+    "crit_damage": 150,
+    "effectiveness": 0,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 0.9,
+      "pow": 0.95,
+      "mult_scaling": [
+        {
+          "scalar": 0.00075,
+          "stat": "speed"
+        }
+      ]
+    },
+    "s2": null,
+    "s3": {
+      "att_rate": 1.6,
+      "pow": 1,
+      "misc_scaling": [
+        {
+          "name": "uses_elemental_advantage",
+          "requiresAnyOf": ["speed_up", "speed_up_greater"]
+        }
+      ],
+      "mult_scaling": [
+        {
+          "scalar": 0.0021,
+          "stat": "speed"
+        }
+      ],
+      "soulburn": {
+        "att_rate": 2.2
+      }
+    }
+  },
   "gunther": {
     "name": "Gunther",
     "element": "Light",
@@ -242,6 +284,41 @@
       "pow": 0.95,
       "soulburn": {
         "att_rate": 1.1
+      }
+    }
+  },
+  "luna": {
+    "name": "Luna",
+    "element": "Ice",
+    "attack": 1119,
+    "health": 6266,
+    "speed": 109,
+    "defense": 627,
+    "crit_chance": 15,
+    "crit_damage": 150,
+    "effectiveness": 0,
+    "effect_res": 0,
+    "s1": {
+      "att_rate": 1.4,
+      "pow": 0.95,
+      "misc_scaling": [
+        {
+          "name": "luna_multihit",
+          "scalar": [0.7, 1.4, 2.1]
+        }
+      ]
+    },
+    "s2": null,
+    "s3": {
+      "att_rate": 1.5,
+      "pow": 1.05,
+      "misc_scaling": [
+        {
+          "name": "uses_elemental_advantage"
+        }
+      ],
+      "soulburn": {
+        "att_rate": 2.2
       }
     }
   },
