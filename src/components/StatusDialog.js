@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, ControlGroup, Dialog, HTMLSelect, NumericInput } from '@blueprintjs/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-import { add, remove } from '../utils/misc';
+import { add, remove, complement } from '../utils/misc';
 import buffData from '../data/buffs.json';
 import debuffData from '../data/debuffs.json';
 
@@ -13,13 +13,20 @@ class StatusDialog extends Component {
     onClose: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,
-    store: PropTypes.shape({}).isRequired,
+    store: PropTypes.shape({
+      buffs: PropTypes.array,
+      debuffs: PropTypes.array,
+    }).isRequired,
   };
 
   constructor(props) {
     super(props);
     const buffList = Object.keys(buffData).sort();
     const debuffList = Object.keys(debuffData).sort();
+
+    // get the pool excluding any active statuses
+    const loadedBuffPool = complement(buffList, props.store.buffs);
+    const loadedDebuffPool = complement(debuffList, props.store.debuffs);
 
     // apply initial app state, if any
     this.state = Object.assign(
@@ -32,8 +39,8 @@ class StatusDialog extends Component {
         total: 0,
         buffList,
         debuffList,
-        buffpool: buffList,
-        debuffpool: debuffList,
+        buffpool: loadedBuffPool,
+        debuffpool: loadedDebuffPool,
       },
       props.store
     );

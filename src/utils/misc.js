@@ -8,6 +8,11 @@ export function remove(a, e) {
   return a.filter(el => el !== e);
 }
 
+// this is technically a relative complement
+export function complement(a, b) {
+  return a.filter(el => !b.includes(el));
+}
+
 export const statNames = {
   element: 'Element',
   attack: 'Attack',
