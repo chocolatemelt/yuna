@@ -39,7 +39,7 @@
       }
     ],
     "linebreak-style": ["error", "unix"],
-    "no-bitwise": "allow",
+    "no-bitwise": 0,
     "no-tabs": 0,
     "prettier/prettier": ["error"],
     "quotes": ["error", "single"],
