@@ -1,70 +1,56 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "node": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["airbnb", "prettier"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
     },
-    "extends": [
-        "airbnb",
-        "prettier"
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "camelcase": [
+      "error",
+      {
+        "allow": [
+          "attack_flat",
+          "attack_mult",
+          "health_flat",
+          "health_mult",
+          "defense_flat",
+          "defense_mult",
+          "att_rate",
+          "crit_chance",
+          "crit_damage",
+          "effect_res",
+          "flat_scaling",
+          "mult_scaling",
+          "mod_speed",
+          "mod_effectiveness",
+          "increased_per_missing_health",
+          "self_max_health"
+        ]
+      }
     ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "jsx": true,
-        },
-        "sourceType": "module",
-    },
-    "plugins": [
-        "react",
-        "prettier"
-    ],
-    "rules": {
-        "camelcase": [
-            "error",
-            {
-                allow: [
-                    "attack_flat",
-                    "attack_mult",
-                    "health_flat",
-                    "health_mult",
-                    "defense_flat",
-                    "defense_mult",
-                    "att_rate",
-                    "crit_chance",
-                    "crit_damage",
-                    "effect_res",
-                    "flat_scaling",
-                    "mult_scaling",
-                    "mod_speed",
-                    "mod_effectiveness",
-                    "increased_per_missing_health",
-                    "self_max_health",
-                ],
-            },
-        ],
-        "linebreak-style": [
-            "error",
-            "unix",
-        ],
-        "no-tabs": 0,
-        "prettier/prettier": ["error"],
-        "quotes": [
-            "error",
-            "single",
-        ],
-        "semi": [
-            "error",
-            "always",
-        ],
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "react/jsx-indent": [2, 2],
-        "react/jsx-indent-props": [2, 2],
-        "react/jsx-uses-react": 2,
-        "react/jsx-uses-vars": 2,
-        "react/no-unescaped-entities": 0,
-        "react/react-in-jsx-scope": 2,
-        "react/require-default-props": 0,
-    },
+    "linebreak-style": ["error", "unix"],
+    "no-bitwise": "allow",
+    "no-tabs": 0,
+    "prettier/prettier": ["error"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-indent": [2, 2],
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/no-unescaped-entities": 0,
+    "react/react-in-jsx-scope": 2,
+    "react/require-default-props": 0
+  }
 }
