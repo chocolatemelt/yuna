@@ -357,7 +357,7 @@
         }
       ],
       "soulburn": {
-        "att_rate": 1.8,
+        "att_rate": 3.2,
         "misc_scaling": [
           {
             "name": "increased_per_missing_health",
