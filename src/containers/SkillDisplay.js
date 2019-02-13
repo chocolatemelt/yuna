@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Classes, Label, Tooltip } from '@blueprintjs/core';
 
 import SkillDamageDisplay from '../components/SkillDamageDisplay';
 import calculateDamage from '../utils/calculations';
@@ -63,11 +64,19 @@ class SkillDisplay extends Component {
     const { s1, s2, s3 } = this.state;
 
     return (
-      <div className="yuna-skill-display">
-        <SkillDamageDisplay damageCalc={s1} name="s1" rounding={configuration.rounding} />
-        <SkillDamageDisplay damageCalc={s2} name="s2" rounding={configuration.rounding} />
-        <SkillDamageDisplay damageCalc={s3} name="s3" rounding={configuration.rounding} />
-      </div>
+      <>
+        <Tooltip
+          className={Classes.TOOLTIP_INDICATOR}
+          content="Final calculated skill data, in order: miss, hit, crushing hit, and crit."
+        >
+          <Label>Skill Display</Label>
+        </Tooltip>
+        <div className="yuna-skill-display">
+          <SkillDamageDisplay damageCalc={s1} name="s1" rounding={configuration.rounding} />
+          <SkillDamageDisplay damageCalc={s2} name="s2" rounding={configuration.rounding} />
+          <SkillDamageDisplay damageCalc={s3} name="s3" rounding={configuration.rounding} />
+        </div>
+      </>
     );
   }
 }
