@@ -15,11 +15,15 @@ const ConfigurationValue = ({
 }) => (
   <ControlGroup>
     {description !== '' ? (
-      <Tooltip className={Classes.TOOLTIP_INDICATOR} content={description}>
-        <Label>{label}</Label>
-      </Tooltip>
+      <div className="yuna-form-label">
+        <Tooltip className={Classes.TOOLTIP_INDICATOR} content={description}>
+          <Label>{label}</Label>
+        </Tooltip>
+      </div>
     ) : (
-      <Label>{label}</Label>
+      <div className="yuna-form-label">
+        <Label>{label}</Label>
+      </div>
     )}
     <NumericInput
       clampValueOnBlur

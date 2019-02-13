@@ -6,10 +6,10 @@ const ConfigurationOption = ({ description, checked, label, onChange }) => (
   <ControlGroup>
     {description !== '' ? (
       <Tooltip className={Classes.TOOLTIP_INDICATOR} content={description}>
-        <Label>{label}</Label>
+        <Label className="yuna-form-label">{label}</Label>
       </Tooltip>
     ) : (
-      <Label>{label}</Label>
+      <Label className="yuna-form-label">{label}</Label>
     )}
     <Checkbox checked={checked} onChange={onChange} />
   </ControlGroup>

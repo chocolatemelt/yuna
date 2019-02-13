@@ -5,8 +5,8 @@ import { statNames, getName } from '../utils/misc';
 
 const CharacterSheet = ({ character, modifiers, rounding }) => (
   <div>
-    <h1>{character.name}</h1>
-    <ul>
+    <h1 className="yuna-character-name">{character.name}</h1>
+    <ul className="yuna-character-sheet">
       {Object.keys(character).map(
         key =>
           Object.keys(statNames).includes(key) && (
@@ -20,7 +20,7 @@ const CharacterSheet = ({ character, modifiers, rounding }) => (
           )
       )}
     </ul>
-    <ul>
+    <ul className="yuna-character-sheet">
       {Object.keys(modifiers).map(
         key =>
           Object.keys(statNames).includes(key) && (

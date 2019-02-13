@@ -130,14 +130,18 @@ class ConfigurationDisplay extends Component {
             value={rounding}
           />
           <ControlGroup>
-            <Tooltip
-              className={Classes.TOOLTIP_INDICATOR}
-              content="Statuses cover both buffs and debuffs. You can have a maximum of 10 at a time."
-            >
-              <Label>Statuses</Label>
-            </Tooltip>
-            <Button onClick={this.handleSelfDialog}>Self</Button>
-            <Button onClick={this.handleTargetDialog}>Target</Button>
+            <div className="yuna-form-label">
+              <Tooltip
+                className={Classes.TOOLTIP_INDICATOR}
+                content="Statuses cover both buffs and debuffs. You can have a maximum of 10 at a time."
+              >
+                <Label>Statuses</Label>
+              </Tooltip>
+            </div>
+            <ControlGroup>
+              <Button onClick={this.handleSelfDialog}>Self</Button>
+              <Button onClick={this.handleTargetDialog}>Target</Button>
+            </ControlGroup>
           </ControlGroup>
           <Button onClick={clearConfiguration}>Clear</Button>
         </FormGroup>

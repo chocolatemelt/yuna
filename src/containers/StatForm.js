@@ -44,7 +44,9 @@ class StatForm extends Component {
           </Tooltip>
           {Object.keys(stats).map(key => (
             <ControlGroup key={`statform${key}`}>
-              <Label>{getName(key)}</Label>
+              <div className="yuna-form-label">
+                <Label>{getName(key)}</Label>
+              </div>
               <NumericInput
                 clampValueOnBlur
                 min={0}

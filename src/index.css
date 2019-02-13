@@ -1,14 +1,46 @@
 body {
+  font-size: 16px;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+/** bootstrap overrides **/
+
+.container-fluid {
+  padding-top: 15px;
+}
+
+/** blueprintjs overrides **/
+.bp3-input-group {
+  width: 100px;
+}
+
+/** now we can do some actual styling **/
+
+/** character sheet **/
+.yuna-character-name {
+  font-size: 2em;
+}
+
+.yuna-character-sheet {
+  list-style-type: none;
+  margin-block-start: 0;
+  padding-inline-start: 0;
+}
+
+/** inputs **/
+.yuna-form-label {
+  width: 160px;
 }
