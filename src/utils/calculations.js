@@ -38,7 +38,8 @@ export default function calculateDamage(character, activeSkill, configuration) {
   // if empty skill (non-damaging), just return N/A
   if (!activeSkill) return 'N/A';
 
-  const { elementalAdvantage: eleAdv, target } = configuration;
+  const { elementalAdvantage: eleAdv, self, target } = configuration;
+  const { buffs: selfBuffs } = self;
   const { buffs, debuffs, bleed, burn, poison } = target;
   let skill = activeSkill;
 
@@ -72,8 +73,10 @@ export default function calculateDamage(character, activeSkill, configuration) {
   const usesElementalAdvantage = getMiscScaling(skill, 'uses_elemental_advantage');
   if (usesElementalAdvantage) {
     if (usesElementalAdvantage.requiresAnyOf) {
-      hasElementalAdvantage = usesElementalAdvantage.requiresAnyOf.some(buff =>
-        buffs.includes(buff)
+      // bitwise operator here since cidd s3 can and should ele advantage when it's checked off
+      // in the configuration anyway
+      hasElementalAdvantage |= usesElementalAdvantage.requiresAnyOf.some(buff =>
+        selfBuffs.includes(buff)
       );
     } else {
       hasElementalAdvantage = true;
