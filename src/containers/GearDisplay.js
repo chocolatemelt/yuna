@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Button, Classes, Tooltip } from '@blueprintjs/core';
 
-import { updateGear } from '../actions/gear';
+import { updateGear, gearClearAll } from '../actions/gear';
 import GearDialog from '../components/GearDialog';
 import data from '../data/gear.json';
 
 class GearDisplay extends Component {
   static propTypes = {
+    clearAllGear: PropTypes.func.isRequired,
     gear: PropTypes.shape({}).isRequired,
     setGear: PropTypes.func.isRequired,
   };
@@ -37,7 +38,7 @@ class GearDisplay extends Component {
   };
 
   render() {
-    const { gear, setGear } = this.props;
+    const { gear, setGear, clearAllGear } = this.props;
     const { dialogOpen } = this.state;
 
     return (
@@ -64,6 +65,7 @@ class GearDisplay extends Component {
             </Button>
           </Fragment>
         ))}
+        <Button onClick={clearAllGear}>Clear All</Button>
       </div>
     );
   }
@@ -75,6 +77,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setGear: (gear, stats) => dispatch(updateGear(gear, stats)),
+  clearAllGear: () => dispatch(gearClearAll()),
 });
 
 export default connect(

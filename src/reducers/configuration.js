@@ -40,7 +40,7 @@ const configuration = (state = baseConfigurationState, action) => {
         [action.key]: action.value,
       });
     case CONFIGURATION_CLEAR:
-      return Object.assign({}, state, baseConfigurationState);
+      return Object.assign({}, baseConfigurationState);
     case CONFIGURATION_STATUS_SET:
       return Object.assign({}, state, {
         [action.target]: action.status,

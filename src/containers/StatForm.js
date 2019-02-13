@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Classes, ControlGroup, FormGroup, Label, NumericInput, Tooltip } from '@blueprintjs/core';
+import {
+  Button,
+  Classes,
+  ControlGroup,
+  FormGroup,
+  Label,
+  NumericInput,
+  Tooltip,
+} from '@blueprintjs/core';
 
-import { characterSetStats } from '../actions/character';
+import { characterSetStats, characterStatsClearAll } from '../actions/character';
 import { getName } from '../utils/misc';
 
 class StatForm extends Component {
   static propTypes = {
+    clearAll: PropTypes.func.isRequired,
     set: PropTypes.func.isRequired,
     stats: PropTypes.shape({}).isRequired,
   };
@@ -22,7 +31,7 @@ class StatForm extends Component {
   };
 
   render() {
-    const { stats } = this.props;
+    const { clearAll, stats } = this.props;
 
     return (
       <div style={{ width: '30%' }}>
@@ -44,6 +53,7 @@ class StatForm extends Component {
               />
             </ControlGroup>
           ))}
+          <Button onClick={clearAll}>Clear</Button>
         </FormGroup>
       </div>
     );
@@ -55,6 +65,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  clearAll: () => dispatch(characterStatsClearAll()),
   set: stats => dispatch(characterSetStats(stats)),
 });
 

@@ -1,25 +1,31 @@
-import { CHARACTER_SET, CHARACTER_LOAD, CHARACTER_SET_STATS } from '../actions';
+import {
+  CHARACTER_SET,
+  CHARACTER_LOAD,
+  CHARACTER_SET_STATS,
+  CHARACTER_STATS_CLEAR_ALL,
+} from '../actions';
 
 import { add } from '../utils/stats';
 
-const character = (
-  state = {
-    current: 'ras',
-    base: {},
-    data: {},
-    stats: {
-      attack: 0,
-      health: 0,
-      speed: 0,
-      defense: 0,
-      crit_chance: 0,
-      crit_damage: 0,
-      effectiveness: 0,
-      effect_res: 0,
-    },
-  },
-  action
-) => {
+const baseStats = {
+  attack: 0,
+  health: 0,
+  speed: 0,
+  defense: 0,
+  crit_chance: 0,
+  crit_damage: 0,
+  effectiveness: 0,
+  effect_res: 0,
+};
+
+const characterBaseState = {
+  current: 'ras',
+  base: {},
+  data: {},
+  stats: baseStats,
+};
+
+const character = (state = characterBaseState, action) => {
   switch (action.type) {
     case CHARACTER_SET:
       return Object.assign({}, state, {
@@ -30,6 +36,11 @@ const character = (
       return Object.assign({}, state, {
         base: action.characterData,
         data,
+      });
+    }
+    case CHARACTER_STATS_CLEAR_ALL: {
+      return Object.assign({}, state, {
+        stats: baseStats,
       });
     }
     case CHARACTER_SET_STATS: {

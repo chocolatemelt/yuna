@@ -1,4 +1,4 @@
-import { GEAR_RECALCULATE, GEAR_SET, GEAR_CLEAR } from '../actions';
+import { GEAR_RECALCULATE, GEAR_SET, GEAR_CLEAR, GEAR_CLEAR_ALL } from '../actions';
 
 import { add } from '../utils/stats';
 
@@ -16,20 +16,19 @@ const baseModifiers = {
   speed: 0,
 };
 
-const gear = (
-  state = {
-    artifact: {},
-    weapon: {},
-    helmet: {},
-    armor: {},
-    necklace: {},
-    ring: {},
-    boots: {},
-    modifiers: baseModifiers,
-    sets: [],
-  },
-  action
-) => {
+const gearBaseState = {
+  artifact: {},
+  weapon: {},
+  helmet: {},
+  armor: {},
+  necklace: {},
+  ring: {},
+  boots: {},
+  modifiers: baseModifiers,
+  sets: [],
+};
+
+const gear = (state = gearBaseState, action) => {
   switch (action.type) {
     case GEAR_RECALCULATE: {
       // this is shitty code
@@ -55,6 +54,9 @@ const gear = (
         sets: [],
       };
       return Object.assign({}, state, clear);
+    }
+    case GEAR_CLEAR_ALL: {
+      return Object.assign({}, gearBaseState);
     }
     default:
       return state;
