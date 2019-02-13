@@ -41,6 +41,20 @@ h6 {
 }
 
 /** skill damage display **/
+.yuna-skill-display {
+  display: flex;
+  justify-content: space-between;
+}
+
+.yuna-skill-damage-display {
+  display: inline-block;
+  text-align: center;
+}
+
+.yuna-skill-damage-display:nth-last-child(n + 2) {
+  margin-right: 15px;
+}
+
 .yuna-skill-name {
   font-weight: 700;
 }

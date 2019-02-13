@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Label } from '@blueprintjs/core';
 
 const SkillDamageDisplay = ({ damageCalc, name, rounding }) => (
-  <div>
+  <div className="yuna-skill-damage-display">
     <Label className="yuna-skill-name">{name}</Label>
     {damageCalc === 'N/A' ? (
       <p>N/A</p>

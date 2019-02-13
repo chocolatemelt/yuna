@@ -63,7 +63,7 @@ class SkillDisplay extends Component {
     const { s1, s2, s3 } = this.state;
 
     return (
-      <div>
+      <div className="yuna-skill-display">
         <SkillDamageDisplay damageCalc={s1} name="s1" rounding={configuration.rounding} />
         <SkillDamageDisplay damageCalc={s2} name="s2" rounding={configuration.rounding} />
         <SkillDamageDisplay damageCalc={s3} name="s3" rounding={configuration.rounding} />
