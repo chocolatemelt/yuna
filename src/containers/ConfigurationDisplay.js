@@ -63,6 +63,7 @@ class ConfigurationDisplay extends Component {
       targetDefense,
       targetHealthPerc,
       targetHealthMax,
+      lunaMultiHit,
       numTargets,
     } = configuration;
     const { selfStatusDialog, targetStatusDialog } = this.state;
@@ -106,6 +107,14 @@ class ConfigurationDisplay extends Component {
             onChange={this.handleValueChange('targetDefense')}
             stepSize={10}
             value={targetDefense}
+          />
+          <ConfigurationValue
+            description="Luna's S1 has a multihit att_rate modifier, which goes up with the number of attacks."
+            label="Luna Multihit"
+            max={3}
+            min={1}
+            onChange={this.handleValueChange('lunaMultiHit')}
+            value={lunaMultiHit}
           />
           <ConfigurationValue
             label="Number of Enemies"

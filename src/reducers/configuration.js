@@ -27,6 +27,7 @@ const baseConfigurationState = {
   targetHealthPerc: 100,
   targetHealthMax: 50000,
   targetDefense: 0,
+  lunaMultiHit: 2,
   numTargets: 1,
   elementalAdvantage: false,
   soulburn: false,

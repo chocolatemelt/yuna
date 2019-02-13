@@ -304,7 +304,7 @@
       "misc_scaling": [
         {
           "name": "luna_multihit",
-          "scalar": [0.7, 1.4, 2.1]
+          "att_rates": [0.7, 1.4, 2.1]
         }
       ]
     },

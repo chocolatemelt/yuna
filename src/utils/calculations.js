@@ -41,7 +41,12 @@ export default function calculateDamage(character, activeSkill, configuration) {
   const { elementalAdvantage: eleAdv, self, target } = configuration;
   const { buffs: selfBuffs } = self;
   const { buffs, debuffs, bleed, burn, poison } = target;
+  let { att_rate } = activeSkill;
   let skill = activeSkill;
+
+  // base flat / multiplicative modifiers
+  let flat = 0;
+  let mult = 1;
 
   // elemental advantage configuration is mutable for certain skills, so reassign it here
   let hasElementalAdvantage = eleAdv;
@@ -52,7 +57,6 @@ export default function calculateDamage(character, activeSkill, configuration) {
   }
 
   // calculate flat scaling, if applicable
-  let flat = 0;
   if ('flat_scaling' in skill) {
     skill.flat_scaling.forEach(scaling => {
       flat += scaling.scalar * character[scaling.stat];
@@ -60,12 +64,12 @@ export default function calculateDamage(character, activeSkill, configuration) {
   }
 
   // calculate multiplicative scaling, if applicable
-  let mult = 0;
   if ('mult_scaling' in skill) {
-    mult = 1;
+    let totalMultScaling = 1;
     skill.mult_scaling.forEach(scaling => {
-      mult *= scaling.scalar * character[scaling.stat];
+      totalMultScaling *= scaling.scalar * character[scaling.stat];
     });
+    mult *= 1 + totalMultScaling;
   }
 
   // cidd and luna get elemental advantage on their s3
@@ -132,6 +136,13 @@ export default function calculateDamage(character, activeSkill, configuration) {
     mult *= 1 + numDebuffs * increasedPerDebuff.scalar;
   }
 
+  // luna multihit on s1 is a little strange, and basically modifies att_rate at random with 3
+  // possible outcomes. this is just set directly in the configuration as lunaMultiHit.
+  const lunaMultiHit = getMiscScaling(skill, 'luna_multihit');
+  if (lunaMultiHit) {
+    att_rate = lunaMultiHit.att_rates[configuration.lunaMultiHit - 1];
+  }
+
   // % max hp is PROBABLY calculated after pow and before mitigation... otherwise it's about
   // double the stated value and absolutely bonkers on top of crit damage (16% max hp anyone? 32%?)
   const targetMaxHealth = getMiscScaling(skill, 'target_max_health');
@@ -158,8 +169,7 @@ export default function calculateDamage(character, activeSkill, configuration) {
 
   // overall base hit damage... pardon the ugliness
   let hit =
-    (((character.attack * skill.att_rate + flat) * (1 + mult) * skill.pow * 1.871 +
-      maxHealthDamage) /
+    (((character.attack * att_rate + flat) * mult * skill.pow * 1.871 + maxHealthDamage) /
       mitigation) *
     elementalAdvantage;
 
