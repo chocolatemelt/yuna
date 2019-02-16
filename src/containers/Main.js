@@ -56,12 +56,7 @@ class Main extends Component {
 
   componentWillReceiveProps = nextProps => {
     const { character, configuration, modifiers } = nextProps;
-    const newCharacter = calculateStats(
-      character.base,
-      character.stats,
-      modifiers,
-      configuration.self
-    );
+    const newCharacter = calculateStats(character.base, character.stats, modifiers, configuration);
 
     this.setState({
       character: newCharacter,
@@ -91,6 +86,7 @@ class Main extends Component {
             <SkillDisplay skills={{ s1, s2, s3 }} rounding={configuration.rounding} />
             <CalculationsDisplay
               character={character}
+              configuration={configuration}
               skills={{ s1, s2, s3 }}
               rounding={configuration.rounding}
             />

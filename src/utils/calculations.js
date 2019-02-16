@@ -42,9 +42,6 @@ export function calculateDamage(character, activeSkill, configuration) {
   const { buffs: selfBuffs } = self;
   const { buffs, debuffs, bleed, burn, poison } = target;
 
-  // get attack, which can be modified (currently only gunther)
-  let { attack } = character;
-
   // base flat / multiplicative modifiers
   let flat = 0;
   let mult = 1;
@@ -91,12 +88,6 @@ export function calculateDamage(character, activeSkill, configuration) {
     } else {
       hasElementalAdvantage = true;
     }
-  }
-
-  // gunther gets 0.5 increased attack... but can't crit
-  const isGunther = getMiscScaling(skill, 'is_gunther');
-  if (isGunther) {
-    attack *= 1 + isGunther.scalar;
   }
 
   // missing health is calculated as a multiplicative scalar per 1% target missing health
@@ -174,7 +165,8 @@ export function calculateDamage(character, activeSkill, configuration) {
 
   // overall base hit damage... pardon the ugliness
   let hit =
-    (((attack * att_rate + flat) * mult * skill.pow * 1.871 + maxHealthDamage) / mitigation) *
+    (((character.attack * att_rate + flat) * mult * skill.pow * 1.871 + maxHealthDamage) /
+      mitigation) *
     elementalAdvantage;
 
   // targeted debuff increases damage by another 15%, presumably after mitigation
@@ -194,7 +186,8 @@ export function calculateDamage(character, activeSkill, configuration) {
     crit *= 1 + bonusCrit.scalar;
   }
 
-  // gunther can't crit... let's just return N/A
+  // gunther can't crit... let's just return null
+  const isGunther = getMiscScaling(skill, 'is_gunther');
   if (isGunther) {
     crit = null;
   }
@@ -236,13 +229,76 @@ function estimateSkillDamage(critChance, skill) {
   return 0;
 }
 
+function bellonaDPT(character, skills) {
+  const { crit_chance } = character;
+  const estimates = {
+    s1: estimateSkillDamage(crit_chance, skills.s1),
+    s3: estimateSkillDamage(crit_chance, skills.s3),
+  };
+
+  return estimates.s1 + estimates.s3 / 5;
+}
+
+function lunaDPT(character, configuration, skills) {
+  const { crit_chance } = character;
+  // variable s3 cooldown...
+  const s3cd = [5, 4, 3];
+  const cooldownMults = {
+    s1: 1,
+    s3: 1 / s3cd[configuration.lunaMultiHit - 1],
+  };
+  const estimates = {
+    s1: estimateSkillDamage(crit_chance, skills.s1),
+    s3: estimateSkillDamage(crit_chance, skills.s3),
+  };
+
+  estimates.s1 *= 1 - cooldownMults.s3;
+  estimates.s3 *= cooldownMults.s3;
+
+  return estimates.s1 + estimates.s3;
+}
+
+function sezDPT(character, configuration, skills) {
+  const { crit_chance } = character;
+  const { targetHealthPerc } = configuration;
+
+  const cooldownMults = {
+    s1: 1,
+    s3: character.s3 ? 1 / character.s3.cooldown : 0,
+  };
+  const estimates = {
+    s1: estimateSkillDamage(crit_chance, skills.s1),
+    s2: targetHealthPerc < 50 ? estimateSkillDamage(crit_chance, skills.s2) : 0,
+    s3: estimateSkillDamage(crit_chance, skills.s3),
+  };
+
+  // add sez s2, since it's a secondary effect of his s1
+  estimates.s1 += estimates.s2;
+  estimates.s1 *= 1 - cooldownMults.s3;
+  estimates.s3 *= cooldownMults.s3;
+
+  return estimates.s1 + estimates.s3;
+}
+
 /**
  * calculates estimated damage per turn. this is the base algorithm.
  * @param  Object character character
  * @param  Object skills    calculated skill damage
  * @return Number           damage per turn
  */
-export function calculateDPT(character, skills) {
+export function calculateDPT(character, configuration, skills) {
+  // some characters have a different DPT function
+  switch (character.name) {
+    case 'Bellona':
+      return bellonaDPT(character, skills);
+    case 'Luna':
+      return lunaDPT(character, configuration, skills);
+    case 'Sez':
+      return sezDPT(character, configuration, skills);
+    default:
+      break;
+  }
+
   const { crit_chance } = character;
   const cooldownMults = {
     s1: character.s1 ? 1 / character.s1.cooldown : 0,

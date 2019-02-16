@@ -12,6 +12,7 @@ import {
 class CalculationsDisplay extends Component {
   static propTypes = {
     character: PropTypes.shape({}).isRequired,
+    configuration: PropTypes.shape({}).isRequired,
     skills: PropTypes.shape({
       s1: PropTypes.oneOfType([
         PropTypes.shape({
@@ -58,8 +59,8 @@ class CalculationsDisplay extends Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    const { character, skills } = nextProps;
-    const dpt = calculateDPT(character, skills);
+    const { character, configuration, skills } = nextProps;
+    const dpt = calculateDPT(character, configuration, skills);
 
     this.setState({
       dpt,
@@ -78,7 +79,7 @@ class CalculationsDisplay extends Component {
   };
 
   render() {
-    const { rounding } = this.props;
+    const { character, rounding } = this.props;
     const { dpt, tdo, ehp, reduction, dptDialog, tdoDialog } = this.state;
 
     return (
@@ -137,14 +138,47 @@ class CalculationsDisplay extends Component {
           onClose={() => this.handleDialog('dpt')}
           title="How is damage per turn calculated?"
         >
-          <div className={Classes.DIALOG_BODY}>xd</div>
+          <div className={Classes.DIALOG_BODY}>
+            <p>
+              via&nbsp;
+              <a href="https://www.reddit.com/r/EpicSeven/comments/alnhuf/optimal_gear_calculations_for_luna_sez_c_lorina/">
+                this reddit post
+              </a>
+              &nbsp;by /u/noarure
+            </p>
+            <p>Damage per turn is calculated approximately from the following function:</p>
+            <pre>
+              <code>
+                Damage per turn = (S2 damage / S2 cooldown) + (S3 damage / S3 cooldown) + (S1 damage
+                * (1 - (1 / S2 cooldown + 1 / S3 cooldown)))
+              </code>
+            </pre>
+            {character.calc_info && <p>{character.calc_info}</p>}
+          </div>
         </Dialog>
         <Dialog
           isOpen={tdoDialog}
           onClose={() => this.handleDialog('tdo')}
           title="How is total damage output calculated?"
         >
-          <div className={Classes.DIALOG_BODY}>xd</div>
+          <div className={Classes.DIALOG_BODY}>
+            <p>
+              via&nbsp;
+              <a href="https://www.reddit.com/r/EpicSeven/comments/alnhuf/optimal_gear_calculations_for_luna_sez_c_lorina/">
+                this reddit post
+              </a>
+              &nbsp;by /u/noarure
+            </p>
+            <p>Total damage output is calculated approximately from the following function:</p>
+            <pre>
+              <code>TDO = DPT * Speed / 100 * CR Factor</code>
+            </pre>
+            <p>The CR factor is calculated by the following function:</p>
+            <pre>
+              <code>CR Factor = 1 + CR Gain * CR buffed turns / total turns</code>
+            </pre>
+            {character.calc_info && <p>{character.calc_info}</p>}
+          </div>
         </Dialog>
       </>
     );
