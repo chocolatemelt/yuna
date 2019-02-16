@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Classes, Label, Tooltip } from '@blueprintjs/core';
+import { Classes, Dialog, Label, Tooltip } from '@blueprintjs/core';
 
 import {
   calculateReduction,
@@ -52,6 +52,8 @@ class CalculationsDisplay extends Component {
       tdo: 0,
       ehp: 0,
       reduction: 0,
+      dptDialog: false,
+      tdoDialog: false,
     };
   }
 
@@ -67,9 +69,17 @@ class CalculationsDisplay extends Component {
     });
   };
 
+  handleDialog = dialogName => {
+    const key = `${dialogName}Dialog`;
+
+    this.setState(prevState => ({
+      [key]: !prevState[key],
+    }));
+  };
+
   render() {
     const { rounding } = this.props;
-    const { dpt, tdo, ehp, reduction } = this.state;
+    const { dpt, tdo, ehp, reduction, dptDialog, tdoDialog } = this.state;
 
     return (
       <>
@@ -86,6 +96,13 @@ class CalculationsDisplay extends Component {
             </Tooltip>
             &nbsp;
             {Number.parseFloat(dpt.toFixed(rounding))}
+            <button
+              className="btn btn-link yuna-more-info"
+              onClick={() => this.handleDialog('dpt')}
+              type="button"
+            >
+              what's this?
+            </button>
           </p>
           <p>
             <Tooltip
@@ -96,6 +113,13 @@ class CalculationsDisplay extends Component {
             </Tooltip>
             &nbsp;
             {Number.parseFloat(tdo.toFixed(rounding))}
+            <button
+              className="btn btn-link yuna-more-info"
+              onClick={() => this.handleDialog('tdo')}
+              type="button"
+            >
+              what's this?
+            </button>
           </p>
           <p>
             <span>Damage Reduction</span>
@@ -103,11 +127,25 @@ class CalculationsDisplay extends Component {
             {`${Number.parseFloat(((1 - reduction) * 100).toFixed(rounding))}%`}
           </p>
           <p>
-            <span>Effective health:</span>
+            <span>Effective Health:</span>
             &nbsp;
             {Number.parseFloat(ehp.toFixed(rounding))}
           </p>
         </div>
+        <Dialog
+          isOpen={dptDialog}
+          onClose={() => this.handleDialog('dpt')}
+          title="How is damage per turn calculated?"
+        >
+          <div className={Classes.DIALOG_BODY}>xd</div>
+        </Dialog>
+        <Dialog
+          isOpen={tdoDialog}
+          onClose={() => this.handleDialog('tdo')}
+          title="How is total damage output calculated?"
+        >
+          <div className={Classes.DIALOG_BODY}>xd</div>
+        </Dialog>
       </>
     );
   }

@@ -97,6 +97,17 @@ h6 {
   width: 160px;
 }
 
+.yuna-more-info {
+  color: #000;
+  font-size: 0.6em;
+  text-decoration: underline;
+}
+
+.yuna-more-info:hover {
+  color: #000;
+  text-decoration: none;
+}
+
 /** dialog boxes **/
 .yuna-dialog-form-label {
   width: 100px;

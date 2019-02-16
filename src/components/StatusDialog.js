@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ControlGroup, Dialog, HTMLSelect, NumericInput } from '@blueprintjs/core';
+import { Button, Classes, ControlGroup, Dialog, HTMLSelect, NumericInput } from '@blueprintjs/core';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import { add, remove, complement } from '../utils/misc';
@@ -182,90 +182,96 @@ class StatusDialog extends Component {
         onClose={onClose}
         title={type === 'self' ? 'Self Statuses' : 'Target Statuses'}
       >
-        <Grid fluid>
-          <Row>
-            <Col xs>
-              <p>Buffs</p>
-              <ControlGroup>
-                <Button icon="plus" onClick={this.addBuff} />
-              </ControlGroup>
-              {buffs.map((buff, idx) => (
-                <ControlGroup key={`${buff}group`}>
-                  <HTMLSelect
-                    className="yuna-select"
-                    key={`${buff}select`}
-                    options={add(buffpool, buff).sort()}
-                    onChange={this.handleBuffChange(idx)}
-                    value={buff}
-                  />
-                  <Button key={`${buff}minus`} icon="minus" onClick={() => this.removeBuff(idx)} />
-                </ControlGroup>
-              ))}
-            </Col>
-            <Col xs>
-              <p>Debuffs</p>
-              <ControlGroup>
-                <Button icon="plus" onClick={this.addDebuff} />
-              </ControlGroup>
-              {debuffs.map((debuff, idx) => (
-                <ControlGroup key={`${debuff}group`}>
-                  <HTMLSelect
-                    className="yuna-select"
-                    key={`${debuff}select`}
-                    options={add(debuffpool, debuff).sort()}
-                    onChange={this.handleDebuffChange(idx)}
-                    value={debuff}
-                  />
-                  <Button
-                    key={`${debuff}minus`}
-                    icon="minus"
-                    onClick={() => this.removeDebuff(idx)}
-                  />
-                </ControlGroup>
-              ))}
-              <div className="yuna-dialog-stacking">
+        <div className={Classes.DIALOG_BODY}>
+          <Grid fluid>
+            <Row>
+              <Col xs>
+                <p>Buffs</p>
                 <ControlGroup>
-                  <div className="yuna-dialog-form-label">Bleed</div>
-                  <NumericInput
-                    clampValueOnBlur
-                    max={10}
-                    min={0}
-                    onValueChange={this.handleValueChange('bleed')}
-                    value={bleed}
-                  />
+                  <Button icon="plus" onClick={this.addBuff} />
                 </ControlGroup>
+                {buffs.map((buff, idx) => (
+                  <ControlGroup key={`${buff}group`}>
+                    <HTMLSelect
+                      className="yuna-select"
+                      key={`${buff}select`}
+                      options={add(buffpool, buff).sort()}
+                      onChange={this.handleBuffChange(idx)}
+                      value={buff}
+                    />
+                    <Button
+                      key={`${buff}minus`}
+                      icon="minus"
+                      onClick={() => this.removeBuff(idx)}
+                    />
+                  </ControlGroup>
+                ))}
+              </Col>
+              <Col xs>
+                <p>Debuffs</p>
                 <ControlGroup>
-                  <div className="yuna-dialog-form-label">Burn</div>
-                  <NumericInput
-                    clampValueOnBlur
-                    max={10}
-                    min={0}
-                    onValueChange={this.handleValueChange('burn')}
-                    value={burn}
-                  />
+                  <Button icon="plus" onClick={this.addDebuff} />
                 </ControlGroup>
+                {debuffs.map((debuff, idx) => (
+                  <ControlGroup key={`${debuff}group`}>
+                    <HTMLSelect
+                      className="yuna-select"
+                      key={`${debuff}select`}
+                      options={add(debuffpool, debuff).sort()}
+                      onChange={this.handleDebuffChange(idx)}
+                      value={debuff}
+                    />
+                    <Button
+                      key={`${debuff}minus`}
+                      icon="minus"
+                      onClick={() => this.removeDebuff(idx)}
+                    />
+                  </ControlGroup>
+                ))}
+                <div className="yuna-dialog-stacking">
+                  <ControlGroup>
+                    <div className="yuna-dialog-form-label">Bleed</div>
+                    <NumericInput
+                      clampValueOnBlur
+                      max={10}
+                      min={0}
+                      onValueChange={this.handleValueChange('bleed')}
+                      value={bleed}
+                    />
+                  </ControlGroup>
+                  <ControlGroup>
+                    <div className="yuna-dialog-form-label">Burn</div>
+                    <NumericInput
+                      clampValueOnBlur
+                      max={10}
+                      min={0}
+                      onValueChange={this.handleValueChange('burn')}
+                      value={burn}
+                    />
+                  </ControlGroup>
+                  <ControlGroup>
+                    <div className="yuna-dialog-form-label">Poison</div>
+                    <NumericInput
+                      clampValueOnBlur
+                      max={10}
+                      min={0}
+                      onValueChange={this.handleValueChange('poison')}
+                      value={poison}
+                    />
+                  </ControlGroup>
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs>
                 <ControlGroup>
-                  <div className="yuna-dialog-form-label">Poison</div>
-                  <NumericInput
-                    clampValueOnBlur
-                    max={10}
-                    min={0}
-                    onValueChange={this.handleValueChange('poison')}
-                    value={poison}
-                  />
+                  <Button onClick={this.clear}>Clear</Button>
+                  <Button onClick={this.save}>Save</Button>
                 </ControlGroup>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs>
-              <ControlGroup>
-                <Button onClick={this.clear}>Clear</Button>
-                <Button onClick={this.save}>Save</Button>
-              </ControlGroup>
-            </Col>
-          </Row>
-        </Grid>
+              </Col>
+            </Row>
+          </Grid>
+        </div>
       </Dialog>
     );
   }

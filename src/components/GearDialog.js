@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, ControlGroup, Dialog, HTMLSelect, NumericInput } from '@blueprintjs/core';
+import { Button, Classes, ControlGroup, Dialog, HTMLSelect, NumericInput } from '@blueprintjs/core';
 
 import { add, remove } from '../utils/misc';
 import sets from '../data/sets.json';
@@ -143,70 +143,74 @@ class GearDialog extends Component {
 
     return (
       <Dialog isOpen={isOpen} onClose={onClose} title={type}>
-        <ControlGroup>
-          {selectMainPool.length > 1 ? (
-            <HTMLSelect
-              className="yuna-select"
-              options={selectMainPool}
-              onChange={this.handleChange(0)}
-              value={stats[0]}
+        <div className={Classes.DIALOG_BODY}>
+          <ControlGroup>
+            {selectMainPool.length > 1 ? (
+              <HTMLSelect
+                className="yuna-select"
+                options={selectMainPool}
+                onChange={this.handleChange(0)}
+                value={stats[0]}
+              />
+            ) : (
+              <HTMLSelect
+                className="yuna-select"
+                options={selectMainPool}
+                onChange={this.handleChange(0)}
+                value={stats[0]}
+                disabled
+              />
+            )}
+            <NumericInput
+              clampValueOnBlur
+              min={0}
+              onValueChange={this.handleValueChange(0)}
+              value={values[0]}
             />
-          ) : (
-            <HTMLSelect
-              className="yuna-select"
-              options={selectMainPool}
-              onChange={this.handleChange(0)}
-              value={stats[0]}
-              disabled
-            />
+            <Button icon="plus" onClick={this.addSubstat} />
+          </ControlGroup>
+          {stats.map(
+            (substat, idx) =>
+              idx > 0 && (
+                <ControlGroup key={`${substat}group`}>
+                  <HTMLSelect
+                    className="yuna-select"
+                    key={`${substat}select`}
+                    options={add(subpool, substat).sort()}
+                    onChange={this.handleChange(idx)}
+                    value={substat}
+                  />
+                  <NumericInput
+                    key={`${substat}input`}
+                    clampValueOnBlur
+                    min={0}
+                    onValueChange={this.handleValueChange(idx)}
+                    value={values[idx]}
+                  />
+                  <Button key={`${substat}add`} icon="plus" onClick={this.addSubstat} />
+                  <Button
+                    key={`${substat}minus`}
+                    icon="minus"
+                    onClick={() => this.removeSubstat(idx)}
+                  />
+                </ControlGroup>
+              )
           )}
-          <NumericInput
-            clampValueOnBlur
-            min={0}
-            onValueChange={this.handleValueChange(0)}
-            value={values[0]}
-          />
-          <Button icon="plus" onClick={this.addSubstat} />
-        </ControlGroup>
-        {stats.map(
-          (substat, idx) =>
-            idx > 0 && (
-              <ControlGroup key={`${substat}group`}>
-                <HTMLSelect
-                  className="yuna-select"
-                  key={`${substat}select`}
-                  options={add(subpool, substat).sort()}
-                  onChange={this.handleChange(idx)}
-                  value={substat}
-                />
-                <NumericInput
-                  key={`${substat}input`}
-                  clampValueOnBlur
-                  min={0}
-                  onValueChange={this.handleValueChange(idx)}
-                  value={values[idx]}
-                />
-                <Button key={`${substat}add`} icon="plus" onClick={this.addSubstat} />
-                <Button
-                  key={`${substat}minus`}
-                  icon="minus"
-                  onClick={() => this.removeSubstat(idx)}
-                />
-              </ControlGroup>
-            )
-        )}
-        <ControlGroup>
-          <HTMLSelect
-            className="yuna-select"
-            options={Object.keys(sets)}
-            onChange={this.handleSets}
-            value={set}
-          />
-        </ControlGroup>
-        <ControlGroup>
-          <Button onClick={this.clear}>Clear</Button>
-          <Button onClick={this.save}>Save</Button>
-        </ControlGroup>
+          <ControlGroup>
+            <HTMLSelect
+              className="yuna-select"
+              options={Object.keys(sets)}
+              onChange={this.handleSets}
+              value={set}
+            />
+          </ControlGroup>
+        </div>
+        <div className={Classes.DIALOG_FOOTER}>
+          <ControlGroup>
+            <Button onClick={this.clear}>Clear</Button>
+            <Button onClick={this.save}>Save</Button>
+          </ControlGroup>
+        </div>
       </Dialog>
     );
   }
