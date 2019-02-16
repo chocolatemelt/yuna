@@ -1,3 +1,4 @@
+import { limit } from './misc';
 import buffList from '../data/buffs.json';
 import debuffList from '../data/debuffs.json';
 
@@ -115,6 +116,11 @@ export function calculateStats(base, flat, modifiers, status) {
   ret.speed *= 1 + speedMult;
   ret.crit_chance += critChanceAdd;
   ret.crit_damage += critDamageAdd;
+
+  // hard limits on crit, effectiveness, and eff. resistance
+  ret.crit_chance = limit(ret.crit_chance, 0, 100);
+  ret.effectiveness = limit(ret.effectiveness, 0, 100);
+  ret.effect_res = limit(ret.effect_res, 0, 100);
 
   return ret;
 }

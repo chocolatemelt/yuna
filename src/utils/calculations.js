@@ -34,9 +34,9 @@ function soulburn(skill) {
  * @param  Object configuration
  * @return Object                calculated total damage
  */
-export default function calculateDamage(character, activeSkill, configuration) {
+export function calculateDamage(character, activeSkill, configuration) {
   // if empty skill (non-damaging), just return N/A
-  if (!activeSkill) return 'N/A';
+  if (!activeSkill) return null;
 
   const { elementalAdvantage: eleAdv, self, target } = configuration;
   const { buffs: selfBuffs } = self;
@@ -196,7 +196,7 @@ export default function calculateDamage(character, activeSkill, configuration) {
 
   // gunther can't crit... let's just return N/A
   if (isGunther) {
-    crit = 'N/A';
+    crit = null;
   }
 
   return {
@@ -205,4 +205,72 @@ export default function calculateDamage(character, activeSkill, configuration) {
     crush,
     crit,
   };
+}
+
+export function calculateReduction(character) {
+  const { defense } = character;
+  return 1 / (1 + defense / 300);
+}
+
+export function calculateEHP(character) {
+  const { health } = character;
+  return health / calculateReduction(character);
+}
+
+/**
+ * calculates estimated damage for a skill, on average
+ * @param  {[type]} critChance [description]
+ * @param  {[type]} skill      [description]
+ * @return {[type]}            [description]
+ */
+function estimateSkillDamage(critChance, skill) {
+  if (skill) {
+    if (skill.crit) {
+      const nonCrit = ((100 - critChance) / 100) * skill.hit;
+      const crit = (critChance / 100) * skill.crit;
+      return nonCrit + crit;
+    }
+    return skill.hit;
+  }
+  // not a damaging skill
+  return 0;
+}
+
+/**
+ * calculates estimated damage per turn. this is the base algorithm.
+ * @param  Object character character
+ * @param  Object skills    calculated skill damage
+ * @return Number           damage per turn
+ */
+export function calculateDPT(character, skills) {
+  const { crit_chance } = character;
+  const cooldownMults = {
+    s1: character.s1 ? 1 / character.s1.cooldown : 0,
+    s2: character.s2 ? 1 / character.s2.cooldown : 0,
+    s3: character.s3 ? 1 / character.s3.cooldown : 0,
+  };
+  const estimates = {
+    s1: estimateSkillDamage(crit_chance, skills.s1),
+    s2: estimateSkillDamage(crit_chance, skills.s2),
+    s3: estimateSkillDamage(crit_chance, skills.s3),
+  };
+
+  // calculate the average dps over several turns
+  // Damage per turn = (S2 damage / S2 cooldown) + (S3 damage / S3 cooldown) + (S1 damage * (1 - (1 / S2 cooldown + 1 / S3 cooldown)))
+  // source: /u/noarure https://www.reddit.com/r/EpicSeven/comments/alnhuf/optimal_gear_calculations_for_luna_sez_c_lorina/
+  estimates.s1 *= 1 - (cooldownMults.s2 + cooldownMults.s3);
+  estimates.s2 *= cooldownMults.s2;
+  estimates.s3 *= cooldownMults.s3;
+
+  return estimates.s1 + estimates.s2 + estimates.s3;
+}
+
+/**
+ * calculates estimated total damage given speed and CR buffs
+ * @param  Object character character
+ * @param  Number dpt       damage per turn
+ * @return Number           total damage output
+ */
+export function calculateTDO(character, dpt) {
+  return dpt * (character.speed / 100);
 }

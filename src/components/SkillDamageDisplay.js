@@ -5,9 +5,7 @@ import { Label } from '@blueprintjs/core';
 const SkillDamageDisplay = ({ damageCalc, name, rounding }) => (
   <div className="yuna-skill-damage-display">
     <Label className="yuna-skill-name">{name}</Label>
-    {damageCalc === 'N/A' ? (
-      <p>N/A</p>
-    ) : (
+    {damageCalc ? (
       <>
         <p className="yuna-skill yuna-miss">
           {Number.parseFloat(damageCalc.miss.toFixed(rounding))}
@@ -16,12 +14,14 @@ const SkillDamageDisplay = ({ damageCalc, name, rounding }) => (
         <p className="yuna-skill yuna-crush">
           {Number.parseFloat(damageCalc.crush.toFixed(rounding))}
         </p>
-        {typeof damageCalc.crit === 'number' && (
+        {damageCalc.crit && (
           <p className="yuna-skill yuna-crit">
             {Number.parseFloat(damageCalc.crit.toFixed(rounding))}
           </p>
         )}
       </>
+    ) : (
+      <p>N/A</p>
     )}
   </div>
 );

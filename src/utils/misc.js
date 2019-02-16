@@ -1,17 +1,13 @@
 import characterData from '../data/characters.json';
 
-export function add(a, e) {
-  return a.concat([e]);
-}
+export const add = (a, e) => a.concat([e]);
 
-export function remove(a, e) {
-  return a.filter(el => el !== e);
-}
+export const remove = (a, e) => a.filter(el => el !== e);
 
 // this is technically a relative complement
-export function complement(a, b) {
-  return a.filter(el => !b.includes(el));
-}
+export const complement = (a, b) => a.filter(el => !b.includes(el));
+
+export const limit = (val, min, max) => Math.min(Math.max(val, min), max);
 
 export const statNames = {
   element: 'Element',

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import CalculationsDisplay from './CalculationsDisplay';
 import CharacterSelect from '../components/CharacterSelect';
 import CharacterSheet from '../components/CharacterSheet';
 import ConfigurationDisplay from './ConfigurationDisplay';
@@ -9,6 +10,7 @@ import SkillDisplay from './SkillDisplay';
 import StatForm from './StatForm';
 import GearDisplay from './GearDisplay';
 import { loadCharacterData } from '../actions/character';
+import { calculateDamage } from '../utils/calculations';
 import { calculateStats } from '../utils/stats';
 
 class Main extends Component {
@@ -24,6 +26,24 @@ class Main extends Component {
 
     this.state = {
       character: props.character,
+      s1: {
+        hit: 0,
+        miss: 0,
+        crit: 0,
+        crush: 0,
+      },
+      s2: {
+        hit: 0,
+        miss: 0,
+        crit: 0,
+        crush: 0,
+      },
+      s3: {
+        hit: 0,
+        miss: 0,
+        crit: 0,
+        crush: 0,
+      },
     };
   }
 
@@ -36,15 +56,24 @@ class Main extends Component {
 
   componentWillReceiveProps = nextProps => {
     const { character, configuration, modifiers } = nextProps;
+    const newCharacter = calculateStats(
+      character.base,
+      character.stats,
+      modifiers,
+      configuration.self
+    );
 
     this.setState({
-      character: calculateStats(character.base, character.stats, modifiers, configuration.self),
+      character: newCharacter,
+      s1: calculateDamage(newCharacter, newCharacter.s1, configuration),
+      s2: calculateDamage(newCharacter, newCharacter.s2, configuration),
+      s3: calculateDamage(newCharacter, newCharacter.s3, configuration),
     });
   };
 
   render() {
     const { configuration, modifiers } = this.props;
-    const { character } = this.state;
+    const { character, s1, s2, s3 } = this.state;
 
     return (
       <div className="container-fluid">
@@ -59,7 +88,12 @@ class Main extends Component {
             <StatForm />
           </div>
           <div className="col-md-4">
-            <SkillDisplay configuration={configuration} data={character} />
+            <SkillDisplay skills={{ s1, s2, s3 }} rounding={configuration.rounding} />
+            <CalculationsDisplay
+              character={character}
+              skills={{ s1, s2, s3 }}
+              rounding={configuration.rounding}
+            />
           </div>
           <div className="col-md-4">
             <GearDisplay />
