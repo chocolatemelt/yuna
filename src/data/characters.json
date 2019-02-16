@@ -78,7 +78,8 @@
       "soulburn": {
         "att_rate": 1.2
       }
-    }
+    },
+    "calc_info": "Bellona's optimal DPS rotation is just her S1 spam. Every 5th S1 gives her an S3."
   },
   "challenger_dominiel": {
     "name": "Challenger Dominiel",
@@ -339,7 +340,8 @@
       "soulburn": {
         "att_rate": 2.2
       }
-    }
+    },
+    "calc_info": "Luna gets an average of 4 turn cd on her S3, from the multihits of S1. For the most accurate estimate, set multihit to 2."
   },
   "sez": {
     "name": "Sez",
@@ -387,7 +389,8 @@
           }
         ]
       }
-    }
+    },
+    "calc_info": "Sez only deals S2 damage when he uses S1 below 50% hp."
   },
   "specter_tenebria": {
     "name": "Specter Tenebria",

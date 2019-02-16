@@ -110,6 +110,15 @@ export function calculateStats(base, flat, modifiers, status) {
     speedMult -= debuffList.speed_down;
   }
 
+  // apply stat-boosting passives (assumed to be post-)
+  switch (base.name) {
+    case 'Gunther':
+      ret.attack *= 1.5;
+      break;
+    default:
+      break;
+  }
+
   // apply multipliers
   ret.attack *= 1 + attackMult;
   ret.defense *= 1 + defenseMult;
