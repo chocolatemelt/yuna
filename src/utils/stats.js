@@ -34,13 +34,13 @@ const isNamedStat = stat =>
 
 /**
  * calculates final stats from base stats and gear modifiers
- * @param  Object base      base character stats
- * @param  Object flat      flat stats from stat form
- * @param  Object modifiers gear modifiers
- * @param  Object status    buffs and debuffs applied to the character
- * @return Object           final stats
+ * @param  Object base           base character stats
+ * @param  Object flat           flat stats from stat form
+ * @param  Object modifiers      gear modifiers
+ * @param  Object configuration  configuration
+ * @return Object                final stats
  */
-export function calculateStats(base, flat, modifiers, status) {
+export function calculateStats(base, flat, modifiers, configuration) {
   let ret = Object.assign({}, base);
   Object.keys(modifiers).forEach(k => {
     // this code sucks
@@ -63,7 +63,7 @@ export function calculateStats(base, flat, modifiers, status) {
   let speedMult = 0;
   let critChanceAdd = 0;
   let critDamageAdd = 0;
-  const { buffs, debuffs } = status;
+  const { buffs, debuffs } = configuration.self;
 
   // pardon the :Megupuke: code
   // THIS ASSUMES BUFFS AND DEBUFFS ARE ADDITIVELY CALCULATED. there's no indication this is true.
@@ -114,6 +114,14 @@ export function calculateStats(base, flat, modifiers, status) {
   switch (base.name) {
     case 'Gunther':
       ret.attack *= 1.5;
+      break;
+    case 'Luna':
+      if (configuration.selfHealthPerc > 50) {
+        ret.attack *= 1.2;
+        ret.crit_chance += 20;
+      } else {
+        ret.defense *= 1.2;
+      }
       break;
     default:
       break;

@@ -223,8 +223,7 @@
       "pow": 0.85,
       "misc_scaling": [
         {
-          "name": "is_gunther",
-          "scalar": 0.5
+          "name": "is_gunther"
         }
       ]
     },
@@ -235,8 +234,7 @@
       "pow": 0.95,
       "misc_scaling": [
         {
-          "name": "is_gunther",
-          "scalar": 0.5
+          "name": "is_gunther"
         },
         {
           "name": "target_is_bleeding",
