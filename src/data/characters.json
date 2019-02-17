@@ -244,7 +244,8 @@
       "soulburn": {
         "att_rate": 2.4
       }
-    }
+    },
+    "calc_info": "Gunther can't crit, but gets an attack multiplier to compensate. Since I'm not sure what the raw chance for crushing hit is, his estimated damage is going to be lower than expected."
   },
   "iseria": {
     "name": "Iseria",
